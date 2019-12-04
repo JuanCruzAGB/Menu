@@ -3,10 +3,6 @@
 
 NavmenuJS is a navbar in Javascript what i made for my projects, inspired by the [validation from laravel](https://laravel.com/docs/6.x/validation) HTML files system.
 
-**Table of Contents**
-
-[TOCM]
-
 ## Installation
 
 Clone the repository on the __public__.
