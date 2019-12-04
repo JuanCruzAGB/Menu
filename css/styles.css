@@ -1,0 +1,440 @@
+.nav-menu{
+    --primary-color: #222;
+    --secondary-color: #ddd;
+    --tertiary-color: #32B1DA;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 4.6rem;
+    max-height: 4.6rem;
+    background: var(--primary-color);
+    font-family: verdana;
+}
+
+.nav-menu.neon{
+    box-shadow: 0 0 19px var(--tertiary-color);
+}
+
+.nav-menu .nav-row:first-of-type{
+    display: flex;
+    overflow: hidden;
+}
+
+.nav-menu .nav-row{
+    flex-basis: 100%;
+    height: 100%;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.nav-menu .nav-row:first-of-type{
+    overflow: hidden;
+}
+
+.nav-menu .nav-title{
+    flex-basis: 100%;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.nav-menu .nav-title h1{
+    margin: 0;
+    padding-right: 1rem;
+    text-align: right;
+    line-height: 4.6rem;
+    font-size: 1rem;
+}
+
+.nav-menu .menu-list{
+    width: fit-content;
+    display: none;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu .nav-search-bar{
+    display: none;
+}
+
+/* Collapsable */
+.collapsable{
+    overflow: hidden;
+    transition: 500ms;
+    height: auto;
+    z-index: 9;
+}
+
+.collapsable.closed{
+    height: 2.3rem;
+}
+
+.collapsable .collapsable-button{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 2.3rem;
+    line-height: 2.3rem;
+}
+
+.collapsable .collapsable-button .collapsable-icon{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+    color: var(--tertiary-color);
+}
+
+.collapsable .collapsable-menu{
+    border-top: 1px solid var(--tertiary-color);
+    padding: 0 .5rem;
+}
+
+.collapsable .collapsable-menu .collapsable-link{
+    display: block;
+    width: 100%;
+    height: 2.3rem;
+    line-height: 2.3rem;
+    color: var(--secondary-color);
+}
+
+/* Sidebar */
+.nav-menu .sidebar-button{
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.nav-menu > .sidebar-button{
+    left: 0;
+    height: 100%;
+    padding: 0 1rem;
+    color: var(--tertiary-color);
+    text-decoration: none;
+}
+
+.nav-menu.neon > .sidebar-button{
+    text-shadow: 0 0 19px var(--tertiary-color);
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: 100%;
+    background: var(--primary-color);
+    transition: 500ms;
+    z-index: 10;
+}
+
+.neon .sidebar.opened{
+    color: var(--tertiary-color);
+    box-shadow: 0 0 19px var(--tertiary-color);
+}
+
+.sidebar.closed{
+    transform: translateX(-101%);
+}
+
+.sidebar .sidebar-header .sidebar-button{
+    right: 0;
+    height: 100%;
+    padding-right: 1rem;
+    text-decoration: none;
+}
+
+.sidebar .sidebar-header .sidebar-button .sidebar-icon{
+    color: var(--tertiary-color);
+}
+
+.neon .sidebar .sidebar-header .sidebar-button{
+    text-shadow: 0 0 19px var(--tertiary-color);
+}
+
+.sidebar.opened .sidebar-header .sidebar-button::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 25vw;
+    height: 100vh;
+}
+
+.sidebar.opened .sidebar-header .sidebar-button::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 25vw;
+    height: 100vh;
+}
+
+.sidebar .sidebar-header{
+    width: 100%;
+    position: relative;
+    height: fit-content;
+    padding: 1rem;
+    padding-top: 2rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--tertiary-color);
+}
+
+.sidebar .sidebar-header .search-bar{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background: var(--secondary-color);
+    border-radius: .25rem;
+    overflow: hidden;
+}
+
+.sidebar .sidebar-header .search-bar .search-label{
+    flex-basis: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.sidebar .sidebar-header .search-bar .search-label{
+    flex-basis: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.sidebar .sidebar-header .search-bar .search-label .search-icon{
+    color: var(--primary-color);
+}
+
+.sidebar .sidebar-header .search-bar .search-input{
+    flex-basis: calc(100% - (50px + 1rem));
+    height: 2.3rem;
+    line-height: 2.3rem;
+    border: none;
+    padding: .5rem;
+}
+
+.sidebar .sidebar-content{
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+.sidebar .sidebar-content .sidebar-menu{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar .sidebar-content .sidebar-menu li{
+    border-bottom: 1px solid var(--tertiary-color);
+}
+
+.sidebar .sidebar-content .sidebar-menu li:last-child{
+    border: none;
+}
+
+.sidebar .sidebar-content .sidebar-menu .nav-link{
+    height: 2.3rem;
+    line-height: 2.3rem;
+    padding: 0;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.sidebar .sidebar-footer{
+    padding: 1rem;
+    border-top: 1px solid var(--tertiary-color);
+}
+
+.sidebar .sidebar-footer .footer-menu{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-size: .8rem;
+    list-style: none;
+}
+
+.sidebar .sidebar-footer .footer-menu .footer-link{
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.sidebar .sidebar-footer .footer-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.3rem;
+    color: var(--secondary-color);
+}
+
+/* MD */
+@media(min-width: 768px){
+    /* Sidebar */
+    .sidebar{
+        width: 50%;
+    }
+}
+
+/* LG */
+@media(min-width: 1024px){
+    .nav-menu{
+        height: fit-content;
+        max-height: fit-content;
+    }
+
+    .nav-menu .nav-title{
+        flex-basis: 33%;
+    }
+
+    .nav-menu .nav-title h1{
+        text-align: left;
+    }
+
+    .nav-menu .nav-row:first-of-type{
+        justify-content: flex-start;
+        height: 4.6rem;
+    }
+
+    .nav-menu .nav-row{
+        display: flex;
+        justify-content: flex-end;
+        height: 3.3rem;
+        padding: .5rem 1rem;
+    }
+    
+    .nav-menu .nav-search-bar{
+        display: flex;
+        flex-wrap: wrap;
+        width: 25%;
+        height: 100%;
+        background: var(--secondary-color);
+        border-radius: .25rem;
+        overflow: hidden;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+    }
+
+    .nav-menu .nav-search-bar .nav-search-label{
+        flex-basis: 50px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .nav-menu .nav-search-bar .nav-search-input{
+        flex-basis: calc(100% - (50px + 1rem));
+        border: none;
+        padding: .5rem;
+        outline: none;
+    }
+
+    .nav-menu .menu-list{
+        display: flex;
+        list-style: none;
+    }
+
+    .nav-menu .menu-list li{
+        margin-left: 1rem;
+    }
+
+    .nav-menu .menu-list .nav-link{
+        display: flex;
+        align-items: center;
+        height: 100%;
+        color: var(--secondary-color);
+        text-decoration: none;
+    }
+
+    /* Collapsable */
+    .collapsable{
+        position: relative;
+    }
+
+    .collapsable.closed{
+        height: 100%;
+    }
+
+    .collapsable:hover,
+    .collapsable.opened{
+        overflow: visible;
+    }
+
+    .collapsable .collapsable-button{
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: .5rem 1rem;
+        text-decoration: none;
+        color: var(--secondary-color);
+    }
+
+    .collapsable .collapsable-button .collapsable-icon{
+        position: relative;
+    }
+
+    .collapsable .collapsable-menu{
+        position: absolute;
+        top: 100%;
+        left: -50%;
+        right: -50%;
+        height: fit-content;
+        background: var(--primary-color);
+        border: none;
+        padding: .5rem 1rem;
+        border-radius: .25rem;
+        list-style: none;
+    }
+
+    .collapsable:hover .collapsable-menu::before,
+    .collapsable.opened .collapsable-menu::before{
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 0;
+        right: 0;
+        width: 25px;
+        height: 25px;
+        margin: auto;
+        clip-path: polygon(50% 50%, 100% 100%, 0% 100%);
+        background: var(--primary-color);
+    }
+
+    .collapsable .collapsable-menu li{
+        border-bottom: 1px solid var(--tertiary-color);
+    }
+
+    .collapsable .collapsable-menu li:last-of-type{
+        border: none;
+    }
+
+    .collapsable .collapsable-menu .collapsable-link{
+        text-decoration: none;
+    }
+
+    /* Sidebar */
+    .nav-menu .sidebar-button{
+        display: none;
+    }
+}
+
+/* XL */
+@media(min-width: 1200px){
+    /**/
+}
