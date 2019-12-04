@@ -22,8 +22,6 @@ Import the scripts at the end of the body (in case of use this things).
 ```
 
 And include the HTML Elements from "NavmenuJS/resources/components" where you want.
-- <abbr title="The global navbar">global.blade.php</abbr>
-- <abbr title="The sidebar">sidebar.blade.php</abbr>
 
 ## What it contains
 
