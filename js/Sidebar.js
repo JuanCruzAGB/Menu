@@ -1,52 +1,76 @@
-let Sidebar = {
-    /** @var {HTMLElement} - Sidebar HTML element. */
-    HTML: null,
-    /** @var {HTMLElement} - button opener. */
-    btnOpener: null,
-    /** @var {HTMLElement} - button opener. */
-    btnCloser: null,
-    /** Sidebar loader */
-    load(){
-        this.HTML = document.querySelector('.nav-menu .sidebar');
-        this.btnOpener = document.querySelector('.nav-menu > .sidebar-button');
-        this.btnCloser = document.querySelector('.nav-menu .sidebar .sidebar-button');
+/**
+ * Sidebar control the sidebar.
+ * @class Sidebar
+ */
+class Sidebar{
+    /**
+     * Creates an instance of Sidebar.
+     * @param {string} position - The Sidebar's position.
+     * @memberof Sidebar
+     */
+    constructor(position){
+        if(this.hasHTMLElement(position)){
+            this.position = position;
+            this.btnOpener = document.querySelector('.nav-menu .sidebar-btn.open-btn.' + this.position);
+            this.btnCloser = document.querySelector('.nav-menu .sidebar-btn.close-btn.' + this.position);
+            this.links = document.querySelectorAll('.nav-menu .sidebar.' + this.position + ' .sidebar-content .nav-link');
 
-        this.btnOpener.addEventListener("click", function(e){
-            e.preventDefault();
-            Sidebar.open();
-        })
-    },
+            this.btnOpener.addEventListener("click", function(e){
+                e.preventDefault();
+                Sidebar.open(position);
+            });
+
+            this.btnCloser.addEventListener("click", function(e){
+                e.preventDefault();
+                Sidebar.close(position);
+            });
+    
+            for(let i = 0; i< this.links.length; i++){
+                if(!this.links[i].parentNode.classList.contains('collapsable')){
+                    this.links[i].addEventListener('click', function(e){
+                        Sidebar.close(position);
+                    });
+                }
+            }
+        }
+    }
+    
     /**
      * Check if there is Sidebar.
-     * 
-     * @return {boolean}
+     * @param {string} position - The Sidebar's position.
+     * @returns
+     * @memberof Sidebar
      */
-    hasHTMLElement(){
-        if(document.querySelector('.sidebar')){
+    hasHTMLElement(position){
+        this.html = document.querySelector('.nav-menu .sidebar.' + position);
+        if(this.html){
             return true;
         }else{
             return false;
         }
-    },
-    /** Open the Sidebar. */
-	open(){
-        Sidebar.HTML.classList.add('opened');
-        Sidebar.HTML.classList.remove('closed');
-
-        this.btnCloser.addEventListener("click", function(e){
-            e.preventDefault();
-            Sidebar.close();
-        })
-    },
-    /** Close the Sidebar. */
-    close(){
-        Sidebar.HTML.classList.remove('opened');
-        Sidebar.HTML.classList.add('closed');
-    },
-};
-
-document.addEventListener('DOMContentLoaded', function(){
-    if(Sidebar.hasHTMLElement()){
-        Sidebar.load();
     }
-});
+    
+	/**
+     * Open the Sidebar
+     * @param {string} position - The Sidebar's position.
+     * @static
+     * @memberof Sidebar
+     */
+    static open(position){
+        document.querySelector('.nav-menu .sidebar.' + position).classList.add('opened');
+        document.querySelector('.nav-menu .sidebar.' + position).classList.remove('closed');
+    }
+    
+    /**
+     * Close the Sidebar
+     * @param {string} position - The Sidebar's position.
+     * @static
+     * @memberof Sidebar
+     */
+    static close(position){
+        document.querySelector('.nav-menu .sidebar.' + position).classList.remove('opened');
+        document.querySelector('.nav-menu .sidebar.' + position).classList.add('closed');
+    }
+}
+
+export const SidebarClass = Sidebar;

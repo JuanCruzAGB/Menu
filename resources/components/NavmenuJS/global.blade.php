@@ -1,51 +1,35 @@
-<nav class="nav-menu neon">
-    <a href="#" class="sidebar-button">
-        <i class="sidebar-icon fas fa-bars"></i>
-    </a>
+<?php
+    /** @var string $SiteTitle - The Title of the Site */
+    /** @var string $SiteLogo - The Logo of the Site */
+?>
 
+<nav class="nav-menu">
     <div class="nav-row">
-        <a href="/demo" class="nav-title">
-            <h1 class="text-md-center">Title</h1>
+        <a href="#" class="sidebar-btn open-btn">
+            <i class="sidebar-icon fas fa-bars"></i>
+        </a>
+        
+        <a href="/" class="nav-title logo">
+            <img src="/img/recursos/logo.png" alt="{{$SiteTitle}}">
+            <h1>{{$SiteTitle}}</h1>
         </a>
     </div>
 
     <div class="nav-row">
         <ul class="menu-list">
-            <li><a href="/demo" class="nav-link">
-                Inicio
-            </a></li>
-            <li><a href="/demo#nosotros" class="nav-link">
-                Nosotros
-            </a></li>
-            <li class="collapsable closed">
-                <a href="/demo#servicios" class="collapsable-button">Servicios<i class="collapsable-icon fas fa-sort-down"></i></a>
-                <ul class="collapsable-menu">
-                    <li class="m-0"><a href="/demo#tratamiento-del-dolor" class="collapsable-link">Tratamiento del dolor</a></li>
-                    <li class="m-0"><a href="/demo#cirugia-mini-invasiva" class="collapsable-link">Cirugía mini invasiva</a></li>
-                    <li class="m-0"><a href="/demo#escoliosis" class="collapsable-link">Escoliosis</a></li>
-                </ul>
-            </li>
-            <li><a href="/demo#equipo" class="nav-link">
-                Equipo
-            </a></li>
-            <li><a href="/blog" class="nav-link">
-                Blog
+            <li><a href="/" class="nav-link">
+                Home
             </a></li>
             @if(Auth::check())
             <li class="collapsable closed">
-                <a href="/panel" class="collapsable-button">Panel<i class="collapsable-icon fas fa-sort-down"></i></a>
+                <a href="/panel" class="collapsable-btn">Panel<i class="collapsable-icon fas fa-sort-down"></i></a>
                 <ul class="collapsable-menu">
-                    <li class="m-0"><a href="/panel#posts" class="collapsable-link">Publicaciones</a></li>
-                    <li class="m-0"><a href="/panel#new-post" class="collapsable-link">Nueva publicación</a></li>
-                    <li class="m-0"><a href="/panel#categories" class="collapsable-link">Categorías</a></li>
-                    <li class="m-0"><a href="/panel#new-categorie" class="collapsable-link">Nueva categoría</a></li>
-                    <li class="m-0"><a href="/panel#tags" class="collapsable-link">Etiquetas</a></li>
-                    <li class="m-0"><a href="/panel#new-tag" class="collapsable-link">Nueva etiqueta</a></li>
-                    <li class="m-0"><a href="/panel#config" class="collapsable-link">Configuración</a></li>
+                    <li class="m-0"><a href="/panel#users" class="collapsable-link">Users</a></li>
+                    <li class="m-0"><a href="/panel#new-user" class="collapsable-link">New User</a></li>
                 </ul>
             </li>
-            <li><a href="/salir" class="nav-link">
-                Cerrar Sesión
+            <li><a href="/log-off" class="nav-link">
+                Log off
             </a></li>
             @endif
         </ul>

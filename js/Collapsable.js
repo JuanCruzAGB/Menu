@@ -1,66 +1,71 @@
-let Collapsable = {
-    /** @var {array} - Collapsable array of HTML elements. */
-    HTMLs: [],
-    /** @var {HTMLElement} - Collapsable array of buttons. */
-    btns: [],
-    /** Collapsable loader */
-    load(){
-        this.HTMLs = document.querySelectorAll('.collapsable');
-        this.btns = document.querySelectorAll('.collapsable .collapsable-button');
-        
-        for(let i = 0; i < this.btns.length; i++){
-            this.btns[i].addEventListener("click", function(e){
-                e.preventDefault();
-                Collapsable.switch(i);
-            })
+/**
+ * Collapsable control the collapsable buttons.
+ * @class Collapsable
+ */
+class Collapsable{
+    /**
+     * Creates an instance of Collapsable.
+     * @memberof Collapsable
+     */
+    constructor(){
+        if(this.hasHTMLElement()){
+            this.btns = document.querySelectorAll('.collapsable .collapsable-btn');
+            let htmls = this.htmls;
+            
+            for(let int = 0; int < this.btns.length; int++){
+                this.btns[int].addEventListener("click", function(e){
+                    e.preventDefault();
+                    if(htmls[int].classList.contains('opened')){
+                        Collapsable.close(htmls[int], this);
+                    }else{
+                        Collapsable.open(htmls[int], this);
+                    }
+                });
+            }
         }
-    },
+    }
+
     /**
      * Check if there is Sidebar.
-     * @return {boolean}
+     * @returns
+     * @memberof Collapsable
      */
     hasHTMLElement(){
-        if(document.querySelector('.collapsable')){
+        this.htmls = document.querySelectorAll('.collapsable');
+        if(this.htmls.length){
             return true;
         }else{
             return false;
         }
-    },
-    /**
-     * Switch between open and close.
-     * @param {numeric} position - Collapsable position on the array.
-     */
-	switch(position){
-        if(this.HTMLs[position].classList.contains('opened')){
-            this.close(position);
-        }else{
-            this.open(position);
-        }
-    },
+    }
+
     /**
      * Open the Collapsable.
-     * @param {numeric} position - Collapsable position on the array.
+     * @param {*} html - Collapsable's menu list.
+     * @param {*} btn - Collapsable's button.
+     * @static
+     * @memberof Collapsable
      */
-    open(position){
-        this.btns[position].children[0].classList.remove('fa-sort-down');
-        this.HTMLs[position].classList.remove('closed');
-        this.btns[position].children[0].classList.add('fa-sort-up');
-        this.HTMLs[position].classList.add('opened');
-    },
+    static open(html, btn){
+        btn.children[0].classList.remove('fa-sort-down');
+        html.classList.remove('closed');
+        btn.children[0].classList.add('fa-sort-up');
+        html.classList.add('opened');
+    }
+
     /**
      * Close the Collapsable.
-     * @param {numeric} position - Collapsable position on the array.
+     * @param {*} html - Collapsable's menu list.
+     * @param {*} btn - Collapsable's button.
+     * @static
+     * @memberof Collapsable
      */
-    close(position){
-        this.btns[position].children[0].classList.remove('fa-sort-up');
-        this.HTMLs[position].classList.remove('opened');
-        this.btns[position].children[0].classList.add('fa-sort-down');
-        this.HTMLs[position].classList.add('closed');
-    },
-};
-
-document.addEventListener('DOMContentLoaded', function(){
-    if(Collapsable.hasHTMLElement()){
-        Collapsable.load();
+    static close(html, btn){
+        btn.children[0].classList.remove('fa-sort-up');
+        html.classList.remove('opened');
+        btn.children[0].classList.add('fa-sort-down');
+        html.classList.add('closed');
     }
-});
+}
+
+export const CollapsableClass = Collapsable;

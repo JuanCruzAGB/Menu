@@ -1,0 +1,189 @@
+/* Collapsable */
+.collapsable{
+    overflow: hidden;
+    transition: 500ms;
+    height: auto;
+    z-index: 9;
+    box-sizing: border-box;
+}
+
+.collapsable.opened{
+    overflow: visible;
+}
+
+.collapsable .nav-link{
+    position: relative;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 2.3rem;
+    line-height: 2.3rem;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+.collapsable.opened .nav-link{
+    margin-bottom: 1rem;
+}
+
+.collapsable .collapsable-btn{
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: var(--secondary-color);
+    background-color: transparent;
+    border: none;
+}
+
+.collapsable .collapsable-btn:focus{
+    outline: none;
+}
+
+.collapsable .collapsable-btn .collapsable-icon{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+    color: var(--secondary-color);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.collapsable .collapsable-menu{
+    border-top: 1px solid var(--secondary-color);
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+.collapsable.closed .collapsable-menu{
+    border: none;
+    height: 0;
+}
+
+.collapsable .collapsable-menu li{
+    position: relative;
+    padding: 1rem 0;
+}
+
+.collapsable .collapsable-menu li:last-of-type{
+    padding-bottom: 0;
+}
+
+.collapsable .collapsable-menu li:not(:last-of-type)::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--secondary-color);
+}
+
+.collapsable .collapsable-menu .collapsable-link{
+    height: 2.3rem;
+    line-height: 2.3rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.collapsable .collapsable-menu .collapsable-link .link-icon{
+    padding-right: 1rem;
+    color: var(--secondary-color);
+    box-sizing: border-box;
+}
+
+/* MD */
+@media(min-width: 768px){
+    /**/
+}
+
+/* LG */
+@media(min-width: 1024px){
+    .collapsable{
+        position: relative;
+    }
+
+    .collapsable:hover{
+        overflow: visible;
+    }
+
+    /* .collapsable.closed{
+        height: 100%;
+    } */
+
+    /* .collapsable:hover,
+    .collapsable.opened{
+        overflow: visible;
+    } */
+
+    .collapsable .collapsable-btn .collapsable-icon{
+        position: relative;
+        padding-left: .5rem;
+    }
+
+    .collapsable:hover.closed .collapsable-menu,
+    .collapsable:hover .collapsable-menu,
+    .collapsable .collapsable-menu{
+        position: absolute;
+        top: 100%;
+        left: -50%;
+        right: -50%;
+        height: fit-content;
+        background: var(--secondary-color);
+        border: none;
+        padding: .5rem 1rem;
+        border-radius: .25rem;
+    }
+
+    .collapsable.closed .collapsable-menu{
+        border: none;
+        height: 0;
+    }
+
+    .collapsable:hover .collapsable-menu::before,
+    .collapsable.opened .collapsable-menu::before{
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 0;
+        right: 0;
+        width: 25px;
+        height: 25px;
+        margin: auto;
+        clip-path: polygon(50% 50%, 100% 100%, 0% 100%);
+        background: var(--secondary-color);
+    }
+
+    .collapsable .collapsable-menu li{
+        padding: 0;
+    }
+
+    .collapsable .collapsable-menu li:not(:last-of-type)::before{
+        background-color: var(--tertiary-color);
+    }
+
+    .collapsable .collapsable-menu li:last-of-type{
+        border: none;
+    }
+
+    .collapsable .collapsable-menu .collapsable-link{
+        color: var(--tertiary-color);
+    }
+
+    .collapsable .collapsable-menu .collapsable-link .link-icon{
+        color: var(--tertiary-color);
+    }
+}
+
+/* XL */
+@media(min-width: 1200px){
+    /**/
+}
