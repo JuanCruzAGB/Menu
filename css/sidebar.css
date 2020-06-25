@@ -213,6 +213,10 @@
     text-decoration: none;
 }
 
+.sidebar .sidebar-content .sidebar-menu .nav-link.active{
+    color: var(--secondary-color-alternative);
+}
+
 .sidebar .sidebar-footer{
     padding: 1rem;
     border-top: 1px solid var(--neon-color);

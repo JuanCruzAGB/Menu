@@ -1,21 +1,15 @@
-<nav class="nav-menu">
-    <div class="nav-row">
-        <a href="#" class="sidebar-btn open-btn left">
-            <i class="sidebar-icon fas fa-bars"></i>
+<div class="sidebar left closed push-body">
+    <div class="sidebar-header">
+        <a href="/" class="sidebar-logo">
+            <img src="/img/recursos/logo.png" alt="Mututalcoops">
         </a>
-        
-        <a href="/" class="nav-title logo">
-            <img src="/img/recursos/logo.png" alt="Mutualcoop">
-            <h1>Mutualcoop</h1>
-        </a>
-        
-        <a href="#" class="sidebar-btn open-btn right">
-            <i class="sidebar-icon fas fa-filter"></i>
+        <a href="#" class="sidebar-btn close-btn left">
+            <i class="sidebar-icon fas fa-times"></i>
         </a>
     </div>
 
-    <div class="nav-row">
-        <ul class="menu-list">
+    <div class="sidebar-content">
+        <ul class="sidebar-menu">
             <li><a href="/" class="nav-link">
                 Home
             </a></li>
@@ -32,13 +26,8 @@
                 </ul>
             </li>
             <li><a href="/log-off" class="nav-link">
-                Log off
+                Log Off
             </a></li>
         </ul>
     </div>
-
-    @component('components.nav.sidebar_left')
-    @endcomponent
-    @component('components.nav.sidebar_right')
-    @endcomponent
-</nav>
+</div>

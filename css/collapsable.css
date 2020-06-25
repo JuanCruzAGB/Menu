@@ -70,6 +70,7 @@
 
 .collapsable .collapsable-menu li{
     position: relative;
+    width: 100%;
     padding: 1rem 0;
 }
 
@@ -88,16 +89,16 @@
 }
 
 .collapsable .collapsable-menu .collapsable-link{
+    display: inline-flex;
+    align-items: center;
     height: 2.3rem;
     line-height: 2.3rem;
     color: var(--secondary-color);
     text-decoration: none;
 }
 
-.collapsable .collapsable-menu .collapsable-link .link-icon{
-    padding-right: 1rem;
-    color: var(--secondary-color);
-    box-sizing: border-box;
+.collapsable .collapsable-menu .collapsable-link.active{
+    color: var(--secondary-color-alternative);
 }
 
 /* MD */
@@ -115,15 +116,6 @@
         overflow: visible;
     }
 
-    /* .collapsable.closed{
-        height: 100%;
-    } */
-
-    /* .collapsable:hover,
-    .collapsable.opened{
-        overflow: visible;
-    } */
-
     .collapsable .collapsable-btn .collapsable-icon{
         position: relative;
         padding-left: .5rem;
@@ -134,8 +126,9 @@
     .collapsable .collapsable-menu{
         position: absolute;
         top: 100%;
-        left: -50%;
-        right: -50%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: fit-content;
         height: fit-content;
         background: var(--secondary-color);
         border: none;
@@ -175,10 +168,7 @@
     }
 
     .collapsable .collapsable-menu .collapsable-link{
-        color: var(--tertiary-color);
-    }
-
-    .collapsable .collapsable-menu .collapsable-link .link-icon{
+        width: max-content;
         color: var(--tertiary-color);
     }
 }
