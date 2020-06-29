@@ -1,8 +1,9 @@
 /**
  * Link control the nav-links buttons.
+ * @export
  * @class Link
  */
-class Link{
+export class Link{
     /**
      * Creates an instance of Link.
      * @param {HTMLElement} html - Link's HTMLElement.
@@ -42,5 +43,3 @@ class Link{
         this.html.classList.add('active');
     }
 }
-
-export const LinkClass = Link;

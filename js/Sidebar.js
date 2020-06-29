@@ -1,8 +1,9 @@
 /**
  * Sidebar control the sidebar.
+ * @export
  * @class Sidebar
  */
-class Sidebar{
+export class Sidebar{
     /**
      * Creates an instance of Sidebar.
      * @param {string} position - The Sidebar's position.
@@ -72,5 +73,3 @@ class Sidebar{
         document.querySelector('.nav-menu .sidebar.' + position).classList.add('closed');
     }
 }
-
-export const SidebarClass = Sidebar;

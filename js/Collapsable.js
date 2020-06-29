@@ -1,8 +1,9 @@
 /**
  * Collapsable control the collapsable buttons.
+ * @export
  * @class Collapsable
  */
-class Collapsable{
+export class Collapsable{
     /**
      * Creates an instance of Collapsable.
      * @memberof Collapsable
@@ -67,5 +68,3 @@ class Collapsable{
         html.classList.add('closed');
     }
 }
-
-export const CollapsableClass = Collapsable;
