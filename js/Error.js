@@ -52,17 +52,17 @@ export class Error{
         switch(this.status){
             case 200:
                 if(this.display){
-                    console.info(this.message);
+                    console.warn('NavMenuJS Warning: ' + this.message);
                 }
             break;
             case 403:
                 if(this.display){
-                    console.error(this.message);
+                    console.error('NavMenuJS Error: ' + this.message);
                 }
             break;
             case 404:
                 if(this.display){
-                    console.error(this.message);
+                    console.error('NavMenuJS Error: ' + this.message);
                 }
             break;
         }
