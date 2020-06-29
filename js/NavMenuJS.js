@@ -80,7 +80,7 @@ export class NavMenu{
         }else{
             throw new Error({
                 status: 404,
-                message: 'There are no NavMenus.',
+                message: 'NavMenuJS: There are no NavMenus.',
                 display: true,
             });
         }
@@ -110,7 +110,7 @@ export class NavMenu{
         }else{
             throw new Error({
                 status: 404,
-                message: 'There are no NavMenus Links.',
+                message: 'NavMenuJS: There are no NavMenus Links.',
                 display: true,
             });
         }
@@ -127,7 +127,7 @@ export class NavMenu{
         }else{
             throw new Error({
                 status: 200,
-                message: 'There is no current page.',
+                message: 'NavMenuJS: There is no current page.',
             });
         }
     }
