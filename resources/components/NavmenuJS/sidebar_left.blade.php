@@ -35,9 +35,9 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="/salir" class="nav-link">
+            <li><a href="/log-off" class="nav-link">
                 <i class="link-icon left fas fa-sign-out-alt"></i>
-                <span class="link-text">Cerrar Sesión</span>
+                <span class="link-text">Log Off</span>
             </a></li>
         </ul>
     </div>
