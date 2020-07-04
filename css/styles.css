@@ -2,16 +2,18 @@
 @import 'collapsable.css';
 
 .nav-menu{
-    --primary-color: #fff;
-    --secondary-color: #222;
-    --secondary-color-alternative: #000;
-    --tertiary-color: #ddd;
+    --color-one: #fff; /* * Title */
+    --color-two: #ddd; /* * Buttons */
+    --color-two-alternative: #000; /* * Active buttons */
+    --color-three: #222; /* * Sidebar buttons */
+    --color-three-alternative: #000; /* * Active buttons */
+    --color-four: #222; /* * Background */
     --neon-color: #32B1DA;
     position: relative;
     display: flex;
     flex-wrap: wrap;
     min-height: 4.6rem;
-    background: var(--tertiary-color);
+    background: var(--color-four);
     font-family: verdana;
     z-index: 15;
     transition: 500ms;
@@ -60,7 +62,7 @@
     text-align: center;
     line-height: 4.6rem;
     font-size: 1rem;
-    color: var(--primary-color);
+    color: var(--color-one);
     box-sizing: border-box;
 }
 
@@ -81,13 +83,13 @@
     display: inline-flex;
     align-items: center;
     height: 100%;
-    color: var(--secondary-color);
+    color: var(--color-two);
     text-decoration: none;
     transition: 500ms;
 }
 
 .nav-menu .nav-link.active{
-    color: var(--secondary-color-alternative);
+    color: var(--color-two-alternative);
 }
 
 .nav-menu .nav-link.no-text{
@@ -166,7 +168,7 @@
         flex-wrap: wrap;
         width: 25%;
         height: 100%;
-        background: var(--secondary-color);
+        background: var(--color-two);
         border-radius: .25rem;
         overflow: hidden;
         box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
@@ -202,7 +204,7 @@
     }
 
     .nav-menu .nav-link:hover{
-        color: var(--secondary-color-alternative);
+        color: var(--color-two-alternative);
     }
 }
 

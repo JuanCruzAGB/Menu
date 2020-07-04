@@ -20,7 +20,7 @@
     line-height: 2.3rem;
     box-sizing: border-box;
     text-decoration: none;
-    color: var(--secondary-color);
+    color: var(--color-two);
 }
 
 .collapsable.opened .nav-link{
@@ -33,7 +33,7 @@
     height: 100%;
     box-sizing: border-box;
     text-decoration: none;
-    color: var(--secondary-color);
+    color: var(--color-two);
     background-color: transparent;
     border: none;
 }
@@ -51,26 +51,33 @@
     align-items: center;
     justify-content: center;
     padding-left: 1rem;
-    color: var(--secondary-color);
+    color: var(--color-three);
     box-sizing: border-box;
     cursor: pointer;
 }
 
 .collapsable .collapsable-menu{
-    border-top: 1px solid var(--secondary-color);
+    height: auto;
     padding: 0;
+    border-top: 1px solid var(--color-two);
     box-sizing: border-box;
     list-style: none;
+    overflow: hidden;
+    transition: 500ms;
 }
 
 .collapsable.closed .collapsable-menu{
-    border: none;
+    border-top: 1px solid transparent;
     height: 0;
 }
 
 .collapsable .collapsable-menu li{
     position: relative;
     width: 100%;
+    transition: 500ms;
+}
+
+.collapsable.opened .collapsable-menu li{
     padding: 1rem 0;
 }
 
@@ -85,7 +92,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background-color: var(--secondary-color);
+    background-color: var(--color-two);
 }
 
 .collapsable .collapsable-menu .collapsable-link{
@@ -93,12 +100,12 @@
     align-items: center;
     height: 2.3rem;
     line-height: 2.3rem;
-    color: var(--secondary-color);
+    color: var(--color-three);
     text-decoration: none;
 }
 
 .collapsable .collapsable-menu .collapsable-link.active{
-    color: var(--secondary-color-alternative);
+    color: var(--color-three-alternative);
 }
 
 /* MD */
@@ -130,7 +137,7 @@
         transform: translateX(-50%);
         width: fit-content;
         height: fit-content;
-        background: var(--secondary-color);
+        background: var(--color-two);
         border: none;
         padding: .5rem 1rem;
         border-radius: .25rem;
@@ -152,7 +159,7 @@
         height: 25px;
         margin: auto;
         clip-path: polygon(50% 50%, 100% 100%, 0% 100%);
-        background: var(--secondary-color);
+        background: var(--color-two);
     }
 
     .collapsable .collapsable-menu li{
@@ -160,7 +167,7 @@
     }
 
     .collapsable .collapsable-menu li:not(:last-of-type)::before{
-        background-color: var(--tertiary-color);
+        background-color: var(--color-four);
     }
 
     .collapsable .collapsable-menu li:last-of-type{
@@ -169,7 +176,7 @@
 
     .collapsable .collapsable-menu .collapsable-link{
         width: max-content;
-        color: var(--tertiary-color);
+        color: var(--color-four);
     }
 }
 
