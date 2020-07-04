@@ -4,9 +4,8 @@
             <i class="sidebar-icon fas fa-bars"></i>
         </a>
         
-        <a href="/" class="nav-title logo">
-            <img src="/img/recursos/logo.png" alt="Mutualcoop">
-            <h1>Mutualcoop</h1>
+        <a href="/" class="nav-title">
+            <h1>NavMenuJS</h1>
         </a>
         
         <a href="#" class="sidebar-btn open-btn right">

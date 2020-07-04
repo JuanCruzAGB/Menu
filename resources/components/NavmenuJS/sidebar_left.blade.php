@@ -1,8 +1,8 @@
 <div class="sidebar left closed push-body">
     <div class="sidebar-header">
-        <a href="/" class="sidebar-logo">
-            <img src="/img/recursos/logo.png" alt="Mututalcoops">
-        </a>
+        <div class="sidebar-title">
+            <h2>Menu</h2>
+        </div>
         <a href="#" class="sidebar-btn close-btn left">
             <i class="sidebar-icon fas fa-times"></i>
         </a>
