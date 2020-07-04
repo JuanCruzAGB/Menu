@@ -6,7 +6,7 @@
 export class Error{
     /**
      * * Creates an instance of Error.
-     * @param {string} properties - Error properties.
+     * @param {object} properties - Error Properties.
      * @memberof Error
      */
     constructor(properties = {status: 200, message: 'Every thing is good.', display: false}){
@@ -32,17 +32,15 @@ export class Error{
             case 404:
                 return 'error';
             break;
+            case 415:
+                return 'error';
+            break;
             default:
                 return false;
             break;
         }
     }
 
-    /**
-     * Print into the console the correct message.
-     * @returns {string|false}
-     * @memberof Error
-     */
     /**
      * * Print into the console the correct message.
      * @returns
@@ -61,6 +59,11 @@ export class Error{
                 }
             break;
             case 404:
+                if(this.display){
+                    console.error('NavMenuJS Error: ' + this.message);
+                }
+            break;
+            case 415:
                 if(this.display){
                     console.error('NavMenuJS Error: ' + this.message);
                 }

@@ -51,7 +51,7 @@
     align-items: center;
     justify-content: center;
     padding-left: 1rem;
-    color: var(--color-three);
+    color: var(--color-two-alternative);
     box-sizing: border-box;
     cursor: pointer;
 }

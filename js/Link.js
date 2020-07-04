@@ -5,7 +5,7 @@
  */
 export class Link{
     /**
-     * Creates an instance of Link.
+     * * Creates an instance of Link.
      * @param {HTMLElement} html - Link's HTMLElement.
      * @memberof Link
      */
@@ -16,6 +16,10 @@ export class Link{
         this.getContent();
     }
 
+    /**
+     * * Get the Link content.
+     * @memberof Link
+     */
     getContent(){
         for(let child of this.html.children){
             if(child.classList.contains('link-text')){
@@ -30,6 +34,13 @@ export class Link{
         }
     }
 
+    /**
+     * * Search the current Link activated.
+     * @static
+     * @param {*} current
+     * @param {*} links
+     * @memberof Link
+     */
     static active(current, links){
         for(const link of links){
             if(link.href == current){
@@ -38,6 +49,10 @@ export class Link{
         }
     }
 
+    /**
+     * * Activate the current Link.
+     * @memberof Link
+     */
     activate(){
         this.active = true;
         this.html.classList.add('active');

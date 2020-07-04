@@ -1,4 +1,4 @@
-<nav class="nav-menu">
+<nav id="nav-1" class="nav-menu">
     <div class="nav-row">
         <a href="#" class="sidebar-btn open-btn left">
             <i class="sidebar-icon fas fa-bars"></i>
@@ -31,7 +31,8 @@
                 </ul>
             </li>
             <li><a href="/log-off" class="nav-link">
-                Log off
+                <i class="link-icon left fas fa-sign-out-alt"></i>
+                <span class="link-text">Log Off</span>
             </a></li>
         </ul>
     </div>

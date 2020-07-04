@@ -21,12 +21,23 @@
                     </button>
                 </a>
                 <ul class="collapsable-menu">
-                    <li class="m-0"><a href="/panel#users" class="collapsable-link"><i class="link-icon fas fa-chevron-right"></i>Users</a></li>
-                    <li class="m-0"><a href="/panel#new-user" class="collapsable-link"><i class="link-icon fas fa-chevron-right"></i>New User</a></li>
+                    <li class="m-0">
+                        <a href="/panel#users" class="collapsable-link">
+                            <i class="link-icon left fas fa-chevron-right"></i>
+                            <span class="link-text">Users</span>
+                        </a>
+                    </li>
+                    <li class="m-0">
+                        <a href="/panel#new-user" class="collapsable-link">
+                            <i class="link-icon left fas fa-chevron-right"></i>
+                            <span class="link-text">New User</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
-            <li><a href="/log-off" class="nav-link">
-                Log Off
+            <li><a href="/salir" class="nav-link">
+                <i class="link-icon left fas fa-sign-out-alt"></i>
+                <span class="link-text">Cerrar Sesión</span>
             </a></li>
         </ul>
     </div>

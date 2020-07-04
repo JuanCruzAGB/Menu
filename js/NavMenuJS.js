@@ -11,13 +11,13 @@ import {Link} from './Link.js';
 export class NavMenu{
     /**
      * * Creates an instance of NavMenu.
-     * @param {json} properties - NavMenu Properties.
+     * @param {object} properties - NavMenu Properties.
      * @memberof NavMenu
      */
     constructor(properties = {sidebar: ['left', 'right'], fixed: false, id: 'nav-1'}){
         try{
-            this.properties = properties;
             this.error = new Error();
+            this.setProperties(properties);
             this.loadCollapsable();
             this.loadSidebar();
             this.getHTML();
@@ -28,6 +28,82 @@ export class NavMenu{
                 this.error = new Error(error);
                 this.error.report();
             }
+        }
+    }
+
+    /**
+     * * Set the NavMenu properties.
+     * @param {object} properties - NavMenu Properties.
+     * @memberof NavMenu
+     */
+    setProperties(properties = {sidebar: ['left', 'right'], fixed: false, id: 'nav-1'}){
+        try{
+            this.getId(properties);
+            this.getSidebar(properties);
+            this.getFixed(properties);
+            this.properties = properties;
+        }catch(error){
+            throw error;
+        }
+    }
+
+    /**
+     * * Get the NavMenu ID.
+     * @param {object} properties - NavMenu Properties.
+     * @memberof NavMenu
+     */
+    getId(properties = {sidebar: ['left', 'right'], fixed: false, id: 'nav-1'}){
+        if(!properties.id){
+            throw new Error({
+                status: 415,
+                message: 'The NavMenu doesn\'t have an ID defined.',
+                display: true,
+            });
+        }else if(!document.querySelector('#' + properties.id)){
+            throw new Error({
+                status: 404,
+                message: 'The NavMenu doesn\'t have an ID attribute.',
+                display: true,
+            });
+        }
+    }
+
+    /**
+     * * Get the Sidebar properties.
+     * @param {object} properties - NavMenu Properties.
+     * @memberof NavMenu
+     */
+    getSidebar(properties = {sidebar: ['left', 'right'], fixed: false, id: 'nav-1'}){
+        if(properties.sidebar && typeof properties.sidebar != 'object'){
+            throw new Error({
+                status: 415,
+                message: 'The Sidebar properties must be a valid object.',
+                display: true,
+            });
+        }
+        for(const side of properties.sidebar){
+            if(side != 'left' && side != 'right' && side != 'Left' && side != 'Reft' && side != 'l' && side != 'r' && side != 'L' && side != 'R'){
+                throw new Error({
+                    status: 415,
+                    message: 'The Sidebar position is not correct.',
+                    display: true,
+                });
+            }
+        }
+    }
+
+    /**
+     * * Get the NavMenu fixed property.
+     * @param {object} properties - NavMenu Properties.
+     * @memberof NavMenu
+     */
+    getFixed(properties = {sidebar: ['left', 'right'], fixed: false, id: 'nav-1'}){
+        if(properties.fixed && typeof properties.fixed != 'boolen'){
+            throw new Error({
+                status: 415,
+                message: 'The NavMenu fixed property must be a valid boolean.',
+                display: true,
+            });
         }
     }
 
