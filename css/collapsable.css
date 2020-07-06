@@ -54,6 +54,11 @@
     color: var(--color-two-alternative);
     box-sizing: border-box;
     cursor: pointer;
+    transition: 500ms;
+}
+
+.collapsable .collapsable-btn .collapsable-icon:hover{
+    color: var(--color-two);
 }
 
 .collapsable .collapsable-menu{
@@ -194,6 +199,10 @@
     }
 
     .collapsable.opened .collapsable-menu .collapsable-link:hover{
+        color: var(--color-two-alternative);
+    }
+
+    .collapsable .collapsable-menu .collapsable-link:hover{
         color: var(--color-two-alternative);
     }
 }
