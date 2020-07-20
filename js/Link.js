@@ -10,10 +10,15 @@ export class Link{
      * @memberof Link
      */
     constructor(html){
-        this.html = html;
-        this.href = html.href.split('/')[3];
-        this.active = false;
-        this.getContent();
+        try{
+            this.error = new Error();
+            this.html = html;
+            this.href = html.href.split('/')[3];
+            this.active = false;
+            this.getContent();
+        }catch(error){
+            throw error;
+        }
     }
 
     /**
@@ -35,6 +40,15 @@ export class Link{
     }
 
     /**
+     * * Activate the current Link.
+     * @memberof Link
+     */
+    activate(){
+        this.active = true;
+        this.html.classList.add('active');
+    }
+
+    /**
      * * Search the current Link activated.
      * @static
      * @param {*} current
@@ -47,14 +61,5 @@ export class Link{
                 link.activate();
             }
         }
-    }
-
-    /**
-     * * Activate the current Link.
-     * @memberof Link
-     */
-    activate(){
-        this.active = true;
-        this.html.classList.add('active');
     }
 }

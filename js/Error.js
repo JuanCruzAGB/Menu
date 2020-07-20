@@ -10,10 +10,14 @@ export class Error{
      * @memberof Error
      */
     constructor(properties = {status: 200, message: 'Every thing is good.', display: false}){
-        this.status = properties.status;
-        this.message = properties.message;
-        this.display = properties.display;
-        this.type = this.getType();
+        try{
+            this.status = properties.status;
+            this.message = properties.message;
+            this.display = properties.display;
+            this.type = this.getType();
+        }catch(error){
+            console.log(error);
+        }
     }
 
     /**
@@ -30,6 +34,9 @@ export class Error{
                 return 'error';
             break;
             case 404:
+                return 'error';
+            break;
+            case 409:
                 return 'error';
             break;
             case 415:
