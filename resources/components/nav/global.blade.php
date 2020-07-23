@@ -18,16 +18,16 @@
             <li><a href="/" class="nav-link">
                 Home
             </a></li>
-            <li class="collapsable closed">
+            <li class="dropdown closed">
                 <a href="/panel" class="nav-link">
                     Panel
-                    <button class="collapsable-btn">
-                        <i class="collapsable-icon fas fa-sort-down"></i>
+                    <button class="dropdown-btn">
+                        <i class="dropdown-icon fas fa-sort-down"></i>
                     </button>
                 </a>
-                <ul class="collapsable-menu">
-                    <li class="m-0"><a href="/panel#users" class="collapsable-link"><i class="link-icon fas fa-chevron-right"></i>Users</a></li>
-                    <li class="m-0"><a href="/panel#new-user" class="collapsable-link"><i class="link-icon fas fa-chevron-right"></i>New User</a></li>
+                <ul class="dropdown-menu">
+                    <li class="m-0"><a href="/panel#users" class="dropdown-link"><i class="link-icon fas fa-chevron-right"></i>Users</a></li>
+                    <li class="m-0"><a href="/panel#new-user" class="dropdown-link"><i class="link-icon fas fa-chevron-right"></i>New User</a></li>
                 </ul>
             </li>
             <li><a href="/log-off" class="nav-link">

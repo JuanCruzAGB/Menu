@@ -1,5 +1,5 @@
-/* Collapsable */
-.collapsable{
+/* Dropdown */
+.dropdown{
     overflow: hidden;
     transition: 500ms;
     height: auto;
@@ -7,11 +7,11 @@
     box-sizing: border-box;
 }
 
-.collapsable.opened{
+.dropdown.opened{
     overflow: visible;
 }
 
-.collapsable .nav-link{
+.dropdown .nav-link{
     position: relative;
     display: inline-flex;
     justify-content: space-between;
@@ -23,14 +23,14 @@
     color: var(--color-two);
 }
 
-.collapsable.opened .nav-link{
+.dropdown.opened .nav-link{
     margin-bottom: 1rem;
 }
 
-.collapsable .collapsable-btn{
+.dropdown .dropdown-btn{
     position: relative;
     display: inline-block;
-    width: 15%;
+    width: fit-content;
     height: 100%;
     box-sizing: border-box;
     text-decoration: none;
@@ -39,11 +39,11 @@
     border: none;
 }
 
-.collapsable .collapsable-btn:focus{
+.dropdown .dropdown-btn:focus{
     outline: none;
 }
 
-.collapsable .collapsable-btn .collapsable-icon{
+.dropdown .dropdown-btn .dropdown-icon{
     position: absolute;
     top: 0;
     bottom: 0;
@@ -58,11 +58,11 @@
     transition: 500ms;
 }
 
-.collapsable .collapsable-btn .collapsable-icon:hover{
+.dropdown .dropdown-btn .dropdown-icon:hover{
     color: var(--color-two);
 }
 
-.collapsable .collapsable-menu{
+.dropdown .dropdown-menu{
     height: auto;
     padding: 0;
     border-top: 1px solid var(--color-two);
@@ -72,26 +72,26 @@
     transition: 500ms;
 }
 
-.collapsable.closed .collapsable-menu{
+.dropdown.closed .dropdown-menu{
     border-top: 1px solid transparent;
     height: 0;
 }
 
-.collapsable .collapsable-menu li{
+.dropdown .dropdown-menu li{
     position: relative;
     width: 100%;
     transition: 500ms;
 }
 
-.collapsable.opened .collapsable-menu li{
+.dropdown.opened .dropdown-menu li{
     padding: 1rem 0;
 }
 
-.collapsable .collapsable-menu li:last-of-type{
+.dropdown .dropdown-menu li:last-of-type{
     padding-bottom: 0;
 }
 
-.collapsable .collapsable-menu li:not(:last-of-type)::before{
+.dropdown .dropdown-menu li:not(:last-of-type)::before{
     content: '';
     position: absolute;
     bottom: 0;
@@ -101,7 +101,7 @@
     background-color: var(--color-two);
 }
 
-.collapsable .collapsable-menu .collapsable-link{
+.dropdown .dropdown-menu .dropdown-link{
     display: inline-flex;
     align-items: center;
     height: 2.3rem;
@@ -110,7 +110,7 @@
     text-decoration: none;
 }
 
-.collapsable .collapsable-menu .collapsable-link.active{
+.dropdown .dropdown-menu .dropdown-link.active{
     color: var(--color-three-alternative);
 }
 
@@ -121,22 +121,22 @@
 
 /* LG */
 @media(min-width: 1024px){
-    .collapsable{
+    .dropdown{
         position: relative;
     }
 
-    .collapsable:hover{
+    .dropdown:hover{
         overflow: visible;
     }
 
-    .collapsable .collapsable-btn .collapsable-icon{
+    .dropdown .dropdown-btn .dropdown-icon{
         position: relative;
         padding-left: .5rem;
     }
 
-    .collapsable:hover.closed .collapsable-menu,
-    .collapsable:hover .collapsable-menu,
-    .collapsable .collapsable-menu{
+    .dropdown:hover.closed .dropdown-menu,
+    .dropdown:hover .dropdown-menu,
+    .dropdown .dropdown-menu{
         position: absolute;
         top: 100%;
         left: 50%;
@@ -149,19 +149,19 @@
         border-radius: .25rem;
     }
 
-    .collapsable.opened .collapsable-menu{
+    .dropdown.opened .dropdown-menu{
         background: var(--color-four);
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
 
-    .collapsable.closed .collapsable-menu{
+    .dropdown.closed .dropdown-menu{
         border: none;
         height: 0;
     }
 
-    /* .collapsable:hover .collapsable-menu::before,
-    .collapsable.opened .collapsable-menu::before{
+    /* .dropdown:hover .dropdown-menu::before,
+    .dropdown.opened .dropdown-menu::before{
         content: '';
         position: absolute;
         top: -20px;
@@ -174,36 +174,40 @@
         background: var(--color-two);
     } */
 
-    .collapsable .collapsable-menu li{
+    .dropdown .dropdown-menu li{
         padding: 0;
     }
 
-    .collapsable .collapsable-menu li:not(:last-of-type)::before{
+    .dropdown .dropdown-menu li:not(:last-of-type)::before{
         background-color: var(--color-four);
     }
 
-    .collapsable .collapsable-menu li:last-of-type{
+    .dropdown .dropdown-menu li:last-of-type{
         border: none;
     }
 
-    .collapsable.opened .collapsable-menu li{
+    .dropdown.opened .dropdown-menu li{
         padding: 0;
     }
 
-    .collapsable .collapsable-menu .collapsable-link{
+    .dropdown.closed:hover > .dropdown-menu > li{
+        max-height: max-content;
+    }
+
+    .dropdown .dropdown-menu .dropdown-link{
         width: max-content;
         color: var(--color-four);
     }
 
-    .collapsable.opened .collapsable-menu .collapsable-link{
+    .dropdown.opened .dropdown-menu .dropdown-link{
         color: var(--color-two);
     }
 
-    .collapsable.opened .collapsable-menu .collapsable-link:hover{
+    .dropdown.opened .dropdown-menu .dropdown-link:hover{
         color: var(--color-two-alternative);
     }
 
-    .collapsable .collapsable-menu .collapsable-link:hover{
+    .dropdown .dropdown-menu .dropdown-link:hover{
         color: var(--color-two-alternative);
     }
 }

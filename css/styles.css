@@ -1,5 +1,5 @@
 @import 'sidebar.css';
-@import 'collapsable.css';
+@import 'dropdown.css';
 
 .nav-menu{
     --color-one: #fff; /* * Title */

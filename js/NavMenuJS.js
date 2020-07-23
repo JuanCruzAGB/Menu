@@ -1,4 +1,4 @@
-import {Collapsable} from './Collapsable.js';
+import {Dropdown} from './Dropdown.js';
 import {Error} from './Error.js';
 import {Sidebar} from './Sidebar.js';
 import {Link} from './Link.js';
@@ -14,13 +14,13 @@ export class NavMenu{
      * @param {object} properties - NavMenu properties.
      * @memberof NavMenu
      */
-    constructor(properties = {id: 'nav-1', fixed: false, sidebar: {position: ['left', 'right']}, collapsable:{}}){
+    constructor(properties = {id: 'nav-1', fixed: false, sidebar: {position: ['left', 'right']}, dropdown:{}}){
         try{
             this.error = new Error();
             this.setProperties(properties);
             this.setHTML();
             this.setLinks();
-            this.setCollapsable(properties);
+            this.setDropdown(properties);
             this.setSidebar(properties);
             this.checkCurrentPage();
         }catch(error){
@@ -109,9 +109,9 @@ export class NavMenu{
      */
     setLinks(){
         let htmls = [];
-        if(this.collapsable){
-            let colllinks = document.querySelectorAll('#' + this.properties.id + ' .collapsable-link');
-            for(const html of colllinks){
+        if(this.dropdown){
+            let dropdown_links = document.querySelectorAll('#' + this.properties.id + ' .dropdown-link');
+            for(const html of dropdown_links){
                 htmls.push(html);
             }
         }
@@ -134,32 +134,32 @@ export class NavMenu{
     }
 
     /**
-     * * Set the Collapsables.
+     * * Set the Dropdowns.
      * @memberof NavMenu
      */
-    setCollapsable(properties = {collapsable: {}}){
-        if(!properties.collapsable){
+    setDropdown(properties = {dropdown: {}}){
+        if(!properties.dropdown){
             let error = new Error({
                 status: 200,
-                message: 'There are no Collapsable.',
+                message: 'There are no Dropdown.',
             });
             error.report();
-            this.collapsables = false;
-        }else if(typeof properties.collapsable != 'object'){
+            this.dropdowns = false;
+        }else if(typeof properties.dropdown != 'object'){
             throw new Error({
                 status: 415,
-                message: 'The Collapsable properties must be a valid object.',
+                message: 'The Dropdown properties must be a valid object.',
                 display: true,
             });
         }else{
             try{
-                this.collapsables = [];
-                let collapsablesHTMLElement = Collapsable.getAllHTMLElement();
-                for(let index = 0; index < collapsablesHTMLElement.length; index++){
-                    this.collapsables.push(new Collapsable(properties.collapsable, index + 1, collapsablesHTMLElement[index]));
+                this.dropdowns = [];
+                let dropdownsHTMLElement = Dropdown.getAllHTMLElement();
+                for(let index = 0; index < dropdownsHTMLElement.length; index++){
+                    this.dropdowns.push(new Dropdown(properties.dropdown, index + 1, dropdownsHTMLElement[index]));
                 }
             }catch(error){
-                this.collapsables = false;
+                this.dropdowns = false;
                 if(error.status == 200){
                     throw error;
                 }

@@ -32,9 +32,9 @@ export class Link{
             }else if(child.classList.contains('link-icon')){
                 this.icon = child;
                 this.type = 'link-icon';
-            }else if(child.classList.contains('collapsable-btn')){
+            }else if(child.classList.contains('dropdown-btn')){
                 this.btn = child;
-                this.type = 'collapsable-btn';
+                this.type = 'dropdown-btn';
             }
         }
     }
