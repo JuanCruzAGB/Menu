@@ -1,42 +1,57 @@
 /**
- * Link control the nav-links buttons.
+ * * Link controls the .nav-links.
  * @export
  * @class Link
  */
 export class Link{
     /**
      * * Creates an instance of Link.
-     * @param {HTMLElement} html - Link's HTMLElement.
+     * @param {HTMLElement} html - Link HTML Element.
      * @memberof Link
      */
-    constructor(html){
-        try{
+    constructor(html = undefined){
+        // try{
             this.error = new Error();
-            this.html = html;
-            this.href = html.href.split('/')[3];
-            this.active = false;
-            this.getContent();
-        }catch(error){
-            throw error;
-        }
+            this.setStates();
+            this.setHTML(html);
+            this.setTarget();
+        // }catch(error){
+        //     throw error;
+        // }
     }
 
     /**
-     * * Get the Link content.
+     * * Set the Link states.
      * @memberof Link
      */
-    getContent(){
-        for(let child of this.html.children){
-            if(child.classList.contains('link-text')){
-                this.text = child;
-            }else if(child.classList.contains('link-icon')){
-                this.icon = child;
-                this.type = 'link-icon';
-            }else if(child.classList.contains('dropdown-btn')){
-                this.btn = child;
-                this.type = 'dropdown-btn';
-            }
-        }
+    setStates(){
+        this.states = {};
+        this.setActive();
+    }
+
+    /**
+     * * Set the Link active state.
+     * @memberof Link
+     */
+    setActive(){
+        this.states.active = false;
+    }
+
+    /**
+     * * Set the Link HTML Element.
+     * @param {HTMLElement} html - Link HTML Element.
+     * @memberof Link
+     */
+    setHTML(html = undefined){
+        this.html = html;
+    }
+
+    /**
+     * * Set the Link target.
+     * @memberof Link
+     */
+    setTarget(){
+        this.target = this.html.href.split('/').pop();
     }
 
     /**
@@ -44,22 +59,22 @@ export class Link{
      * @memberof Link
      */
     activate(){
-        this.active = true;
+        this.states.active = true;
         this.html.classList.add('active');
     }
 
     /**
-     * * Search the current Link activated.
+     * * Search the current Link active.
      * @static
-     * @param {*} current
-     * @param {*} links
+     * @param {string} current - Current link.
+     * @param {Link[]} links - Links created.
      * @memberof Link
      */
-    static active(current, links){
-        for(const link of links){
-            if(link.href == current){
-                link.activate();
-            }
-        }
+    static active(current = '', links = []){
+        // for(const link of links){
+        //     if(link.target == current){
+        //         link.activate();
+        //     }
+        // }
     }
 }
