@@ -19,7 +19,7 @@
     min-height: 4.6rem;
     background-color: var(--color-three);
     font-family: verdana;
-    z-index: 10;
+    z-index: 11;
     transition: 500ms;
     box-sizing: border-box;
 }
