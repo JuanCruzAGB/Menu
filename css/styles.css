@@ -24,6 +24,19 @@
     box-sizing: border-box;
 }
 
+.substitute{
+    width: 100%;
+    min-height: 4.6rem;
+}
+
+.nav-menu.fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+}
+
 .nav-menu.neon{
     box-shadow: 0 0 19px var(--shadow-color);
 }

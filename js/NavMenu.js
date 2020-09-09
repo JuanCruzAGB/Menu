@@ -3,6 +3,7 @@ import { Link } from './Link.js';
 
 // * External repositories.abnf
 import { Sidebar } from '../../SidebarJS/js/Sidebar.js';
+import { ScrollDetection } from '../../ScrollDetectionJS/js/ScrollDetection.js';
 
 /**
  * * NavMenu makes an excellent navigation bar.
@@ -40,6 +41,7 @@ export class NavMenu{
             this.checkDropdowns(properties);
             this.checkSidebars(properties);
             this.checkCurrentPage();
+            this.checkFixed();
         // }catch(error){
         //     this.error = error;
         //     this.error.report();
@@ -235,5 +237,42 @@ export class NavMenu{
         //         message: 'There is no current page.',
         //     });
         // }
+    }
+
+    /**
+     * * Check if the NavMenu should be fixed.
+     * @memberof NavMenu
+     */
+    checkFixed(){
+        if(this.states.fixed){
+            new ScrollDetection({
+                location: {
+                    min: 0, max: this.html.offsetHeight
+                }, direction: 'Y',
+            }, {
+                success: {
+                    functionName: NavMenu.breakFix,
+                    params: {navmenu: this}
+                }, error: {
+                    functionName: NavMenu.fix,
+                    params: {navmenu: this}
+            }});
+        }
+    }
+
+    static fix(data){
+        if(!data.navmenu.html.classList.contains('fixed')){
+            data.navmenu.html.classList.add('fixed');
+            data.navmenu.substitute = document.createElement('aside');
+            data.navmenu.substitute.classList.add('substitute');
+            data.navmenu.html.parentNode.appendChild(data.navmenu.substitute);
+        }
+    }
+
+    static breakFix(data){
+        if(data.navmenu.html.classList.contains('fixed')){
+            data.navmenu.html.classList.remove('fixed');
+            data.navmenu.html.parentNode.removeChild(data.navmenu.substitute);
+        }
     }
 }
