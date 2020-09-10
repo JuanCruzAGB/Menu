@@ -1,7 +1,7 @@
 // * NavMenu repository.
 import { Link } from './Link.js';
 
-// * External repositories.abnf
+// * External repositories.
 import { Sidebar } from '../../SidebarJS/js/Sidebar.js';
 import { ScrollDetection } from '../../ScrollDetectionJS/js/ScrollDetection.js';
 
