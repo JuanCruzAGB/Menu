@@ -257,6 +257,9 @@ export class NavMenu{
                     functionName: NavMenu.fix,
                     params: {navmenu: this}
             }});
+            if(ScrollDetection.currentLocation('Y') > this.html.offsetHeight){
+                NavMenu.fix({navmenu: this});
+            }
         }
     }
 
