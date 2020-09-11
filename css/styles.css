@@ -11,7 +11,7 @@
     --color-four: #ddd; /* * Borders efects */
     --color-four-alternative: #ddd; /* * Borders efects */
     --color-five: #ddd; /* * Icons */
-    --color-five-alternative: #ddd; /* * Icons efects */
+    --color-five-alternative: #888; /* * Icons efects */
     --shadow-color: #32B1DA;
     position: relative;
     display: flex;
@@ -134,6 +134,12 @@
     height: 100%;
     font-size: 1rem;
     color: var(--color-five);
+    transition: 500ms;
+}
+
+.nav-menu .nav-menu-list .nav-link:hover .link-icon,
+.nav-menu .nav-menu-list .nav-link.active .link-icon{
+    color: var(--color-five-alternative);
 }
 
 .nav-menu .link-icon.left{
