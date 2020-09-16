@@ -5,7 +5,7 @@
     flex-basis: 10%;
     min-height: 100%;
     cursor: pointer;
-    color: var(--color-two);
+    color: var(--navmenu-color-two);
     text-decoration: none;
     box-sizing: border-box;
 }

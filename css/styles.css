@@ -3,21 +3,21 @@
 @import 'floatingmenu.css';
 
 .nav-menu{
-    --color-one: #222; /* * Titles */
-    --color-two: #222; /* * Buttons */
-    --color-two-alternative: #000; /* * Buttons efects */
-    --color-three: #fff; /* * Background */
-    --color-three-alternative: #ddd; /* * Background efects */
-    --color-four: #ddd; /* * Borders efects */
-    --color-four-alternative: #ddd; /* * Borders efects */
-    --color-five: #ddd; /* * Icons */
-    --color-five-alternative: #888; /* * Icons efects */
-    --shadow-color: #32B1DA;
+    --navmenu-color-one: #222; /* * Titles */
+    --navmenu-color-two: #222; /* * Buttons */
+    --navmenu-color-two-alternative: #000; /* * Buttons efects */
+    --navmenu-color-three: #fff; /* * Background */
+    --navmenu-color-three-alternative: #ddd; /* * Background efects */
+    --navmenu-color-four: #ddd; /* * Borders efects */
+    --navmenu-color-four-alternative: #ddd; /* * Borders efects */
+    --navmenu-color-five: #ddd; /* * Icons */
+    --navmenu-color-five-alternative: #888; /* * Icons efects */
+    --navmenu-shadow-color: #32B1DA;
     position: relative;
     display: flex;
     flex-wrap: wrap;
     min-height: 4.6rem;
-    background-color: var(--color-three);
+    background-color: var(--navmenu-color-three);
     font-family: verdana;
     z-index: 11;
     transition: 500ms;
@@ -38,7 +38,7 @@
 }
 
 .nav-menu.neon{
-    box-shadow: 0 0 19px var(--shadow-color);
+    box-shadow: 0 0 19px var(--navmenu-shadow-color);
 }
 
 .nav-menu .nav-row{
@@ -79,7 +79,7 @@
     text-align: center;
     line-height: 4.6rem;
     font-size: 1rem;
-    color: var(--color-one);
+    color: var(--navmenu-color-one);
     box-sizing: border-box;
 }
 
@@ -113,13 +113,13 @@
     height: 2.3rem;
     line-height: 2.3rem;
     text-decoration: none;
-    color: var(--color-two);
+    color: var(--navmenu-color-two);
     transition: 500ms;
 }
 
 .nav-menu .nav-menu-list .nav-link:hover,
 .nav-menu .nav-menu-list .nav-link.active{
-    color: var(--color-two-alternative);
+    color: var(--navmenu-color-two-alternative);
 }
 
 .nav-menu .nav-menu-list .nav-link.no-text{
@@ -133,13 +133,13 @@
     width: 1rem;
     height: 100%;
     font-size: 1rem;
-    color: var(--color-five);
+    color: var(--navmenu-color-five);
     transition: 500ms;
 }
 
 .nav-menu .nav-menu-list .nav-link:hover .link-icon,
 .nav-menu .nav-menu-list .nav-link.active .link-icon{
-    color: var(--color-five-alternative);
+    color: var(--navmenu-color-five-alternative);
 }
 
 .nav-menu .link-icon.left{
