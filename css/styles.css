@@ -3,21 +3,21 @@
 @import 'floatingmenu.css';
 
 .nav-menu{
-    --navmenu-color-one: #222; /* * Titles */
-    --navmenu-color-two: #222; /* * Buttons */
-    --navmenu-color-two-alternative: #000; /* * Buttons efects */
-    --navmenu-color-three: #fff; /* * Background */
-    --navmenu-color-three-alternative: #ddd; /* * Background efects */
-    --navmenu-color-four: #ddd; /* * Borders efects */
-    --navmenu-color-four-alternative: #ddd; /* * Borders efects */
-    --navmenu-color-five: #ddd; /* * Icons */
-    --navmenu-color-five-alternative: #888; /* * Icons efects */
+    --navmenu-title-color: #222;
+    --navmenu-button-color: #222;
+    --navmenu-button-color-alternative: #000;
+    --navmenu-background-color: #fff;
+    --navmenu-background-color-alternative: #ddd;
+    --navmenu-border-color: #ddd;
+    --navmenu-border-color-alternative: #ddd;
+    --navmenu-icon-color: #ddd;
+    --navmenu-icon-color-alternative: #888;
     --navmenu-shadow-color: #32B1DA;
     position: relative;
     display: flex;
     flex-wrap: wrap;
     min-height: 4.6rem;
-    background-color: var(--navmenu-color-three);
+    background-color: var(--navmenu-background-color);
     font-family: verdana;
     z-index: 11;
     transition: 500ms;
@@ -79,7 +79,7 @@
     text-align: center;
     line-height: 4.6rem;
     font-size: 1rem;
-    color: var(--navmenu-color-one);
+    color: var(--navmenu-title-color);
     box-sizing: border-box;
 }
 
@@ -113,13 +113,15 @@
     height: 2.3rem;
     line-height: 2.3rem;
     text-decoration: none;
-    color: var(--navmenu-color-two);
+    color: var(--navmenu-button-color);
     transition: 500ms;
+    background-color: var(--navmenu-background-color);
 }
 
 .nav-menu .nav-menu-list .nav-link:hover,
 .nav-menu .nav-menu-list .nav-link.active{
-    color: var(--navmenu-color-two-alternative);
+    color: var(--navmenu-button-color-alternative);
+    background-color: var(--navmenu-background-color-alternative);
 }
 
 .nav-menu .nav-menu-list .nav-link.no-text{
@@ -133,13 +135,13 @@
     width: 1rem;
     height: 100%;
     font-size: 1rem;
-    color: var(--navmenu-color-five);
+    color: var(--navmenu-icon-color);
     transition: 500ms;
 }
 
 .nav-menu .nav-menu-list .nav-link:hover .link-icon,
 .nav-menu .nav-menu-list .nav-link.active .link-icon{
-    color: var(--navmenu-color-five-alternative);
+    color: var(--navmenu-icon-color-alternative);
 }
 
 .nav-menu .link-icon.left{
@@ -160,12 +162,12 @@
     margin-right: .5rem;
 }
 
-/* MD */
+/* * MD */
 @media(min-width: 768px){
     /**/
 }
 
-/* LG */
+/* * LG */
 @media(min-width: 1024px){
     .nav-menu{
         height: fit-content;
@@ -240,7 +242,7 @@
     }
 }
 
-/* XL */
+/* * XL */
 @media(min-width: 1200px){
     /**/
 }
