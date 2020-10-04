@@ -34,7 +34,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 0px 15px rgba(0,0,0,0.3);
+    animation: show 500ms 0s;
 }
 
 .nav-menu.neon{
