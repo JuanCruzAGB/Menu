@@ -5,7 +5,7 @@
     flex-basis: 10%;
     min-height: 100%;
     cursor: pointer;
-    color: var(--color-two);
+    color: var(--navmenu-button-color);
     text-decoration: none;
     box-sizing: border-box;
 }
@@ -15,12 +15,12 @@
     text-align: center;
 }
 
-/* MD */
+/* * MD */
 @media(min-width: 768px){
     /**/
 }
 
-/* LG */
+/* * LG */
 @media(min-width: 1024px){
     .nav-menu .sidebar,
     .nav-menu .sidebar-button.open-btn{
@@ -28,7 +28,7 @@
     }
 }
 
-/* XL */
+/* * XL */
 @media(min-width: 1200px){
     /**/
 }

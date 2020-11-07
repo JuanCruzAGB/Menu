@@ -258,7 +258,7 @@ export class NavMenu{
      * @memberof NavMenu
      */
     checkFixed(){
-        if(this.states.fixed){
+        if(this.states.fixed && document.querySelector('body').offsetHeight - this.html.offsetHeight > (Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) + 100)){
             new ScrollDetection({
                 location: {
                     min: 0, max: this.html.offsetHeight
@@ -277,6 +277,12 @@ export class NavMenu{
         }
     }
 
+    /**
+     * * Fix the NavMenu.
+     * @static
+     * @param {object} data - ScrollDetection auxiliar data.
+     * @memberof NavMenu
+     */
     static fix(data){
         if (data.hasOwnProperty('scrolldetection') && data.navmenu.states.hasOwnProperty('hideOnScrollDown') && data.navmenu.states.hideOnScrollDown) {
             if (data.scrolldetection.getDirectionScrolled() || data.scrolldetection.getDirectionScrolled() == null){
@@ -299,6 +305,12 @@ export class NavMenu{
         }
     }
 
+    /**
+     * * Delete the NavMenu fix property.
+     * @static
+     * @param {object} data - ScrollDetection auxiliar data.
+     * @memberof NavMenu
+     */
     static breakFix(data){
         if(data.navmenu.html.classList.contains('fixed')){
             data.navmenu.html.classList.remove('fixed');

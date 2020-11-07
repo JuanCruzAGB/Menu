@@ -1,23 +1,24 @@
 @import 'sidebar.css';
 @import 'dropdown.css';
+@import 'tabmenu.css';
 @import 'floatingmenu.css';
 
 .nav-menu{
-    --color-one: #222; /* * Titles */
-    --color-two: #222; /* * Buttons */
-    --color-two-alternative: #000; /* * Buttons efects */
-    --color-three: #fff; /* * Background */
-    --color-three-alternative: #ddd; /* * Background efects */
-    --color-four: #ddd; /* * Borders efects */
-    --color-four-alternative: #ddd; /* * Borders efects */
-    --color-five: #ddd; /* * Icons */
-    --color-five-alternative: #888; /* * Icons efects */
-    --shadow-color: #32B1DA;
+    --navmenu-title-color: #222;
+    --navmenu-button-color: #222;
+    --navmenu-button-color-alternative: #000;
+    --navmenu-background-color: #fff;
+    --navmenu-background-color-alternative: #ddd;
+    --navmenu-border-color: #ddd;
+    --navmenu-border-color-alternative: #ddd;
+    --navmenu-icon-color: #ddd;
+    --navmenu-icon-color-alternative: #888;
+    --navmenu-shadow-color: #32B1DA;
     position: relative;
     display: flex;
     flex-wrap: wrap;
     min-height: 4.6rem;
-    background-color: var(--color-three);
+    background-color: var(--navmenu-background-color);
     font-family: verdana;
     z-index: 11;
     transition: 500ms;
@@ -34,11 +35,12 @@
     top: 0;
     left: 0;
     width: 100%;
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 0px 15px rgba(0,0,0,0.3);
+    animation: show 500ms 0s;
 }
 
 .nav-menu.neon{
-    box-shadow: 0 0 19px var(--shadow-color);
+    box-shadow: 0 0 19px var(--navmenu-shadow-color);
 }
 
 .nav-menu .nav-row{
@@ -79,7 +81,7 @@
     text-align: center;
     line-height: 4.6rem;
     font-size: 1rem;
-    color: var(--color-one);
+    color: var(--navmenu-title-color);
     box-sizing: border-box;
 }
 
@@ -107,23 +109,38 @@
     margin-left: 1rem;
 }
 
-.nav-menu .nav-menu-list .nav-link{
+.nav-menu .nav-menu-list .nav-text,
+.nav-menu .nav-menu-list .nav-link,
+.nav-menu .nav-menu-list .nav-button{
     display: inline-flex;
     align-items: center;
     height: 2.3rem;
     line-height: 2.3rem;
     text-decoration: none;
-    color: var(--color-two);
+    color: var(--navmenu-button-color);
     transition: 500ms;
 }
 
 .nav-menu .nav-menu-list .nav-link:hover,
 .nav-menu .nav-menu-list .nav-link.active{
-    color: var(--color-two-alternative);
+    color: var(--navmenu-button-color-alternative);
 }
 
 .nav-menu .nav-menu-list .nav-link.no-text{
     font-size: 0;
+}
+
+.nav-menu .nav-menu-list .nav-button{
+    border: 1px solid var(--navmenu-border-color);
+    outline: none;
+    padding: 1rem;
+}
+
+.nav-menu .nav-menu-list .nav-button:focus,
+.nav-menu .nav-menu-list .nav-button:hover,
+.nav-menu .nav-menu-list .nav-button.active{
+    outline: none;
+    border-color: var(--navmenu-border-color-alternative);
 }
 
 .nav-menu .link-icon{
@@ -133,13 +150,17 @@
     width: 1rem;
     height: 100%;
     font-size: 1rem;
-    color: var(--color-five);
+    color: var(--navmenu-icon-color);
     transition: 500ms;
 }
 
+.nav-menu .nav-menu-list .nav-text.active .link-icon,
 .nav-menu .nav-menu-list .nav-link:hover .link-icon,
-.nav-menu .nav-menu-list .nav-link.active .link-icon{
-    color: var(--color-five-alternative);
+.nav-menu .nav-menu-list .nav-link.active .link-icon,
+.nav-menu .nav-menu-list .nav-button:focus .link-icon,
+.nav-menu .nav-menu-list .nav-button:hover .link-icon,
+.nav-menu .nav-menu-list .nav-button.active .link-icon{
+    color: var(--navmenu-icon-color-alternative);
 }
 
 .nav-menu .link-icon.left{
@@ -156,16 +177,17 @@
     top: 0;
 }
 
+.nav-menu .nav-menu-list .nav-text .link-icon,
 .nav-menu .nav-menu-list .nav-link .link-icon{
     margin-right: .5rem;
 }
 
-/* MD */
+/* * MD */
 @media(min-width: 768px){
     /**/
 }
 
-/* LG */
+/* * LG */
 @media(min-width: 1024px){
     .nav-menu{
         height: fit-content;
@@ -235,12 +257,13 @@
         display: flex;
     }
 
+    .nav-menu .nav-text,
     .nav-menu .nav-link{
         width: max-content;
     }
 }
 
-/* XL */
+/* * XL */
 @media(min-width: 1200px){
     /**/
 }

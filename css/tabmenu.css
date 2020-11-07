@@ -1,4 +1,7 @@
-/* * Dropdown */
+/* * TabMenu */
+.tab-menu.vertical {
+    min-height: calc(100vh - 4.6rem);
+}
 
 /* * MD */
 @media(min-width: 768px){
