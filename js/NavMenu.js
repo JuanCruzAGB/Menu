@@ -27,6 +27,7 @@ export class NavMenu{
         },
     }, states = {
         fixed: false,
+        hideOnScrollDown: false,
         current: false,
     }){
         // TODO Edit custom errors.
@@ -72,10 +73,12 @@ export class NavMenu{
     setStates(states = {
         fixed: false,
         current: false,
+        hideOnScrollDown: false,
     }){
         this.states = {};
         this.setFixed(states);
         this.setCurrent(states);
+        this.setHideOnScrollDown(states);
     }
 
     /**
@@ -129,6 +132,17 @@ export class NavMenu{
         current: false,
     }){
         this.states.current = states.current;
+    }
+
+    /**
+     * * Set the NavMenu hide on scroll down state.
+     * @param {object} states - NavMenu states.
+     * @memberof NavMenu
+     */
+    setHideOnScrollDown(states = {
+        hideOnScrollDown: false,
+    }){
+        this.states.hideOnScrollDown = states.hideOnScrollDown;
     }
 
     /**
@@ -251,10 +265,10 @@ export class NavMenu{
                 }, direction: 'Y',
             }, {
                 success: {
-                    functionName: NavMenu.breakFix,
+                    function: NavMenu.breakFix,
                     params: {navmenu: this}
                 }, error: {
-                    functionName: NavMenu.fix,
+                    function: NavMenu.fix,
                     params: {navmenu: this}
             }});
             if(ScrollDetection.currentLocation('Y') > this.html.offsetHeight){
@@ -264,11 +278,24 @@ export class NavMenu{
     }
 
     static fix(data){
-        if(!data.navmenu.html.classList.contains('fixed')){
-            data.navmenu.html.classList.add('fixed');
-            data.navmenu.substitute = document.createElement('aside');
-            data.navmenu.substitute.classList.add('substitute');
-            data.navmenu.html.parentNode.appendChild(data.navmenu.substitute);
+        if (data.hasOwnProperty('scrolldetection') && data.navmenu.states.hasOwnProperty('hideOnScrollDown') && data.navmenu.states.hideOnScrollDown) {
+            if (data.scrolldetection.getDirectionScrolled() || data.scrolldetection.getDirectionScrolled() == null){
+                if (!data.navmenu.html.classList.contains('fixed')) {
+                    data.navmenu.html.classList.add('fixed');
+                    data.navmenu.substitute = document.createElement('aside');
+                    data.navmenu.substitute.classList.add('substitute');
+                    data.navmenu.html.parentNode.appendChild(data.navmenu.substitute);
+                }
+            } else {
+                NavMenu.breakFix(data);
+            }
+        } else {
+            if(!data.navmenu.html.classList.contains('fixed')){
+                data.navmenu.html.classList.add('fixed');
+                data.navmenu.substitute = document.createElement('aside');
+                data.navmenu.substitute.classList.add('substitute');
+                data.navmenu.html.parentNode.appendChild(data.navmenu.substitute);
+            }
         }
     }
 
