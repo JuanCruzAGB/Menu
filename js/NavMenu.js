@@ -1,7 +1,8 @@
-// * NavMenu repository.
+// ? NavMenu repository.
 import { Link } from './Link.js';
+import { Substitute } from './Substitute.js';
 
-// * External repositories.
+// ? External repositories.
 import { Sidebar } from '../../SidebarJS/js/Sidebar.js';
 import { ScrollDetection } from '../../ScrollDetectionJS/js/ScrollDetection.js';
 
@@ -9,12 +10,20 @@ import { ScrollDetection } from '../../ScrollDetectionJS/js/ScrollDetection.js';
  * * NavMenu makes an excellent navigation bar.
  * @export
  * @class NavMenu
+ * @author Juan Cruz Armentia <juancarmentia@gmail.com>
  */
 export class NavMenu{
     /**
      * * Creates an instance of NavMenu.
-     * @param {object} properties - NavMenu properties.
-     * @param {object} states - NavMenu states.
+     * @param {Object} properties NavMenu properties:
+     * @param {String} properties.id NavMenu ID.
+     * @param {Object} properties.sidebar NavMenu Sidebar properties:
+     * @param {Object} properties.sidebar.id Sidebar ID.
+     * @param {String[]} properties.sidebar.position Sidebar position.
+     * @param {Object} [states] NavMenu states:
+     * @param {Boolean} [states.current] NavMenu current status.
+     * @param {Boolean} [states.fixed] NavMenu fixed status.
+     * @param {Boolean} [states.hideOnScrollDown] NavMenu hide on scroll down status.
      * @memberof NavMenu
      */
     constructor(properties = {
@@ -22,127 +31,339 @@ export class NavMenu{
         sidebar: {
             id: ['menu', 'filters'],
             position: ['left', 'right'],
-        }, dropdown:{
-            //
         },
     }, states = {
         fixed: false,
         hideOnScrollDown: false,
         current: false,
     }){
-        // TODO Edit custom errors.
-        // TODO Create fixed state.
-        // TODO Edit active state.
-        // try{
-            this.error = new Error();
-            this.setProperties(properties);
-            this.setStates(states);
-            this.setHTML();
-            this.setLinks();
-            this.checkDropdowns(properties);
-            this.checkSidebars(properties);
-            this.checkCurrentPage();
-            this.checkFixed();
-        // }catch(error){
-        //     this.error = error;
-        //     this.error.report();
-        // }
+        this.setProperties(properties);
+        this.setStates(states);
+        this.setHTML();
+        this.setLinks();
+        this.checkCurrentStatus();
+        this.checkFixedStatus();
     }
 
     /**
      * * Set the NavMenu properties.
-     * @param {object} properties - NavMenu properties.
+     * @param {Object} properties NavMenu properties:
+     * @param {String} properties.id NavMenu ID.
+     * @param {Object} properties.sidebar NavMenu Sidebar properties:
+     * @param {Object} properties.sidebar.id Sidebar ID.
+     * @param {String[]} properties.sidebar.position Sidebar position.
      * @memberof NavMenu
      */
     setProperties(properties = {
         id: 'nav-1',
+        sidebar: {
+            id: ['menu', 'filters'],
+            position: ['left', 'right'],
+        },
     }){
-        // try{
-            this.properties = {};
-            this.setId(properties);
-        // }catch(error){
-        //     throw error;
-        // }
+        this.properties = {};
+        this.setIdProperty(properties);
+        this.setSidebars(properties);
     }
 
     /**
-     * * Set the NabMenu states.
-     * @param {object} states - NabMenu states.
-     * @memberof NabMenu
+     * * Returns the NavMenu properties or an specific property.
+     * @param {String} [property] Property name.
+     * @returns {Object|*}
+     * @memberof NavMenu
      */
-    setStates(states = {
-        fixed: false,
-        current: false,
-        hideOnScrollDown: false,
-    }){
-        this.states = {};
-        this.setFixed(states);
-        this.setCurrent(states);
-        this.setHideOnScrollDown(states);
+    getProperties(property = ''){
+        if (property && property != '') {
+            return this.properties[property];
+        } else {
+            return this.properties;
+        }
+    }
+
+    /**
+     * * Check if there is a property.
+     * @param {String} property Property name.
+     * @returns {Boolean}
+     * @memberof NavMenu
+     */
+    hasProperty(property = ''){
+        if (this.properties.hasOwnProperty(property)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * * Change a property value.
+     * @param {String} property Property name.
+     * @param {*} value Property value.
+     * @memberof NavMenu
+     */
+    changeProperty(property = '', value = ''){
+        if (this.hasProperty(property)) {
+            this.properties[property] = value;
+        }
+        switch (property) {
+            default:
+                break;
+        }
     }
 
     /**
      * * Set the NavMenu ID.
-     * @param {object} properties - NavMenu properties.
+     * @param {Object} properties NavMenu properties:
+     * @param {String} properties.id NavMenu ID.
      * @memberof NavMenu
      */
-    setId(properties = {
+    setIdProperty(properties = {
         id: 'nav-1',
     }){
-        // if(typeof properties.id != 'string'){
-        //     throw new Error({
-        //         status: 415,
-        //         message: 'The id must be a valid string.',
-        //         display: true,
-        //     });
-        // }else if(!document.querySelector('#' + properties.id)){
-        //     throw new Error({
-        //         status: 404,
-        //         message: 'The id do not match with the id attribute.',
-        //         display: true,
-        //     });
-        // }
-        this.properties.id = properties.id;
+        if (properties.hasOwnProperty('id')) {
+            this.properties.id = properties.id;
+        } else {
+            this.properties.id = 'nav-1';
+        }
     }
 
     /**
-     * * Set the NavMenu fixed state.
-     * @param {object} states - NavMenu states.
+     * * Returns the NavMenu ID.
+     * @returns {String}
      * @memberof NavMenu
      */
-    setFixed(states = {
-        fixed: false,
-    }){
-        // if(typeof states.fixed != 'boolean'){
-        //     throw new Error({
-        //         status: 415,
-        //         message: 'The fixed property must be a valid boolean.',
-        //         display: true,
-        //     });
-        // }
-        this.states.fixed = states.fixed;
+    getIdProperty(){
+        return this.properties.id;
     }
 
     /**
-     * * Set the NavMenu current state.
-     * @param {object} states - NavMenu states.
-     * @memberof NavMenu
+     * * Set the NabMenu states.
+     * @param {Object} [states] NavMenu states:
+     * @param {Boolean} [states.current] NavMenu current status.
+     * @param {Boolean} [states.fixed] NavMenu fixed status.
+     * @param {Boolean} [states.hideOnScrollDown] NavMenu hide on scroll down status.
+     * @memberof NabMenu
      */
-    setCurrent(states = {
+    setStates(states = {
         current: false,
-    }){
-        this.states.current = states.current;
-    }
-
-    /**
-     * * Set the NavMenu hide on scroll down state.
-     * @param {object} states - NavMenu states.
-     * @memberof NavMenu
-     */
-    setHideOnScrollDown(states = {
+        fixed: false,
         hideOnScrollDown: false,
     }){
-        this.states.hideOnScrollDown = states.hideOnScrollDown;
+        this.states = {};
+        this.setCurrentStatus(states);
+        this.setFixedStatus(states);
+        this.setScrollingToStatus(states);
+        this.setHideOnScrollDownStatus(states);
+    }
+
+    /**
+     * * Returns the Link states or an specific states.
+     * @param {String} [property] States name.
+     * @returns {Object|*}
+     * @memberof NavMenu
+     */
+    getStates(property = ''){
+        if (property && property != '') {
+            return this.states[property];
+        } else {
+            return this.states;
+        }
+    }
+
+    /**
+     * * Check if there is a status.
+     * @param {String} name Status name.
+     * @returns {Boolean}
+     * @memberof NavMenu
+     */
+    hasStates(name = ''){
+        if (this.states.hasOwnProperty(name)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * * Change a status value.
+     * @param {String} name Status name.
+     * @param {*} value Status value.
+     * @memberof NavMenu
+     */
+    changeStatus(name = '', value = ''){
+        if (this.hasStates(name)) {
+            this.states[name] = value;
+        }
+        switch (name) {
+            case 'current':
+                this.checkCurrentStatus();
+                if (this.getStates('fixed')) {
+                    this.changeStatus('fixed', false);
+                }
+                NavMenu.breakFix({navmenu: this});
+                break;
+            case 'fixed':
+                if (this.getHTML()) {
+                    if (this.getStates('fixed')) {
+                        if (this.getStates('hideOnScrollDown')) {
+                            if (this.getStates('scrollingTo')) {
+                                this.getHTML().classList.remove('unfixed');
+                                this.getHTML().classList.add('fixed');
+                            } else {
+                                this.getHTML().classList.add('unfixed');
+                                this.getHTML().classList.remove('fixed');
+                            }
+                            this.setSubstitute();
+                        } else if (!this.getHTML().classList.contains('fixed')) {
+                            this.getHTML().classList.add('fixed');
+                            this.setSubstitute();
+                        }
+                    } else {
+                        this.getHTML().classList.remove('fixed');
+                        this.removeSubstitute();
+                        this.getHTML().classList.remove('unfixed');
+                    }
+                }
+                break;
+        }
+    }
+
+    /**
+     * * Set the NavMenu current status.
+     * @param {Object} [states] NavMenu states:
+     * @param {Boolean} [states.current] NavMenu current status.
+     * @memberof NavMenu
+     */
+    setCurrentStatus(states = {
+        current: false,
+    }){
+        if (states.hasOwnProperty('current')) {
+            this.states.current = states.current;
+        } else {
+            this.states.current = false;
+        }
+    }
+
+    /**
+     * * Returns the NavMenu current status.
+     * @returns {Boolean}
+     * @memberof NavMenu
+     */
+    getCurrentStatus(){
+        return this.states.current;
+    }
+
+    /**
+     * * Check the NavMenu current active Link status.
+     * @memberof NavMenu
+     */
+    checkCurrentStatus(){
+        if(this.getStates('current')){
+            Link.active(this.getStates('current'), this.getLinks());
+        }
+    }
+
+    /**
+     * * Set the NavMenu fixed status.
+     * @param {Object} [states] NavMenu states:
+     * @param {Boolean} [states.fixed] NavMenu fixed status.
+     * @memberof NavMenu
+     */
+    setFixedStatus(states = {
+        fixed: false,
+    }){
+        if (states.hasOwnProperty('fixed')) {
+            this.states.fixed = states.fixed;
+        } else {
+            this.states.fixed = false;
+        }
+    }
+
+    /**
+     * * Returns the NavMenu fixed status.
+     * @returns {Boolean}
+     * @memberof NavMenu
+     */
+    getFixedStatus(){
+        return this.states.fixed;
+    }
+
+    /**
+     * * Check if the NavMenu should be fixed.
+     * @memberof NavMenu
+     */
+    checkFixedStatus(){
+        if(this.getStates('fixed')){
+            let height = this.getHTML().offsetHeight;
+            if (document.querySelector('body').offsetHeight - height > (Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) + 100)) {
+                let scrolldetection = new ScrollDetection({
+                    location: {
+                        min: 0, max: height
+                    }, direction: 'Y',
+                }, {
+                    success: {
+                        function: NavMenu.breakFix,
+                        params: {navmenu: this}
+                    }, error: {
+                        function: NavMenu.fix,
+                        params: {navmenu: this}
+                }});
+                if (ScrollDetection.currentLocation('Y') > height) {
+                    NavMenu.fix({scrolldetection: scrolldetection, navmenu: this});
+                }
+            }
+        }
+    }
+
+    /**
+     * * Set the NavMenu hide on scroll down status.
+     * @param {Object} [states] NavMenu states:
+     * @param {Boolean} [states.fixed] NavMenu fixed status.
+     * @param {Boolean} [states.hideOnScrollDown] NavMenu hide on scroll down status.
+     * @param {Boolean} [states.current] NavMenu current status.
+     * @memberof NavMenu
+     */
+    setHideOnScrollDownStatus(states = {
+        hideOnScrollDown: false,
+    }){
+        if (states.hasOwnProperty('hideOnScrollDown')) {
+            this.states.hideOnScrollDown = states.hideOnScrollDown;
+        } else {
+            this.states.hideOnScrollDown = false;
+        }
+    }
+
+    /**
+     * * Returns the NavMenu hide on scroll down status.
+     * @returns {Boolean}
+     * @memberof NavMenu
+     */
+    getHideOnScrollDownStatus(){
+        return this.states.hideOnScrollDown;
+    }
+
+    /**
+     * * Set the NavMenu scrolling to status.
+     * @param {Object} [states] NavMenu states:
+     * @param {Boolean} [states.scrollingTo] NavMenu scrolling to status.
+     * @memberof NavMenu
+     */
+    setScrollingToStatus(states = {
+        scrollingTo: null,
+    }){
+        if (states.hasOwnProperty('scrollingTo')) {
+            this.states.scrollingTo = states.scrollingTo;
+        } else {
+            this.states.scrollingTo = null;
+        }
+    }
+
+    /**
+     * * Returns the NavMenu scrolling to status.
+     * @returns {Boolean}
+     * @memberof NavMenu
+     */
+    getScrollingToStatus(){
+        return this.states.scrollingTo;
     }
 
     /**
@@ -150,86 +371,38 @@ export class NavMenu{
      * @memberof NavMenu
      */
     setHTML(){
-        let navmenus = document.querySelectorAll('.nav-menu');
-        if(navmenus.length){
-            for(const nav of navmenus){
-                if(nav.id == this.properties.id){
-                    this.html = nav;
-                }
-            }
-        }
-        // }else{
-        //     throw new Error({
-        //         status: 404,
-        //         message: 'There are no NavMenus.',
-        //         display: true,
-        //     });
-        // }
+        this.html = document.querySelector(`#${ this.getProperties('id') }.nav-menu`);
     }
 
     /**
-     * * Set the NavMenu Links.
+     * * Returns the NavMenu HTML Element.
+     * @returns {HTMLElement}
      * @memberof NavMenu
      */
-    setLinks(){
-        let htmls = [];
-        // if(this.dropdown){
-        //     let dropdown_links = document.querySelectorAll('#' + this.properties.id + ' .dropdown-link');
-        //     for(const html of dropdown_links){
-        //         htmls.push(html);
-        //     }
-        // }
-        let navlinks = document.querySelectorAll('#' + this.properties.id + ' .nav-link');
-        if(navlinks.length){
-            for(const html of navlinks){
-                htmls.push(html);
-            }
-            this.links = [];
-            for(const html of htmls){
-                this.links.push(new Link(html));
-            }
-        }
-        // }else{
-        //     throw new Error({
-        //         status: 404,
-        //         message: 'There are no NavMenus Links.',
-        //         display: true,
-        //     });
-        // }
+    getHTML(){
+        return this.html;
     }
 
     /**
-     * * Check if should be a Dropdown.
-     * @param {object} properties - NavMenu properties.
+     * * Set the NavMenu Sidebars.
+     * @param {Object} properties NavMenu properties:
+     * @param {Object} properties.sidebar NavMenu Sidebar properties:
+     * @param {Object} properties.sidebar.id Sidebar ID.
+     * @param {String[]} properties.sidebar.position Sidebar position.
      * @memberof NavMenu
      */
-    checkDropdowns(properties = {
-        dropdown: {
-            //
-        },
-    }){
-        // ? Dropdown creation.
-    }
-
-    /**
-     * * Check if should be a Sidebar.
-     * @param {object} properties - NavMenu properties.
-     * @memberof NavMenu
-     */
-    checkSidebars(properties = {
+    setSidebars(properties = {
         sidebar: {
             id: ['menu', 'filters'],
             position: ['left', 'right'],
         },
     }){
-        if(properties.sidebar && properties.sidebar.id && properties.sidebar.id.length){
-            this.sidebars = [];
-            for (let i = 0; i < properties.sidebar.id.length; i++) {
-                const id = properties.sidebar.id[i];
-                const position = properties.sidebar.position[i];
+        this.sidebars = [];
+        if (properties.hasOwnProperty('sidebar')) {
+            for (const key in properties.sidebar.id) {
                 this.sidebars.push(new Sidebar({
-                    id: id,
-                    position: position,
+                    id: properties.sidebar.id[key],
+                    position: properties.sidebar.position[key],
                 }, {
                     open: false,
                 }));
@@ -238,83 +411,86 @@ export class NavMenu{
     }
 
     /**
-     * * Check if should be a current NavMenu Link active.
+     * * Returns the NavMenu Sidebars.
+     * @returns {Sidebar[]}
      * @memberof NavMenu
      */
-    checkCurrentPage(){
-        if(this.states.current){
-            Link.active(this.states.current, this.links);
-        }
-        // }else{
-        //     throw new Error({
-        //         status: 200,
-        //         message: 'There is no current page.',
-        //     });
-        // }
+    getSidebars(){
+        return this.sidebars;
     }
 
     /**
-     * * Check if the NavMenu should be fixed.
+     * * Set the NavMenu Links.
      * @memberof NavMenu
      */
-    checkFixed(){
-        if(this.states.fixed && document.querySelector('body').offsetHeight - this.html.offsetHeight > (Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0) + 100)){
-            new ScrollDetection({
-                location: {
-                    min: 0, max: this.html.offsetHeight
-                }, direction: 'Y',
-            }, {
-                success: {
-                    function: NavMenu.breakFix,
-                    params: {navmenu: this}
-                }, error: {
-                    function: NavMenu.fix,
-                    params: {navmenu: this}
-            }});
-            if(ScrollDetection.currentLocation('Y') > this.html.offsetHeight){
-                NavMenu.fix({navmenu: this});
-            }
+    setLinks(){
+        this.links = Link.getDomHTML(this);
+    }
+
+    /**
+     * * Returns the NavMenu Links.
+     * @returns {Link[]}
+     * @memberof NavMenu
+     */
+    getLinks(){
+        return this.links;
+    }
+
+    /**
+     * * Set the NavMenu Subsitute.
+     * @memberof NavMenu
+     */
+    setSubstitute(){
+        if (!this.hasOwnProperty('substitute')) {
+            this.substitute = new Substitute({}, this);
+        } else {
+            this.substitute.appendDomHTML(this);
+        }
+    }
+
+    /**
+     * * Returns the NavMenu Subsitute.
+     * @returns {Substitute}
+     * @memberof NavMenu
+     */
+    getSubsitute(){
+        return this.substitute;
+    }
+
+    /**
+     * * Remove the NavMenu Subsitute.
+     * @memberof NavMenu
+     */
+    removeSubstitute(){        
+        if (this.hasOwnProperty('substitute')) {
+            this.getSubsitute().removeDomHTML(this);
         }
     }
 
     /**
      * * Fix the NavMenu.
      * @static
-     * @param {object} data - ScrollDetection auxiliar data.
+     * @param {Object} data ScrollDetection auxiliar data.
      * @memberof NavMenu
      */
     static fix(data){
-        if (data.hasOwnProperty('scrolldetection') && data.navmenu.states.hasOwnProperty('hideOnScrollDown') && data.navmenu.states.hideOnScrollDown) {
-            if (data.scrolldetection.getDirectionScrolled() || data.scrolldetection.getDirectionScrolled() == null){
-                if (!data.navmenu.html.classList.contains('fixed')) {
-                    data.navmenu.html.classList.add('fixed');
-                    data.navmenu.substitute = document.createElement('aside');
-                    data.navmenu.substitute.classList.add('substitute');
-                    data.navmenu.html.parentNode.appendChild(data.navmenu.substitute);
-                }
-            } else {
-                NavMenu.breakFix(data);
-            }
+        if (data.hasOwnProperty('scrolldetection') && data.navmenu.getStates('hideOnScrollDown')) {
+            data.navmenu.changeStatus('scrollingTo', data.scrolldetection.getDirectionScrolled());
+            data.navmenu.changeStatus('fixed', true);
         } else {
-            if(!data.navmenu.html.classList.contains('fixed')){
-                data.navmenu.html.classList.add('fixed');
-                data.navmenu.substitute = document.createElement('aside');
-                data.navmenu.substitute.classList.add('substitute');
-                data.navmenu.html.parentNode.appendChild(data.navmenu.substitute);
-            }
+            data.navmenu.changeStatus('fixed', true);
         }
     }
 
     /**
      * * Delete the NavMenu fix property.
      * @static
-     * @param {object} data - ScrollDetection auxiliar data.
+     * @param {Object} data ScrollDetection auxiliar data.
      * @memberof NavMenu
      */
     static breakFix(data){
-        if(data.navmenu.html.classList.contains('fixed')){
-            data.navmenu.html.classList.remove('fixed');
-            data.navmenu.html.parentNode.removeChild(data.navmenu.substitute);
+        if (data.navmenu.getStates('fixed')) {
+            data.navmenu.changeStatus('fixed', false);
         }
     }
 }

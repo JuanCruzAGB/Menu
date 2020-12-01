@@ -30,6 +30,10 @@
     min-height: 4.6rem;
 }
 
+.nav-menu.unfixed{
+    top: -4.6rem;
+}
+
 .nav-menu.fixed{
     position: fixed;
     top: 0;
