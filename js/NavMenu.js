@@ -62,7 +62,7 @@ export class NavMenu{
         },
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
         this.setSidebars(properties);
     }
 
@@ -116,7 +116,7 @@ export class NavMenu{
      * @param {String} properties.id NavMenu ID.
      * @memberof NavMenu
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'nav-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -131,7 +131,7 @@ export class NavMenu{
      * @returns {String}
      * @memberof NavMenu
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 
