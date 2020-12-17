@@ -29,7 +29,7 @@ export class Substitute{
         id: 'substitute-1',
     }){
         this.properties = {};
-        this.setIdProperty(properties);
+        this.setIDProperty(properties);
     }
 
     /**
@@ -82,7 +82,7 @@ export class Substitute{
      * @param {String} [properties.id] Substitute ID.
      * @memberof Substitute
      */
-    setIdProperty(properties = {
+    setIDProperty(properties = {
         id: 'substitute-1',
     }){
         if (properties.hasOwnProperty('id')) {
@@ -97,7 +97,7 @@ export class Substitute{
      * @returns {String}
      * @memberof Substitute
      */
-    getIdProperty(){
+    getIDProperty(){
         return this.properties.id;
     }
 
