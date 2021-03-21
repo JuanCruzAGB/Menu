@@ -29,17 +29,14 @@ import { NavMenu as NavMenuJS } from 'submodules/NavMenuJS/js/NavMenu';
 
 ## HTML step by step
 
-To start make an HTMLElement with an id and a className = "nav-menu".
-My personal advise is to use __<nav>__. Semantic improvement ;)
-For example:
+To start to make an HTMLElement with an id and a className = "nav-menu". My personal advise is to use __<nav>__. Semantic improvement. For example:
 ```
 <nav id="nav-1" class="nav-menu">
     <!--  -->
 </nav>
 ```
 
-Inside you can create so many rows like you want. Rows are an HTMLElement with className = "nav-row". 
-For example:
+Inside you can create so many rows like you want. Rows are an HTMLElement with className = "nav-row". For example:
 ```
 <nav id="nav-1" class="nav-menu">
     <div class="nav-row">
@@ -48,8 +45,7 @@ For example:
 </nav>
 ```
 
-If you want to add a header inside the __NavMenu__ you can do it like this: a HTMLElement with className = "nav-title"
-For example:
+If you want to add a header inside the __NavMenu__ you can do it like this: a HTMLElement with className = "nav-title". For example:
 ```
 <nav id="nav-1" class="nav-menu">
     <div class="nav-row">
@@ -60,8 +56,7 @@ For example:
 </nav>
 ```
 
-The list items in __NavMenuJS__ are created inside an __<ul>__ with className = "nav-menu-list" and the links are an __<a>__ with className = "nav-link".
-For example:
+The list items in __NavMenuJS__ are created inside an __<ul>__ with className = "nav-menu-list" and the links are an __<a>__ with className = "nav-link". For example:
 ```
 <nav id="nav-1" class="nav-menu">
     <div class="nav-row">
@@ -83,8 +78,7 @@ For example:
 </nav>
 ```
 
-On mobile the __NavMenu css__ was optimize to show only 1 row, so be carefull :S
-If you want to use a __Sidebar__ you can make it adding a HTMLElement for open it, with className = "sidebar-button open-btn" and the sidebar position you want left or right.
+On mobile the __NavMenu css__ was optimize to show only 1 row (be carefull). If you want to use a __Sidebar__ you can make it adding a HTMLElement for open it, with className = "sidebar-button open-btn" and the sidebar position you want left or right.
 ```
 <nav id="nav-1" class="nav-menu">
     <div class="nav-row">
@@ -114,8 +108,7 @@ If you want to use a __Sidebar__ you can make it adding a HTMLElement for open i
 </nav>
 ```
 
-Then the __Sidebar__ HTMLElement works with an id and a className = "sidebar" + left or right. More details on [JuanCruzAGB/SidebarJS](https://github.com/JuanCruzAGB/SidebarJS.git).
-For example: 
+Then the __Sidebar__ HTMLElement works with an id and a className = "sidebar" + left or right. More details on [JuanCruzAGB/SidebarJS](https://github.com/JuanCruzAGB/SidebarJS.git). For example: 
 ```
 <nav id="nav-1" class="nav-menu">
     <div class="nav-row">
