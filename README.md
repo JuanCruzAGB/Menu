@@ -142,27 +142,19 @@ Then the __Sidebar__ HTMLElement works with an id and a className = "sidebar" + 
                 <h2>Menu</h2>
             </div>
             <a href="#" class="sidebar-button close-btn left">
-                <i class="sidebar-icon fas fa-times"></i>
+                <span class="link-text">Close</span>
             </a>
         </div>
 
         <div class="sidebar-content">
-            <ul class="sidebar-menu-list">
-                <li><a href="/" class="sidebar-link sidebar-button nav-link p-0">
-                    <span class="link-text">Home</span>
-                </a></li>
-                <li><a href="/log-in" class="sidebar-link nav-link p-0">
-                    <i class="link-icon left fas fa-sign-out-alt"></i>
-                    <span class="link-text">Log In</span>
-                </a></li>
-            </ul>
+            <!--  -->
         </div>
     </div>
     
     <div id="filters" class="sidebar right closed push-body">
         <div class="sidebar-header">
             <a href="#" class="sidebar-button close-btn right">
-                <i class="sidebar-icon fas fa-times"></i>
+                <span class="link-text">Close</span>
             </a>
             <div class="sidebar-title">
                 <h2>Filters</h2>
