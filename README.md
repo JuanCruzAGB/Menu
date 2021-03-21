@@ -29,7 +29,7 @@ import { NavMenu as NavMenuJS } from 'submodules/NavMenuJS/js/NavMenu';
 
 ## HTML step by step
 
-To start to make an HTMLElement with an id and a className = "nav-menu". My personal advise is to use __<nav>__. Semantic improvement. For example:
+To start to make an HTMLElement with an id and a className = "nav-menu". My personal advise is to use __< nav >__. Semantic improvement. For example:
 ```
 <nav id="nav-1" class="nav-menu">
     <!--  -->
@@ -56,7 +56,7 @@ If you want to add a header inside the __NavMenu__ you can do it like this: a HT
 </nav>
 ```
 
-The list items in __NavMenuJS__ are created inside an __<ul>__ with className = "nav-menu-list" and the links are an __<a>__ with className = "nav-link". For example:
+The list items in __NavMenuJS__ are created inside an __< ul >__ with className = "nav-menu-list" and the links are an __< a >__ with className = "nav-link". For example:
 ```
 <nav id="nav-1" class="nav-menu">
     <div class="nav-row">
