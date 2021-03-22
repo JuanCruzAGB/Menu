@@ -29,7 +29,7 @@ git clone https://github.com/JuanCruzAGB/SidebarJS.git
 ## JS step by step
 Import the **NavMenu** into your script to generate the logic.
 ```
-Import { NavMenu as NavMenuJS } from 'submodules/NavMenuJS/js/NavMenu';
+Import { NavMenu as NavMenuJS } from 'submodules/NavMenuJS/js/NavMenu.js';
 ```
 And make a new **NavMenuJS**
 ```
@@ -42,7 +42,6 @@ The **properties** are:
 	 - {string[]} **position:** Array of Sidebars position.
 
 The **states** are:
-
  - {boolean} **fixed:** If the NavMenu have to had `position="fixed"`. Default = `false`
  - {boolean} **hideOnScrollDown:** If the NavMenu is **fixed**, when this **state** is true, it will be hidden when scrolling down. Default = `false`
  - {string} **current:** The link who has to be active by default. Default = `null`
@@ -55,7 +54,7 @@ For example:
 	<!-- -->
 </nav>
 ```
-Inside, you can create so many rows like you want. Rows are an HTMLElement with `className="nav-row"`.
+Inside, you can create so many **rows** like you want. **Rows** are an HTMLElement with `className="nav-row"`.
 For example:
 ```
 <nav id="nav-1" class="nav-menu">
@@ -77,7 +76,7 @@ For example:
 ```
 > Optionally you can add a `className='logo'` and an `<img>` to replace the innerHTML text
 
-The list items in **NavMenuJS** are created inside an `<ul>` with `className="nav-menu-list"` and the links are an `<a>` with `className="nav-link"`.
+The list items in **NavMenuJS** are created inside an `<ul>` with `className="nav-menu-list"` and the **links** are an `<a>` with `className="nav-link"`.
 For example:
 ```
 <nav id="nav-1" class="nav-menu">
@@ -105,7 +104,7 @@ For example:
 ```
 > `link-text` adds a default styles on the **link** HTMLElement childs, same as `link-icon`.
 
-On mobile the **NavMenu CSS** was optimize to show only 1 row (be carefull).
+On mobile the **NavMenu CSS** was optimize to show only 1 **row** (be carefull).
 If you want to use a **Sidebar** you can make it adding a HTMLElement for open it, with `className="sidebar-button open-btn"` and the sidebar position you want `left` or `right`.
 ```
 <nav id="nav-1" class="nav-menu">
