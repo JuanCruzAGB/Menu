@@ -8,7 +8,7 @@ NavMenuJS hace una excelente barra de navegación, fur creada para mi uso labora
  - [Configuración](#configuración)
   
 
-## Installación
+## Instalación
 
  1. Clone el repositorio en **public/submodules**.
 ```
