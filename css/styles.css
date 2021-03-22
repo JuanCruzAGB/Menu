@@ -54,6 +54,7 @@
     overflow: hidden;
     flex-wrap: wrap;
     box-sizing: border-box;
+    padding: 0 1rem;
 }
 
 .nav-menu .nav-row:not(:first-of-type){
@@ -208,6 +209,7 @@
     .nav-menu .nav-row:first-of-type{
         flex-basis: 25%;
         justify-content: flex-start;
+        padding: 0;
     }
 
     .nav-menu .nav-row:not(:first-of-type){
