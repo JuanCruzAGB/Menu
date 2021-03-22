@@ -3,9 +3,9 @@
 
 NavMenuJS hace una excelente barra de navegación, fur creada para mi uso laboral (pero puedes usarla sin problema **:D**).
 
- - [Instalación](#instalacion)
+ - [Instalación](#instalación)
  - [HTML](#html-paso-a-paso)
- - [Configuración](#configuracion)
+ - [Configuración](#configuración)
   
 
 ## Installación
@@ -14,7 +14,7 @@ NavMenuJS hace una excelente barra de navegación, fur creada para mi uso labora
 ```
 git clone https://github.com/JuanCruzAGB/NavMenuJS.git
 ```
- 2. Y clone tambi;en los repositorios requeridos en **public/submodules**.
+ 2. Y clone también los repositorios requeridos en **public/submodules**.
 ```
 git clone https://github.com/JuanCruzAGB/JuanCruzAGB.git
 
