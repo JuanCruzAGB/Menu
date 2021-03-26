@@ -3,7 +3,7 @@
 @import 'tabmenu.css';
 @import 'floatingmenu.css';
 
-.nav-menu{
+.nav-menu {
     --navmenu-title-color: #222;
     --navmenu-button-color: #222;
     --navmenu-button-color-alternative: #000;
@@ -25,16 +25,16 @@
     box-sizing: border-box;
 }
 
-.substitute{
+.substitute {
     width: 100%;
     min-height: 4.6rem;
 }
 
-.nav-menu.unfixed{
+.nav-menu.unfixed {
     top: -4.6rem;
 }
 
-.nav-menu.fixed{
+.nav-menu.fixed {
     position: fixed;
     top: 0;
     left: 0;
@@ -43,11 +43,11 @@
     animation: show 500ms 0s;
 }
 
-.nav-menu.neon{
+.nav-menu.neon {
     box-shadow: 0 0 19px var(--navmenu-shadow-color);
 }
 
-.nav-menu .nav-row{
+.nav-menu .nav-row {
     flex-basis: 100%;
     height: 100%;
     display: flex;
@@ -57,30 +57,30 @@
     padding: 0 1rem;
 }
 
-.nav-menu .nav-row:not(:first-of-type){
+.nav-menu .nav-row:not(:first-of-type) {
     display: none;
     justify-content: flex-end;
 }
 
-.nav-menu .nav-title{
+.nav-menu .nav-title {
     flex-basis: 80%;
     text-decoration: none;
     box-sizing: border-box;
+    text-align: center;
 }
 
-.nav-menu .nav-title img{
+.nav-menu .nav-title img {
     display: none;
 }
 
-.nav-menu .nav-title.logo img{
+.nav-menu .nav-title.logo img {
     display: inline-block;
     width: 100%;
     height: 4.6rem;
-    text-align: center;
     object-fit: contain;
 }
 
-.nav-menu .nav-title h1{
+.nav-menu .nav-title h1 {
     margin: 0;
     text-align: center;
     line-height: 4.6rem;
@@ -89,11 +89,11 @@
     box-sizing: border-box;
 }
 
-.nav-menu .nav-title.logo h1{
+.nav-menu .nav-title.logo h1 {
     display: none;
 }
 
-.nav-menu .nav-menu-list{
+.nav-menu .nav-menu-list {
     width: fit-content;
     display: none;
     height: 100%;
@@ -103,19 +103,19 @@
     list-style: none;
 }
 
-.nav-menu .nav-menu-list > li{
+.nav-menu .nav-menu-list > li {
     display: flex;
     align-items: center;
     height: 100%;
 }
 
-.nav-menu .nav-menu-list > li:not(:first-child){
+.nav-menu .nav-menu-list > li:not(:first-child) {
     margin-left: 1rem;
 }
 
 .nav-menu .nav-menu-list .nav-text,
 .nav-menu .nav-menu-list .nav-link,
-.nav-menu .nav-menu-list .nav-button{
+.nav-menu .nav-menu-list .nav-button {
     display: inline-flex;
     align-items: center;
     height: 2.3rem;
@@ -126,15 +126,15 @@
 }
 
 .nav-menu .nav-menu-list .nav-link:hover,
-.nav-menu .nav-menu-list .nav-link.active{
+.nav-menu .nav-menu-list .nav-link.active {
     color: var(--navmenu-button-color-alternative);
 }
 
-.nav-menu .nav-menu-list .nav-link.no-text{
+.nav-menu .nav-menu-list .nav-link.no-text {
     font-size: 0;
 }
 
-.nav-menu .nav-menu-list .nav-button{
+.nav-menu .nav-menu-list .nav-button {
     border: 1px solid var(--navmenu-border-color);
     outline: none;
     padding: 1rem;
@@ -142,12 +142,12 @@
 
 .nav-menu .nav-menu-list .nav-button:focus,
 .nav-menu .nav-menu-list .nav-button:hover,
-.nav-menu .nav-menu-list .nav-button.active{
+.nav-menu .nav-menu-list .nav-button.active {
     outline: none;
     border-color: var(--navmenu-border-color-alternative);
 }
 
-.nav-menu .link-icon{
+.nav-menu .link-icon {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -163,75 +163,75 @@
 .nav-menu .nav-menu-list .nav-link.active .link-icon,
 .nav-menu .nav-menu-list .nav-button:focus .link-icon,
 .nav-menu .nav-menu-list .nav-button:hover .link-icon,
-.nav-menu .nav-menu-list .nav-button.active .link-icon{
+.nav-menu .nav-menu-list .nav-button.active .link-icon {
     color: var(--navmenu-icon-color-alternative);
 }
 
-.nav-menu .link-icon.left{
+.nav-menu .link-icon.left {
     margin-right: 1rem;
 }
 
-.nav-menu .no-text .link-icon.left{
+.nav-menu .no-text .link-icon.left {
     margin-right: 0;
 }
 
-.nav-menu .link-icon.right{
+.nav-menu .link-icon.right {
     position: absolute;
     right: 0;
     top: 0;
 }
 
 .nav-menu .nav-menu-list .nav-text .link-icon,
-.nav-menu .nav-menu-list .nav-link .link-icon{
+.nav-menu .nav-menu-list .nav-link .link-icon {
     margin-right: .5rem;
 }
 
 /* * MD */
-@media(min-width: 768px){
+@media (min-width: 768px) {
     /**/
 }
 
 /* * LG */
-@media(min-width: 1024px){
-    .nav-menu{
+@media (min-width: 1024px) {
+    .nav-menu {
         height: fit-content;
         max-height: fit-content;
         justify-content: space-between;
         padding: 0 10rem;
     }
 
-    .nav-menu .nav-row{
+    .nav-menu .nav-row {
         display: flex;
         height: 4.6rem;
     }
 
-    .nav-menu .nav-row:first-of-type{
+    .nav-menu .nav-row:first-of-type {
         flex-basis: 25%;
         justify-content: flex-start;
         padding: 0;
     }
 
-    .nav-menu .nav-row:not(:first-of-type){
+    .nav-menu .nav-row:not(:first-of-type) {
         display: flex;
         flex-basis: 50%;
         overflow: visible;
     }
 
-    .nav-menu .nav-title{
+    .nav-menu .nav-title {
         flex-basis: 100%;
         height: 100%;
     }
 
-    .nav-menu .nav-title.logo img{
+    .nav-menu .nav-title.logo img {
         height: 100%;
         object-position: left;
     }
 
-    .nav-menu .nav-title h1{
+    .nav-menu .nav-title h1 {
         text-align: left;
     }
     
-    .nav-menu .nav-search-bar{
+    .nav-menu .nav-search-bar {
         display: flex;
         flex-wrap: wrap;
         width: 25%;
@@ -242,7 +242,7 @@
         box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
     }
 
-    .nav-menu .nav-search-bar .nav-search-label{
+    .nav-menu .nav-search-bar .nav-search-label {
         flex-basis: 50px;
         height: 100%;
         display: flex;
@@ -251,24 +251,24 @@
         margin: 0;
     }
 
-    .nav-menu .nav-search-bar .nav-search-input{
+    .nav-menu .nav-search-bar .nav-search-input {
         flex-basis: calc(100% - (50px + 1rem));
         border: none;
         padding: .5rem;
         outline: none;
     }
 
-    .nav-menu .nav-menu-list{
+    .nav-menu .nav-menu-list {
         display: flex;
     }
 
     .nav-menu .nav-text,
-    .nav-menu .nav-link{
+    .nav-menu .nav-link {
         width: max-content;
     }
 }
 
 /* * XL */
-@media(min-width: 1200px){
+@media (min-width: 1200px) {
     /**/
 }

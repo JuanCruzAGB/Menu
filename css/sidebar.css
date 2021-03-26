@@ -1,5 +1,5 @@
 /* * Sidebar */
-.nav-menu .sidebar-button.open-btn{
+.nav-menu .sidebar-button.open-btn {
     display: flex;
     align-items: center;
     flex-basis: 10%;
@@ -10,25 +10,25 @@
     box-sizing: border-box;
 }
 
-.nav-menu .sidebar-button .sidebar-icon{
+.nav-menu .sidebar-button .sidebar-icon {
     flex-basis: 100%;
     text-align: center;
 }
 
 /* * MD */
-@media(min-width: 768px){
+@media (min-width: 768px) {
     /**/
 }
 
 /* * LG */
-@media(min-width: 1024px){
+@media (min-width: 1024px) {
     .nav-menu .sidebar,
-    .nav-menu .sidebar-button.open-btn{
+    .nav-menu .sidebar-button.open-btn {
         display: none;
     }
 }
 
 /* * XL */
-@media(min-width: 1200px){
+@media (min-width: 1200px) {
     /**/
 }
