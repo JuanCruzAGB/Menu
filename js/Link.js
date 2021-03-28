@@ -1,5 +1,5 @@
 // ? JuanCruzAGB repository
-import Class from "../../JuanCruzAGB/Class.js";
+import Class from "../../JuanCruzAGB/js/Class.js";
 
 // ? NavMenuJS repository
 import NavMenu from "./NavMenu.js";
@@ -17,8 +17,8 @@ export class Link extends Class{
      * @param {object} [props] Link properties
      * @param {string} [props.id='link-1'] Link primary key.
      * @param {string} [props.target='#'] Link target.
-     * @param {object} [states] Link states:
-     * @param {boolean} [states.active=false] Link active status.
+     * @param {object} [state] Link state:
+     * @param {boolean} [state.active=false] Link active status.
      * @param {string} html Link HTML Element.
      * @param {NavMenu} nav Link NavMenu parent.
      * @memberof Link
@@ -26,14 +26,14 @@ export class Link extends Class{
     constructor (props = {
         id: 'link-1',
         target: '#',
-    }, states = {
+    }, state = {
         active: false,
     }, html, nav) {
-        super(props, states);
+        super(props, state);
         this.setHTML(html);
         let instance = this;
-        this.html.addEventListener('click', (e) => {
-            nav.setStates({
+        this.html.addEventListener('click', function (e) {
+            nav.setState({
                 current: instance.props.target,
                 fixed: false,
             });
@@ -46,7 +46,7 @@ export class Link extends Class{
      * @memberof Link
      */
     checkActiveState () {
-        if (this.states.active) {
+        if (this.state.active) {
             this.html.classList.add('active');
         } else {
             this.html.classList.remove('active');
@@ -66,9 +66,9 @@ export class Link extends Class{
         let key = 0;
         for (const html of htmls) {
             let props = Link.generateProperties(html);
-            let states = Link.generateStates(html);
+            let state = Link.generateState(html);
             props.id = `link-${ key }`;
-            links.push(new this(props, states, html, nav));
+            links.push(new this(props, state, html, nav));
             key++;
         }
         return links;
@@ -90,17 +90,17 @@ export class Link extends Class{
     }
 
     /**
-     * * Returns the Link states genereted from a HTML Element.
+     * * Returns the Link state genereted from a HTML Element.
      * @static
      * @param {HTMLElement} html Link HTML Element
      * @returns {object}
      * @memberof Link
      */
-    static generateStates (html) {
-        let states = {
+    static generateState (html) {
+        let state = {
             active: html.classList.contains('active'),
         };
-        return states;
+        return state;
     }
 
     /**
@@ -113,9 +113,9 @@ export class Link extends Class{
     static active(current, links){
         for (const link of links) {
             if (link.props.target === current) {
-                link.setStates('active', true);
+                link.setState('active', true);
             } else {
-                link.setStates('active', false);
+                link.setState('active', false);
             }
         }
     }
