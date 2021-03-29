@@ -26,12 +26,7 @@
 }
 
 .substitute {
-    width: 100%;
-    min-height: 4.6rem;
-}
-
-.nav-menu.unfixed {
-    top: -4.6rem;
+    padding-top: var(--nav-height);
 }
 
 .nav-menu.fixed {
@@ -41,6 +36,10 @@
     width: 100%;
     box-shadow: 0 0px 15px rgba(0,0,0,0.3);
     animation: show 500ms 0s;
+}
+
+.nav-menu.fixed.unfixed {
+    top: calc(0px - var(--nav-height));
 }
 
 .nav-menu.neon {
