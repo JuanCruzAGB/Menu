@@ -1,5 +1,5 @@
 // ? JuanCruzAGB repository
-import Class from "../../JuanCruzAGB/Class.js";
+import Class from "../../JuanCruzAGB/js/Class.js";
 
 /**
  * * Substitute controls the NavMenu substitute.
