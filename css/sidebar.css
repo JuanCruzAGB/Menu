@@ -1,6 +1,7 @@
-/* * Sidebar */
+/* ? Sidebar */
 .nav-menu .sidebar-button.open-btn {
     display: flex;
+    justify-content: center;
     align-items: center;
     flex-basis: 10%;
     min-height: 100%;
@@ -10,17 +11,26 @@
     box-sizing: border-box;
 }
 
+.nav-menu .sidebar-button.open-btn .icon-link {
+    color: var(--navmenu-icon-color);
+    transition: 500ms;
+}
+
+.nav-menu .sidebar-button.open-btn:hover .icon-link {
+    color: var(--navmenu-icon-color-alternative);
+}
+
 .nav-menu .sidebar-button .sidebar-icon {
     flex-basis: 100%;
     text-align: center;
 }
 
-/* * MD */
+/* ? MD */
 @media (min-width: 768px) {
     /**/
 }
 
-/* * LG */
+/* ? LG */
 @media (min-width: 1024px) {
     .nav-menu .sidebar,
     .nav-menu .sidebar-button.open-btn {
@@ -28,7 +38,7 @@
     }
 }
 
-/* * XL */
+/* ? XL */
 @media (min-width: 1200px) {
     /**/
 }
