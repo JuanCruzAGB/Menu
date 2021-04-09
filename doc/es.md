@@ -22,7 +22,7 @@ git clone https://github.com/JuanCruzAGB/ScrollDetectionJS.git
 
 git clone https://github.com/JuanCruzAGB/SidebarJS.git
 ```
- - Importe el **CSS** en la etiqueta `<head>`.
+ 3. Importe el **CSS** en la etiqueta `<head>`.
 ```
 <link href="submodules/NavMenuJS/css/styles.css" rel="stylesheet">
 ```
@@ -155,14 +155,14 @@ Si deseas usar una **Barra lateral** puedes hacerlo con **SidebarJS** y agregán
 ## Configuración
 Importe el **NavMenu** en tu javascript para generar la logica.
 ```
-Import { NavMenu as NavMenuJS } from 'submodules/NavMenuJS/js/NavMenu';
+Import { NavMenu as NavMenuJS } from 'submodules/NavMenuJS/js/NavMenu.js';
 ```
 Y cree un nuevo **NavMenuJS**
 ```
 let navmenu = new NavMenuJS({props}, {states})
 ```
 Las **propiedades** existentes son:
- - {string} **id:** Id de la etiqueta HTML del NavMenu. `obligatorio`
+ - {string} **id:** Id de la etiqueta HTML del NavMenu. Por defecto viene en `nav-1`
  - {object} **sidebar:** Barra laterales que se van a usar en el NavMenu.
 	 - {string[]} **id:** Array de ids de las etiquetas HTML de cada barra lateral.
 	 - {string[]} **position:** Array de posiciones de las barras laterales.

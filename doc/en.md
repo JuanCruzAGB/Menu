@@ -22,7 +22,7 @@ git clone https://github.com/JuanCruzAGB/ScrollDetectionJS.git
 
 git clone https://github.com/JuanCruzAGB/SidebarJS.git
 ```
- - Import the **CSS** in the `<head>`.
+ 3. Import the **CSS** in the `<head>`.
 ```
 <link href="submodules/NavMenuJS/css/styles.css" rel="stylesheet">
 ```
@@ -155,14 +155,14 @@ If you want to use a **Sidebar** you can make it with **SidebarJS** and adding a
 ## Configuration
 Import the **NavMenu** into your script to generate the logic.
 ```
-import { NavMenu as NavMenuJS } from 'submodules/NavMenuJS/js/NavMenu';
+import { NavMenu as NavMenuJS } from 'submodules/NavMenuJS/js/NavMenu.js';
 ```
 And make a new **NavMenuJS**
 ```
 let navmenu = new NavMenuJS({props}, {states})
 ```
 The **properties** are:
- - {string} **id:** NavMenu HTMLElement id. `required`
+ - {string} **id:** NavMenu HTMLElement id. Default = `nav-1`
  - {object} **sidebar:** NavMenu Sidebars.
 	 - {string[]} **id:** Array of Sidebars HTMLElement id.
 	 - {string[]} **position:** Array of Sidebars position.
