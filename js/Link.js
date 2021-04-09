@@ -4,6 +4,17 @@ import Class from "../../JuanCruzAGB/js/Class.js";
 // ? NavMenuJS repository
 import NavMenu from "./NavMenu.js";
 
+/** @var {object} defaultProps Default properties. */
+let defaultProps = {
+    id: 'link-1',
+    target: '#',
+};
+
+/** @var {object} defaultState Default state. */
+let defaultState = {
+    active: false,
+};
+
 /**
  * * Link controls the NavMenu links.
  * @export
@@ -29,7 +40,7 @@ export class Link extends Class{
     }, state = {
         active: false,
     }, html, nav) {
-        super(props, state);
+        super({ ...defaultProps, ...props }, { ...defaultState, ...state });
         this.setHTML(html);
         let instance = this;
         this.html.addEventListener('click', function (e) {

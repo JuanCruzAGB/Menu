@@ -1,7 +1,7 @@
 # NavMenuJS
 > by [JuanCruzAGB](https://github.com/JuanCruzAGB)
 
-NavMenuJS hace una excelente barra de navegación, fur creada para mi uso laboral (pero puedes usarla sin problema **:D**).
+NavMenuJS hace una excelente barra de navegación, fue creada para mi uso laboral (pero puedes usarla sin problema **:D**).
 
  - [Instalación](#instalación)
  - [HTML](#html-paso-a-paso)

@@ -8,6 +8,22 @@ import Link from './Link.js';
 import Sidebar from '../../SidebarJS/js/Sidebar.js';
 import ScrollDetection from '../../ScrollDetectionJS/js/ScrollDetection.js';
 
+/** @var {object} defaultProps Default properties. */
+let defaultProps = {
+    id: 'nav-1',
+    sidebar: {
+        id: ['menu', 'filters'],
+        position: ['left', 'right'],
+    },
+};
+
+/** @var {object} defaultState Default state. */
+let defaultState = {
+    fixed: false,
+    hideOnScrollDown: false,
+    current: false,
+};
+
 /**
  * * NavMenu makes an excellent navigation bar.
  * @export
@@ -40,7 +56,7 @@ export class NavMenu extends Class {
         hideOnScrollDown: false,
         current: false,
     }) {
-        super(props, state);
+        super({ ...defaultProps, ...props }, { ...defaultState, ...state });
         if (props.hasOwnProperty('sidebar')) {
             this.setSidebars(props);
         }
