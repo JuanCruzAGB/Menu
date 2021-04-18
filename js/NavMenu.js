@@ -19,7 +19,6 @@ let defaultProps = {
 
 /** @var {object} defaultState Default state. */
 let defaultState = {
-    fixed: false,
     hideOnScrollDown: false,
     current: false,
 };
@@ -41,7 +40,6 @@ export class NavMenu extends Class {
      * @param {string[]} [props.sidebar.position=string[]] Sidebar position.
      * @param {object} [state] NavMenu state:
      * @param {string} [state.current=false] NavMenu current state.
-     * @param {boolean} [state.fixed=false] NavMenu fixed state.
      * @param {boolean} [state.hideOnScrollDown=false] NavMenu hide on scroll down state.
      * @memberof NavMenu
      */
@@ -52,7 +50,6 @@ export class NavMenu extends Class {
             position: ['left', 'right'],
         },
     }, state = {
-        fixed: false,
         hideOnScrollDown: false,
         current: false,
     }) {

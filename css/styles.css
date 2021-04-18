@@ -3,7 +3,7 @@
 @import 'tabmenu.css';
 @import 'floatingmenu.css';
 
-.nav-menu {
+:root {
     --navmenu-title-color: #222;
     --navmenu-button-color: #222;
     --navmenu-button-color-alternative: #000;
@@ -13,7 +13,9 @@
     --navmenu-border-color-alternative: #ddd;
     --navmenu-icon-color: #ddd;
     --navmenu-icon-color-alternative: #888;
-    --navmenu-shadow-color: #32B1DA;
+}
+
+.nav-menu {
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -27,23 +29,6 @@
 
 .substitute {
     padding-top: var(--nav-height);
-}
-
-.nav-menu.fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    box-shadow: 0 0px 15px rgba(0,0,0,0.3);
-    animation: show 500ms 0s;
-}
-
-.nav-menu.fixed.unfixed {
-    top: calc(0px - var(--nav-height));
-}
-
-.nav-menu.neon {
-    box-shadow: 0 0 19px var(--navmenu-shadow-color);
 }
 
 .nav-menu .nav-row {

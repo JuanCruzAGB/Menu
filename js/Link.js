@@ -46,7 +46,6 @@ export class Link extends Class{
         this.html.addEventListener('click', function (e) {
             nav.setState({
                 current: instance.props.target,
-                fixed: false,
             });
             nav.checkCurrentState();
         });
