@@ -3,24 +3,12 @@
 @import 'tabmenu.css';
 @import 'floatingmenu.css';
 
-:root {
-    --navmenu-title-color: #222;
-    --navmenu-button-color: #222;
-    --navmenu-button-color-alternative: #000;
-    --navmenu-background-color: #fff;
-    --navmenu-background-color-alternative: #ddd;
-    --navmenu-border-color: #ddd;
-    --navmenu-border-color-alternative: #ddd;
-    --navmenu-icon-color: #ddd;
-    --navmenu-icon-color-alternative: #888;
-}
-
 .nav-menu {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     min-height: 4.6rem;
-    background-color: var(--navmenu-background-color);
+    background-color: var(--navmenu-background-color, #fff);
     font-family: verdana;
     z-index: 11;
     transition: 500ms;
@@ -69,7 +57,7 @@
     text-align: center;
     line-height: 4.6rem;
     font-size: 1rem;
-    color: var(--navmenu-title-color);
+    color: var(--navmenu-title-color, #222);
     box-sizing: border-box;
 }
 
@@ -105,13 +93,13 @@
     height: 2.3rem;
     line-height: 2.3rem;
     text-decoration: none;
-    color: var(--navmenu-button-color);
+    color: var(--navmenu-button-color, #222);
     transition: 500ms;
 }
 
 .nav-menu .nav-menu-list .nav-link:hover,
 .nav-menu .nav-menu-list .nav-link.active {
-    color: var(--navmenu-button-color-alternative);
+    color: var(--navmenu-button-color-alternative, #000);
 }
 
 .nav-menu .nav-menu-list .nav-link.no-text {
@@ -119,7 +107,7 @@
 }
 
 .nav-menu .nav-menu-list .nav-button {
-    border: 1px solid var(--navmenu-border-color);
+    border: 1px solid var(--navmenu-border-color, #ddd);
     outline: none;
     padding: 1rem;
 }
@@ -128,7 +116,7 @@
 .nav-menu .nav-menu-list .nav-button:hover,
 .nav-menu .nav-menu-list .nav-button.active {
     outline: none;
-    border-color: var(--navmenu-border-color-alternative);
+    border-color: var(--navmenu-border-color-alternative, #ddd);
 }
 
 .nav-menu .link-icon {
@@ -138,7 +126,7 @@
     width: 1rem;
     height: 100%;
     font-size: 1rem;
-    color: var(--navmenu-icon-color);
+    color: var(--navmenu-icon-color, #ddd);
     transition: 500ms;
 }
 
@@ -148,7 +136,7 @@
 .nav-menu .nav-menu-list .nav-button:focus .link-icon,
 .nav-menu .nav-menu-list .nav-button:hover .link-icon,
 .nav-menu .nav-menu-list .nav-button.active .link-icon {
-    color: var(--navmenu-icon-color-alternative);
+    color: var(--navmenu-icon-color-alternative, #888);
 }
 
 .nav-menu .link-icon.left {
