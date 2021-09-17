@@ -2,17 +2,27 @@
     top: 4.6rem;
 }
 
-/* * MD */
+/* ? MD */
 @media (min-width: 768px) {
-    /**/
+    /*  */
 }
 
-/* * LG */
+/* ? LG */
 @media (min-width: 1024px) {
-    /**/
+    /*  */
 }
 
-/* * XL */
+/* ? XL */
 @media (min-width: 1200px) {
-    /**/
+    /*  */
+}
+
+/* ? 2XL */
+@media(min-width: 1536px){
+    /*  */
+}
+
+/* ? 3XL */
+@media(min-width: 1920px){
+    /*  */
 }

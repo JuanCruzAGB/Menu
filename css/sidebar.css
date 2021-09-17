@@ -1,43 +1,40 @@
-.nav-menu .sidebar-button.open-btn {
+.nav-menu .nav-row .sidebar-button {
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-basis: 10%;
-    min-height: 100%;
+    justify-content: center;
+    flex-basis: 15%;
+    color: var(--nav-menu-button-color, #222);
     cursor: pointer;
-    color: var(--navmenu-button-color, #222);
-    text-decoration: none;
-    box-sizing: border-box;
-}
-
-.nav-menu .sidebar-button.open-btn .icon-link {
-    color: var(--navmenu-icon-color, #ddd);
     transition: 500ms;
 }
 
-.nav-menu .sidebar-button.open-btn:hover .icon-link {
-    color: var(--navmenu-icon-color-alternative, #888);
-}
-
-.nav-menu .sidebar-button .sidebar-icon {
-    flex-basis: 100%;
-    text-align: center;
+.nav-menu .nav-row .sidebar-button:hover {
+    color: var(--nav-menu-button-color-alternative, #000);
 }
 
 /* ? MD */
 @media (min-width: 768px) {
-    /**/
+    /*  */
 }
 
 /* ? LG */
 @media (min-width: 1024px) {
-    .nav-menu .sidebar,
-    .nav-menu .sidebar-button.open-btn {
+    .nav-menu :where(.sidebar, .sidebar-button) {
         display: none;
     }
 }
 
 /* ? XL */
 @media (min-width: 1200px) {
-    /**/
+    /*  */
+}
+
+/* ? 2XL */
+@media(min-width: 1536px){
+    /*  */
+}
+
+/* ? 3XL */
+@media(min-width: 1920px){
+    /*  */
 }
