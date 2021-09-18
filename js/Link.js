@@ -29,16 +29,16 @@ export default class Link extends Class {
             type: "link",
         }, state: {
             active: false,
-        }, html, NavMenu,
+        }, html,
+        NavMenu,
     }) {
         super({ ...Link.props, ...((data && data.hasOwnProperty("props")) ? data.props : {}) }, { ...Link.state, ...((data && data.hasOwnProperty("state")) ? data.state : {}) });
-        // TODO: If the html was not found, create it with HTMLCreatorJS
         this.setHTML(data.html);
         this.html.addEventListener("click", (e) => {
             if (this.props.type == "button") {
                 e.preventDefault();
             }
-            NavMenu.active(this.props.target);
+            data.NavMenu.active(this.props.target);
         });
         this.checkState();
     }

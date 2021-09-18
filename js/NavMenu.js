@@ -174,11 +174,11 @@ export default class NavMenu extends Class {
      * @static
      * @var {Link} Link
      */
-    static Link = Link;
+    static Link = Link
 
     /** 
      * @static
      * @var {Sidebar} Sidebar
      */
-    static Sidebar = Sidebar;
+    static Sidebar = Sidebar
 }
