@@ -85,11 +85,11 @@ Por ejemplo:
 > Agragarle a un `<span>` hijo del **enlace**, la clase `link-text` genera estilos por defecto, lo mismo funciona con  la clase `link-icon`.
 
 En dispositivos mobiles el **CSS** del **NavMenu** fue optimizado para que solo muestre una única **fila** (ten cuidado).
-Si deseas usar una **Barra lateral** puedes hacerlo con **SidebarJS** y agregándole un botón para abrirlo, con `class="sidebar-button open-btn"` y la posición que desees `left` o `right`.
+Si deseas usar una **Barra lateral** puedes hacerlo con **SidebarJS** y agregándole un botón para abrirlo, con `class="sidebar-button open"` y la posición que desees `left` o `right`.
 ```
 <nav id="nav-1" class="nav-menu">
 	<div class="nav-row">
-		<a href="#menu" class="sidebar-button open-btn left">
+		<a href="#menu" class="sidebar-button open left">
 			<span class="link-text">Menu</span>
 		</a>
 
@@ -97,7 +97,7 @@ Si deseas usar una **Barra lateral** puedes hacerlo con **SidebarJS** y agregán
 			<h1>NavMenuJS</h1>
 		</a>
 
-		<a href="#menu" class="sidebar-button open-btn left">
+		<a href="#menu" class="sidebar-button open left">
 			<span class="link-text">Right</span>
 		</a>
 	</div>
@@ -123,7 +123,7 @@ Si deseas usar una **Barra lateral** puedes hacerlo con **SidebarJS** y agregán
 				<h2>Menu</h2>
 			</div>
 			
-			<a href="#" class="sidebar-button close-btn left">
+			<a href="#" class="sidebar-button close left">
 				<span class="link-text">Close</span>
 			</a>
 		</div>
@@ -135,7 +135,7 @@ Si deseas usar una **Barra lateral** puedes hacerlo con **SidebarJS** y agregán
 
 	<div id="filters" class="sidebar right closed push-body">
 		<div class="sidebar-header">
-			<a href="#" class="sidebar-button close-btn right">
+			<a href="#" class="sidebar-button close right">
 				<span class="link-text">Close</span>
 			</a>
 			

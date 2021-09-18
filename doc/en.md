@@ -85,11 +85,11 @@ For example:
 > `link-text` adds a default styles on the **link** HTMLElement childs, same as `link-icon`.
 
 On mobile the **NavMenu CSS** was optimize to show only 1 **row** (be carefull).
-If you want to use a **Sidebar** you can make it with **SidebarJS** and adding a HTMLElement for open it, with `className="sidebar-button open-btn"` and the sidebar position you want `left` or `right`.
+If you want to use a **Sidebar** you can make it with **SidebarJS** and adding a HTMLElement for open it, with `className="sidebar-button open"` and the sidebar position you want `left` or `right`.
 ```
 <nav id="nav-1" class="nav-menu">
 	<div class="nav-row">
-		<a href="#menu" class="sidebar-button open-btn left">
+		<a href="#menu" class="sidebar-button open left">
 			<span class="link-text">Menu</span>
 		</a>
 
@@ -97,7 +97,7 @@ If you want to use a **Sidebar** you can make it with **SidebarJS** and adding a
 			<h1>NavMenuJS</h1>
 		</a>
 
-		<a href="#menu" class="sidebar-button open-btn left">
+		<a href="#menu" class="sidebar-button open left">
 			<span class="link-text">Right</span>
 		</a>
 	</div>
@@ -123,7 +123,7 @@ If you want to use a **Sidebar** you can make it with **SidebarJS** and adding a
 				<h2>Menu</h2>
 			</div>
 			
-			<a href="#" class="sidebar-button close-btn left">
+			<a href="#" class="sidebar-button close left">
 				<span class="link-text">Close</span>
 			</a>
 		</div>
@@ -135,7 +135,7 @@ If you want to use a **Sidebar** you can make it with **SidebarJS** and adding a
 
 	<div id="filters" class="sidebar right closed push-body">
 		<div class="sidebar-header">
-			<a href="#" class="sidebar-button close-btn right">
+			<a href="#" class="sidebar-button close right">
 				<span class="link-text">Close</span>
 			</a>
 			

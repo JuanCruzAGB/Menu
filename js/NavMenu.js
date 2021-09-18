@@ -2,26 +2,10 @@
 import Class from "../../JuanCruzAGB/js/Class.js";
 
 // ? NavMenu repository.
-import Link from './Link.js';
+import Link from "./Link.js";
 
 // ? External repositories.
-import Sidebar from '../../SidebarJS/js/Sidebar.js';
-import ScrollDetection from '../../ScrollDetectionJS/js/ScrollDetection.js';
-
-/** @var {object} defaultProps Default properties. */
-let defaultProps = {
-    id: 'nav-1',
-    sidebar: {
-        id: ['menu', 'filters'],
-        position: ['left', 'right'],
-    },
-};
-
-/** @var {object} defaultState Default state. */
-let defaultState = {
-    hideOnScrollDown: false,
-    current: false,
-};
+import Sidebar from "../../SidebarJS/js/Sidebar.js";
 
 /**
  * * NavMenu makes an excellent navigation bar.
@@ -30,36 +14,76 @@ let defaultState = {
  * @author Juan Cruz Armentia <juancarmentia@gmail.com>
  * @extends Class
  */
-export class NavMenu extends Class {
+export default class NavMenu extends Class {
     /**
      * * Creates an instance of NavMenu.
-     * @param {object} [props] NavMenu properties:
-     * @param {string} [props.id='nav-1'] NavMenu primary key.
-     * @param {object} [props.sidebar] NavMenu Sidebar properties:
-     * @param {string[]} [props.sidebar.id=string[]] Sidebar primary key.
-     * @param {string[]} [props.sidebar.position=string[]] Sidebar position.
-     * @param {object} [state] NavMenu state:
-     * @param {string} [state.current=false] NavMenu current state.
-     * @param {boolean} [state.hideOnScrollDown=false] NavMenu hide on scroll down state.
+     * @param {object} [data]
+     * @param {object} [data.props]
+     * @param {string} [data.props.id="nav-1"] NavMenu primary key.
+     * @param {object} [data.props.sidebar] NavMenu Sidebar data.
+     * @param {object} [data.state]
+     * @param {string} [data.state.current=false] NavMenu current Link state.
+     * @param {object} [data.callbacks]
+     * @param {object} [data.callbacks.active]
+     * @param {function} [data.callbacks.active.function]
+     * @param {object} [data.callbacks.active.params]
      * @memberof NavMenu
      */
-    constructor (props = {
-        id: 'nav-1',
-        sidebar: {
-            id: ['menu', 'filters'],
-            position: ['left', 'right'],
+    constructor (data = {
+        props: {
+            id: "nav-1",
+            sidebar: {
+                // TODO
+            },
+        }, state: {
+            current: false,
+        }, callbacks: {
+            active: {
+                function: function (params) { /* console.log(params); */ },
+                params: {},
+            },
         },
-    }, state = {
-        hideOnScrollDown: false,
-        current: false,
     }) {
-        super({ ...defaultProps, ...props }, { ...defaultState, ...state });
-        if (props.hasOwnProperty('sidebar')) {
-            this.setSidebars(props);
+        super({ ...NavMenu.props, ...((data && data.hasOwnProperty("props")) ? data.props : {}) }, { ...NavMenu.state, ...((data && data.hasOwnProperty("state")) ? data.state : {}) });
+        this.setCallbacks({ ...NavMenu.callbacks, ...((data && data.hasOwnProperty("callbacks")) ? data.callbacks: {}) });
+        if (this.props.hasOwnProperty("sidebar")) {
+            this.setSidebars();
         }
         this.setHTML(`#${ this.props.id }.nav-menu`);
         this.setLinks();
         this.checkState();
+    }
+
+    /**
+     * * Set the NavMenu Links.
+     * @memberof NavMenu
+     */
+    setLinks () {
+        this.links = Link.generate(this);
+    }
+
+    /**
+     * * Set the NavMenu Sidebars.
+     * @memberof NavMenu
+     */
+    setSidebars () {
+        if (!this.hasOwnProperty("sidebars")) {
+            this.sidebars = [];
+        }
+        if (this.props.hasOwnProperty("sidebar")) {
+            if (this.props.sidebar.hasOwnProperty("id") && this.props.sidebar.hasOwnProperty("position")) {
+                if (this.props.sidebar instanceof Array) {
+                    for (const sidebar of this.props.sidebar) {
+                        if (this.props.sidebar instanceof Object) {
+                            this.sidebars.push(new Sidebar(...sidebar));
+                        }
+                    }
+                }
+                if (this.props.sidebar instanceof Object) {
+                    this.sidebars.push(new Sidebar(...this.props.sidebar));
+                }
+            }
+        }
     }
 
     /**
@@ -68,7 +92,6 @@ export class NavMenu extends Class {
      */
     checkState () {
         this.checkCurrentState();
-        this.checkFixedState();
     }
 
     /**
@@ -76,139 +99,85 @@ export class NavMenu extends Class {
      * @memberof NavMenu
      */
     checkCurrentState () {
-        if(this.state.current){
-            Link.active(this.state.current, this.links);
+        if (this.state.current) {
+            this.active(this.state.current);
         }
     }
 
     /**
-     * * Check NavMenu fixed state value.
+     * * Change the NavMenu Link active.
+     * @param {string} current
+     * @param {object} params Active callback function params.
+     * @returns {boolean}
      * @memberof NavMenu
      */
-    checkFixedState () {
-        let height = this.html.offsetHeight;
-        document.querySelector('body').style.setProperty('--nav-height', `${ height }px`);
-        if (this.state.fixed) {
-            if (!this.scrolldetection) {
-                this.scrolldetection = new ScrollDetection({
-                    location: {
-                        min: 0, max: height
-                    }, direction: {
-                        scrollbar: 'Y',
-                }}, {
-                    success: {
-                        function: NavMenu.breakFix,
-                        params: { navmenu: this }
-                    }, error: {
-                        function: NavMenu.fix,
-                        params: { navmenu: this }
-                }});
-            }
-            if (ScrollDetection.currentLocation('Y') > height) {
-                this.html.classList.add('fixed');
-                document.querySelector('body').classList.add('substitute');
-                if (this.state.hideOnScrollDown) {
-                    if (this.state.scrollingTo === true) {
-                        this.html.classList.remove('unfixed');
-                    } else if (this.state.scrollingTo === false) {
-                        console.log('unfixed');
-                        this.html.classList.add('unfixed');
-                    }
+    active (current = false, params = {}) {
+        if (current) {
+            this.setState("current", current);
+            let found = false;
+            for (const link of this.links) {
+                if (link.props.target == this.state.current) {
+                    link.active();
+                    found = link;
                 }
-            } else {
-                this.html.classList.remove('fixed');
-                document.querySelector('body').classList.remove('substitute');
-                if (this.state.hideOnScrollDown) {
-                    this.html.classList.remove('unfixed');
+                if (link.props.target != this.state.current) {
+                    link.inactive();
                 }
             }
-        } else {
-            if (this.scrolldetection) {
-                this.html.classList.remove('fixed');
-                document.querySelector('body').classList.remove('substitute');
-                if (this.state.hideOnScrollDown) {
-                    this.html.classList.remove('unfixed');
-                }
-            }
-        }
-    }
-
-    /**
-     * * Set the NavMenu Sidebars.
-     * @param {object} [props] NavMenu properties:
-     * @param {string} [props.id='nav-1'] NavMenu primary key.
-     * @param {object} [props.sidebar] NavMenu Sidebar properties:
-     * @param {string[]} [props.sidebar.id=string[]] Sidebar primary key.
-     * @param {string[]} [props.sidebar.position=string[]] Sidebar position.
-     * @memberof NavMenu
-     */
-    setSidebars (props = {
-        sidebar: {
-            id: ['menu', 'filters'],
-            position: ['left', 'right'],
-        },
-    }) {
-        if (!this.hasOwnProperty('sidebars')) {
-            this.sidebars = [];
-        }
-        if (props.hasOwnProperty('sidebar')) {
-            let sidebarProps;
-            for (const key in props.sidebar.id) {
-                if (props.sidebar.id.hasOwnProperty(key)) {
-                    sidebarProps = {
-                        id: props.sidebar.id[parseInt(key)],
-                        position: props.sidebar.position[parseInt(key)],
-                    };
-                    this.sidebars.push(new Sidebar(sidebarProps, {
-                        open: false,
-                    }));
-                }
-            }
-        }
-    }
-
-    /**
-     * * Set the NavMenu Links.
-     * @memberof NavMenu
-     */
-    setLinks () {
-        this.links = Link.getDomHTML(this);
-    }
-
-    /**
-     * * Fix the NavMenu.
-     * @static
-     * @param {object} data ScrollDetection auxiliar data.
-     * @memberof NavMenu
-     */
-    static fix (data) {
-        if (data.navmenu.hasOwnProperty('scrolldetection') && data.navmenu.state.hideOnScrollDown) {
-            data.navmenu.setState({
-                scrollingTo: data.navmenu.scrolldetection.props.direction.scrolledTo,
-                fixed: true,
+            this.execute("active", {
+                ...params,
+                current: current,
+                link: found,
+                NavMenu: this,
             });
-        } else {
-            data.navmenu.setState('fixed', true);
+            return found;
         }
-        data.navmenu.checkFixedState();
+        if (!current) {
+            console.error("Current param is required to active a Link");
+            return false;
+        }
     }
 
     /**
-     * * Delete the NavMenu fix property.
      * @static
-     * @param {object} data ScrollDetection auxiliar data.
-     * @memberof NavMenu
+     * @var {object} props Default properties.
      */
-    static breakFix (data) {
-        if (data.navmenu.state.fixed) {
-            data.navmenu.setState('fixed', false);
-            data.navmenu.checkFixedState();
-        }
+    static props = {
+        id: "nav-1",
+        sidebar: {
+            // TODO
+        },
     }
+    
+    /**
+     * @static
+     * @var {object} state Default state.
+     */
+    static state = {
+        current: false,
+        // TODO: generate: false,
+    }
+    
+    /**
+     * @static
+     * @var {object} callbacks Default callbacks.
+     */
+    static callbacks= {
+        active: {
+            function: function (params) { /* console.log(params); */ },
+            params: {},
+        },
+    }
+
+    /** 
+     * @static
+     * @var {Link} Link
+     */
+    static Link = Link;
+
+    /** 
+     * @static
+     * @var {Sidebar} Sidebar
+     */
+    static Sidebar = Sidebar;
 }
-
-// ? NavMenu childs
-NavMenu.Link = Link;
-
-// ? Default export
-export default NavMenu;

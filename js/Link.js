@@ -1,54 +1,54 @@
 // ? JuanCruzAGB repository
 import Class from "../../JuanCruzAGB/js/Class.js";
 
-// ? NavMenuJS repository
-import NavMenu from "./NavMenu.js";
-
-/** @var {object} defaultProps Default properties. */
-let defaultProps = {
-    id: 'link-1',
-    target: '#',
-};
-
-/** @var {object} defaultState Default state. */
-let defaultState = {
-    active: false,
-};
-
 /**
- * * Link controls the NavMenu links.
+ * * Link controls the NavMenu Links.
  * @export
  * @class Link
  * @extends Class
  * @author Juan Cruz Armentia <juancarmentia@gmail.com>
  */
-export class Link extends Class{
+export default class Link extends Class {
     /**
      * * Creates an instance of Link.
-     * @param {object} [props] Link properties
-     * @param {string} [props.id='link-1'] Link primary key.
-     * @param {string} [props.target='#'] Link target.
-     * @param {object} [state] Link state:
-     * @param {boolean} [state.active=false] Link active status.
+     * @param {object} [data]
+     * @param {object} [data.props]
+     * @param {string} [data.props.id="link-1"] Link primary key.
+     * @param {string} [data.props.target="#"]
+     * @param {string} [data.props.type="link"]
+     * @param {object} [data.state]
+     * @param {boolean} [data.state.active=false] If the Link should be active.
      * @param {string} html Link HTML Element.
-     * @param {NavMenu} nav Link NavMenu parent.
+     * @param {NavMenu} NavMenu Link NavMenu parent.
      * @memberof Link
      */
-    constructor (props = {
-        id: 'link-1',
-        target: '#',
-    }, state = {
-        active: false,
-    }, html, nav) {
-        super({ ...defaultProps, ...props }, { ...defaultState, ...state });
-        this.setHTML(html);
-        let instance = this;
-        this.html.addEventListener('click', function (e) {
-            nav.setState({
-                current: instance.props.target,
-            });
-            nav.checkCurrentState();
+    constructor (data = {
+        props: {
+            id: "link-1",
+            target: "#",
+            type: "link",
+        }, state: {
+            active: false,
+        }, html, NavMenu,
+    }) {
+        super({ ...Link.props, ...((data && data.hasOwnProperty("props")) ? data.props : {}) }, { ...Link.state, ...((data && data.hasOwnProperty("state")) ? data.state : {}) });
+        // TODO: If the html was not found, create it with HTMLCreatorJS
+        this.setHTML(data.html);
+        this.html.addEventListener("click", (e) => {
+            if (this.props.type == "button") {
+                e.preventDefault();
+            }
+            NavMenu.active(this.props.target);
         });
+        this.checkState();
+    }
+
+    /**
+     * * Check the Link state values.
+     * @memberof Link
+     */
+    checkState () {
+        this.checkActiveState();
     }
 
     /**
@@ -56,80 +56,93 @@ export class Link extends Class{
      * @memberof Link
      */
     checkActiveState () {
-        if (this.state.active) {
-            this.html.classList.add('active');
-        } else {
-            this.html.classList.remove('active');
+        switch (this.state.active) {
+            case true:
+                this.active();
+                break;
+            case false:
+                this.inactive();
+                break;
         }
     }
 
     /**
-     * * Get all the NavMenu Links.
+     * * Active the Link.
+     * @memberof Link
+     */
+    active () {
+        this.setState("active", true);
+        this.html.classList.add("active");
+    }
+
+    /**
+     * * Inactive the Link.
+     * @memberof Link
+     */
+    inactive () {
+        this.setState("active", true);
+        this.html.classList.remove("active");
+    }
+
+    /**
+     * * Returns all the NavMenu Links.
      * @static
-     * @param {NavMenu} nav Link NavMenu parent.
+     * @param {NavMenu} NavMenu
      * @returns {Link[]}
      * @memberof Link
      */
-    static getDomHTML (nav) {
+    static generate (NavMenu) {
         let links = [];
-        let htmls = document.querySelectorAll(`#${ nav.props.id }.nav-menu .nav-link`);
-        let key = 0;
-        for (const html of htmls) {
-            let props = Link.generateProperties(html);
-            let state = Link.generateState(html);
-            props.id = `link-${ key }`;
-            links.push(new this(props, state, html, nav));
-            key++;
+        let htmls = Link.querySelector(NavMenu.props.id);
+        for (const key in htmls) {
+            if (Object.hasOwnProperty.call(htmls, key)) {
+                links.push(new this({
+                    props: {
+                        id: `link-${ key }`,
+                        target: (htmls[key].hasAttribute("href") ? htmls[key].href : "#"),
+                        type: (htmls[key].classList.contains("nav-link") ? "link" : "button"),
+                    }, state: {
+                        active: htmls[key].classList.contains("active"),
+                    }, html: htmls[key],
+                    NavMenu: NavMenu,
+                }));
+            }
         }
         return links;
     }
 
     /**
-     * * Returns the Link props genereted from a HTML Element.
+     * * Returns all the NavMenu Links HTMLElements.
      * @static
-     * @param {HTMLElement} html Link HTML Element
-     * @returns {object}
+     * @param {string} id NavMenu primary key.
+     * @returns {HTMLElement[]}
      * @memberof Link
      */
-    static generateProperties (html) {
-        let props = {};
-        if (html.nodeName == 'A' && html.classList.contains('nav-link')) {
-            props.target = html.href;
+    static querySelector (id = false) {
+        if (id) {
+            return document.querySelectorAll(`#${ id }.nav-menu :where(.nav-link, .nav-button)`);
         }
-        return props;
+        if (!id) {
+            console.error("ID param is required to get the NavMenu Links");
+            return [];
+        }
     }
 
     /**
-     * * Returns the Link state genereted from a HTML Element.
      * @static
-     * @param {HTMLElement} html Link HTML Element
-     * @returns {object}
-     * @memberof Link
+     * @var {object} props Default properties.
      */
-    static generateState (html) {
-        let state = {
-            active: html.classList.contains('active'),
-        };
-        return state;
+    static props = {
+        id: "link-1",
+        target: "#",
+        type: "link",
     }
-
+    
     /**
-     * * Active a Link.
      * @static
-     * @param {string} current Current Link active.
-     * @param {Links[]} links Links to activate.
-     * @memberof Link
+     * @var {object} state Default state.
      */
-    static active(current, links){
-        for (const link of links) {
-            if (link.props.target === current) {
-                link.setState('active', true);
-            } else {
-                link.setState('active', false);
-            }
-        }
+    static state = {
+        active: false,
     }
 }
-
-// ? Default export
-export default Link;
