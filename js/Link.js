@@ -93,7 +93,7 @@ export default class Link extends Class {
      */
     static generate (NavMenu) {
         let links = [];
-        let htmls = Link.querySelector(NavMenu.props.id);
+        let htmls = this.querySelector(NavMenu.props.id);
         for (const key in htmls) {
             if (Object.hasOwnProperty.call(htmls, key)) {
                 links.push(new this({

@@ -39,7 +39,7 @@ export default class NavMenu extends Class {
             current: false,
         }, callbacks: {
             active: {
-                function: function (params) { /* console.log(params); */ },
+                function: (params) => { /* console.log(params); */ },
                 params: {},
             },
         },
@@ -126,6 +126,7 @@ export default class NavMenu extends Class {
             }
             this.execute("active", {
                 ...params,
+                ...this.callbacks.active.params,
                 current: current,
                 link: found,
                 NavMenu: this,
@@ -164,7 +165,7 @@ export default class NavMenu extends Class {
      */
     static callbacks= {
         active: {
-            function: function (params) { /* console.log(params); */ },
+            function: (params) => { /* console.log(params); */ },
             params: {},
         },
     }
