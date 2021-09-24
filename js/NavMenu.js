@@ -67,21 +67,18 @@ export default class NavMenu extends Class {
      * @memberof NavMenu
      */
     setSidebars () {
-        if (!this.hasOwnProperty("sidebars")) {
+        if (!this.sidebars) {
             this.sidebars = [];
         }
         if (this.props.hasOwnProperty("sidebar")) {
-            if (this.props.sidebar.hasOwnProperty("id") && this.props.sidebar.hasOwnProperty("position")) {
-                if (this.props.sidebar instanceof Array) {
-                    for (const sidebar of this.props.sidebar) {
-                        if (this.props.sidebar instanceof Object) {
-                            this.sidebars.push(new Sidebar(...sidebar));
-                        }
+            if (this.props.sidebar instanceof Array) {
+                for (const sidebar of this.props.sidebar) {
+                    if (sidebar instanceof Object) {
+                        this.sidebars.push(new Sidebar(sidebar));
                     }
                 }
-                if (this.props.sidebar instanceof Object) {
-                    this.sidebars.push(new Sidebar(...this.props.sidebar));
-                }
+            } else if (this.props.sidebar instanceof Object) {
+                this.sidebars.push(new Sidebar(this.props.sidebar));
             }
         }
     }
