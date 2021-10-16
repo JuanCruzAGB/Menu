@@ -84,7 +84,7 @@
 }
 
 .nav-menu .nav-menu-list :where(.nab-button, .nav-link):where(:hover, .active) {
-    color: var(--nav-menu-button-color-alternative, #000);
+    color: var(--nav-menu-button-color-alt, #000);
 }
 
 /* ? MD */
