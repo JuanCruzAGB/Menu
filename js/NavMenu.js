@@ -11,7 +11,7 @@ import Sidebar from "../../SidebarJS/js/Sidebar.js";
  * * NavMenu makes an excellent navigation bar.
  * @export
  * @class NavMenu
- * @author Juan Cruz Armentia <juancarmentia@gmail.com>
+ * @author Juan Cruz Armentia <juan.cruz.armentia@gmail.com>
  * @extends Class
  */
 export default class NavMenu extends Class {
@@ -44,7 +44,15 @@ export default class NavMenu extends Class {
             },
         },
     }) {
-        super({ ...NavMenu.props, ...((data && data.hasOwnProperty("props")) ? data.props : {}) }, { ...NavMenu.state, ...((data && data.hasOwnProperty("state")) ? data.state : {}) });
+        super({
+            props: {
+                ...NavMenu.props,
+                ...(data && data.hasOwnProperty("props")) ? data.props : {},
+            }, state: {
+                ...NavMenu.state,
+                ...(data && data.hasOwnProperty("state")) ? data.state : {},
+            },
+        });
         this.setCallbacks({ ...NavMenu.callbacks, ...((data && data.hasOwnProperty("callbacks")) ? data.callbacks: {}) });
         if (this.props.hasOwnProperty("sidebar")) {
             this.setSidebars();
