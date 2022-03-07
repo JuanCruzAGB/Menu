@@ -1,0 +1,26 @@
+{
+  "name": "@juancruzagb/menu",
+  "version": "1.0.0",
+  "description": "HTMLCreator Menu extension",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuanCruzAGB/Menu.git"
+  },
+  "keywords": [
+    "JuanCruzAGB",
+    "Javascript",
+    "Menu",
+    "Nav"
+  ],
+  "author": "JuanCruzAGB",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuanCruzAGB/Menu/issues"
+  },
+  "homepage": "https://github.com/JuanCruzAGB/Menu#readme"
+}
