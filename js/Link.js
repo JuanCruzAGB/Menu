@@ -131,7 +131,7 @@ export default class Link extends Class {
             return document.querySelectorAll(`#${ id }.nav-menu :where(.nav-link, .nav-button)`);
         }
         if (!id) {
-            console.error("ID param is required to get the NavMenu Links");
+            throw new Error("ID param is required to get the NavMenu Links");
             return [];
         }
     }
