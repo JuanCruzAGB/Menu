@@ -1,5 +1,5 @@
 .floating-menu.top {
-    top: 4.6rem;
+    top: var(--nav-menu-height);
 }
 
 /* ? MD */

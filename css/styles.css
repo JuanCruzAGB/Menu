@@ -1,6 +1,10 @@
 @import "floatingmenu.css";
 @import "sidebar.css";
 
+:root {
+    --nav-menu-height: 4.6rem;
+}
+
 .nav-menu, .nav-menu *, .nav-menu *::before, .nav-menu *::after {
     margin: 0;
     padding: 0;
