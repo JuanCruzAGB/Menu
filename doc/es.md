@@ -1,173 +1,227 @@
-# NavMenuJS
+# Menu
 > by [JuanCruzAGB](https://github.com/JuanCruzAGB)
 
-NavMenuJS hace una excelente barra de navegación, fue creada para mi uso laboral (pero puedes usarla sin problema **:D**).
+Este paquete contiene toda la logica para crear/encontrar y hacer funcional un `<nav>`, fue creado para mi uso personal (pero puedes usarla sin problema **:D**).
 
  - [Instalación](#instalación)
- - [HTML](#html-paso-a-paso)
- - [Configuración](#configuración)
-  
+ - [Qué contine?](#qué-contiene)
+ - [Cómo se usa?](#html-paso-a-paso)
+	- [Crear](#como-crear-un-nav)
+	- [Encontrar](#agregar-funcionalidad-al-nav)
+ - [Próximamente](#working-on)
 
 ## Instalación
+ 1. Instala npm.
+```
+npm i @juancruzagb/src
+```
+ 2. Import js.
+```
+import Menu from "@juancruzagb/menu";
+```
+ 3. Import css.
+```
+@import url(@juancruzagb/menu);
+```
 
- 1. Clone el repositorio en **public/submodules**.
-```
-git clone https://github.com/JuanCruzAGB/NavMenuJS.git
-```
- 2. Y clone también los repositorios requeridos en **public/submodules**.
-```
-git clone https://github.com/JuanCruzAGB/JuanCruzAGB.git
+## Qué contine?
+El paquete tiene un objeto llamado **Menu** que se extiende de [@juancruzagb/htmlcreator/Html](https://www.npmjs.com/package/@juancruzagb/htmlcreator), te permite crear un nuevo `<nav>` o encontrarlo.
+Además, tiene múltiples archivos **css** para customizar correctamente el `<nav>`.
+Hay 3 tipos de `<nav>`:
+ - **nav:** Barra de navegación por defecto.
+ - **tab:** Navegar por tabs.
+ - **float:** Navegar por botones flotantes.
 
-git clone https://github.com/JuanCruzAGB/ScrollDetectionJS.git
+### Menu
+Objecto de **JavaScript** por defecto, se extiende de [@juancruzagb/htmlcreator/Html](https://www.npmjs.com/package/@juancruzagb/htmlcreator).
 
-git clone https://github.com/JuanCruzAGB/SidebarJS.git
-```
- 3. Importe el **CSS** en la etiqueta `<head>`.
-```
-<link href="submodules/NavMenuJS/css/styles.css" rel="stylesheet">
-```
+#### Propiedades
+ - {string[]} classList: Agrega al `<nav>` las clases.
+ - {object|false} footer: Agrega un `<footer>` al `<nav>`.
+	- {array} children: Todos los HTML hijos del `<footer>`.
+ - {object|false} header: Agrega un `<header>` al `<nav>`.
+	- {string|false} image: Agrega un `<img>` al `<header>`.
+	- {string|false} path: Hace que los hijos del `<header>` estén dentro de un `<a>`.
+	- {string|false} title: Agrega un `<h1>` al `<header>`.
+ - {string} id: El atributo id del `<nav>`.
+ - {string} type: El tipo de `<nav>`.
 ## HTML paso a paso
-Para empezar, genere una etiqueta **HTML** con un `id` y una `class="nav-menu"`. Mi consejo personal es que use la etiqueta `<nav>` (Para una mejora en la semántica).
-Por ejemplo:
-```
-<nav id="nav-1" class="nav-menu">
-	<!-- -->
-</nav>
-```
-Dentro, puedes agregar tantas **filas** como desees. Las **Filas** son etiquetas **HTML** con `class="nav-row"`.
-Por ejemplo:
-```
-<nav id="nav-1" class="nav-menu">
-	<div class="nav-row">
-		<!-- -->
-	</div>
-</nav>
-```
-Si quieres agregarlo un encabezado al **NavMenu** puedes hacerlo mediante una etiqueta **HTML** con `class="nav-title"`.
-Por ejemplo:
-```
-<nav id="nav-1" class="nav-menu">
-	<div class="nav-row">
-		<a href="/" class="nav-title">
-			<h1>NavMenuJS</h1>
-		</a>
-	</div>
-</nav>
-```
-> Opcionalmente puedes agregarle la clase `nav-title` y una `<img>` para reemplazarle el contenido.
 
-El listado de **enlaces** del **NavMenuJS** se deben crear dentro de un `<ul>` con `class="nav-menu-list"` y los deben ser una etiqueta `<a>` con `class="nav-link"`.
-Por ejemplo: 
+### Como crear un <nav>
+Para empezar, haz un nuevo  Menu con las propiedades que quieras. Por ejemplo:
 ```
-<nav id="nav-1" class="nav-menu">
-	<div class="nav-row">
-		<a href="/" class="nav-title">
-			<h1>NavMenuJS</h1>
-		</a>
-	</div>
-
-	<div class="nav-row">
-		<ul class="nav-menu-list">
-			<li>
-				<a href="/" class="nav-link">
-					<span class="link-text">Home</span>
-				</a>
-			</li>
-			<li>
-				<a href="/log-in" class="nav-link">
-					<span class="link-text">Log In</span>
-				</a>
-			</li>
-		</ul>
-	</div>
-</nav>
+let menu = new Menu({
+	props: {
+		classList: ['p-4'],
+		id: 'global',
+	},
+})
 ```
-> Agragarle a un `<span>` hijo del **enlace**, la clase `link-text` genera estilos por defecto, lo mismo funciona con  la clase `link-icon`.
-
-En dispositivos mobiles el **CSS** del **NavMenu** fue optimizado para que solo muestre una única **fila** (ten cuidado).
-Si deseas usar una **Barra lateral** puedes hacerlo con **SidebarJS** y agregándole un botón para abrirlo, con `class="sidebar-button open"` y la posición que desees `left` o `right`.
+Crea un:
 ```
-<nav id="nav-1" class="nav-menu">
-	<div class="nav-row">
-		<a href="#menu" class="sidebar-button open left">
-			<span class="link-text">Menu</span>
-		</a>
-
-		<a href="/" class="nav-title">
-			<h1>NavMenuJS</h1>
-		</a>
-
-		<a href="#menu" class="sidebar-button open left">
-			<span class="link-text">Right</span>
-		</a>
-	</div>
-
-	<div class="nav-row">
-		<ul class="nav-menu-list">
-			<li>
-				<a href="/" class="nav-link">
-					<span class="link-text">Home</span>
-				</a>
-			</li>
-			<li>
-				<a href="/log-in" class="nav-link">
-					<span class="link-text">Log In</span>
-				</a>
-			</li>
-		</ul>
-	</div>
-
-	<div id="menu" class="sidebar left closed push-body">
-		<div class="sidebar-header">
-			<div class="sidebar-title">
-				<h2>Menu</h2>
-			</div>
-			
-			<a href="#" class="sidebar-button close left">
-				<span class="link-text">Close</span>
+<nav id="global" class="nav menu p-4">
+	<ul class="list">
+		<li class="item">
+			<a href="#us" class="link">
+				<span>About us</span>
 			</a>
-		</div>
+		</li>
 
-		<div class="sidebar-content">
-			<!-- -->
-		</div>
-	</div>
-
-	<div id="filters" class="sidebar right closed push-body">
-		<div class="sidebar-header">
-			<a href="#" class="sidebar-button close right">
-				<span class="link-text">Close</span>
+		<li class="item">
+			<a href="/contact" class="link">
+				<span>Contact</span>
 			</a>
-			
-			<div class="sidebar-title">
-				<h2>Filters</h2>
-			</div>
-		</div>
+		</li>
 
-		<div class="sidebar-content">
-			<!-- -->
-		</div>
-	</div>
+		<li class="item">
+			<a href="#_" class="button">
+				<span>Click me!</span>
+			</a>
+		</li>
+	</ul>
 </nav>
 ```
-> Para más información entre en [JuanCruzAGB/SidebarJS](https://github.com/JuanCruzAGB/SidebarJS.git).
 
-## Configuración
-Importe el **NavMenu** en tu javascript para generar la logica.
+Se puede customizar los `<a>` agregandolos en:
 ```
-Import { NavMenu as NavMenuJS } from 'submodules/NavMenuJS/js/NavMenu.js';
+let menu = new Menu({
+	props: {
+		classList: ['p-4'],
+		id: 'global',
+	}, items: [{
+            path: '/home',
+            text: 'Home',
+        }, {
+            text: 'Say hi!',
+            type: 'button',
+	}],
+})
 ```
-Y cree un nuevo **NavMenuJS**
+Crea un:
 ```
-let navmenu = new NavMenuJS({props}, {states})
-```
-Las **propiedades** existentes son:
- - {string} **id:** Id de la etiqueta HTML del NavMenu. Por defecto viene en `nav-1`
- - {object} **sidebar:** Barra laterales que se van a usar en el NavMenu.
-	 - {string[]} **id:** Array de ids de las etiquetas HTML de cada barra lateral.
-	 - {string[]} **position:** Array de posiciones de las barras laterales.
+<nav id="global" class="nav menu p-4">
+	<ul class="list">
+		<li class="item">
+			<a href="/home" class="link">
+				<span>Home</span>
+			</a>
+		</li>
 
-Los **estados** existentes son:
- - {boolean} **fixed:** Si quisieras que el NavMenu tenga `position="fixed"` pone como valor `true`. Por defecto viene en `false`
- - {boolean} **hideOnScrollDown:** Si el NavMenu esta **fixed** , con este **estado** en valor `true`, cada vez se baje la barra de desplazamiento el **NavMenu** se escondera. Por defecto viene en `false`
- - {string} **current:** El link que tendría que estar con clase `active` por defecto (pases como valor la propiedade href de la etiqueta `<a>`). Por defecto viene en `false`.
+		<li class="item">
+			<a href="#_" class="button">
+				<span>Say hi!</span>
+			</a>
+		</li>
+	</ul>
+</nav>
+```
+
+Si querés agregar un `<header>` dentro del `<nav>` podés hacerlo de esta forma:
+```
+let menu = new Menu({
+	props: {
+		classList: ['p-4'],
+		header: {
+			path: '/',
+			title: 'Hello world',
+		}, id: 'global',
+	}, items: [{
+            path: '/home',
+            text: 'Home',
+        }, {
+            text: 'Say hi!',
+            type: 'button',
+	}],
+})
+```
+Crea un:
+```
+<nav id="global" class="nav menu p-4">
+	<header class="header">
+		<a href="/" class="title">
+			<h1 class="name">Hello world</h1>
+		</a>
+	</header>
+
+	<ul class="list">
+		<li class="item">
+			<a href="/home" class="link">
+				<span>Home</span>
+			</a>
+		</li>
+
+		<li class="item">
+			<a href="#_" class="button">
+				<span>Say hi!</span>
+			</a>
+		</li>
+	</ul>
+</nav>
+```
+
+Si querés agregar un `<footer>` dentro del `<nav>` podés hacerlo de esta forma:
+```
+let menu = new Menu({
+	props: {
+		classList: ['p-4'],
+		footer: {
+			children: [
+				['span', {
+					children: 'Is not this awesome?',
+				}],
+			],
+		}, header: {
+			path: '/',
+			title: 'Hello world',
+		}, id: 'global',
+	}, items: [{
+            path: '/home',
+            text: 'Home',
+        }, {
+            text: 'Say hi!',
+            type: 'button',
+	}],
+})
+```
+Crea un:
+```
+<nav id="global" class="nav menu p-4">
+	<header class="header">
+		<a href="/" class="title">
+			<h1 class="name">Hello world</h1>
+		</a>
+	</header>
+
+	<ul class="list">
+		<li class="item">
+			<a href="/home" class="link">
+				<span>Home</span>
+			</a>
+		</li>
+
+		<li class="item">
+			<a href="#_" class="button">
+				<span>Say hi!</span>
+			</a>
+		</li>
+	</ul>
+
+	<footer class="footer">
+		<span>Is not this awesome?</span>
+	</footer>
+</nav>
+```
+
+### Agregar funcionalidad al nav
+Próximamente.
+
+## Working on
+ - [X] Default Menu object
+ 	- [X] Create
+ 	- [ ] Find
+	- [X] Add type 'nav'
+		- [ ] Import Sidebar to mobile
+	- [X] Add type 'tab'
+		- [ ] Open content
+	- [X] Add type 'float'
+		- [ ] Add collapsable button
