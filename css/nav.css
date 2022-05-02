@@ -1,0 +1,120 @@
+.nav.menu {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--menu-gap-block, .5rem) var(--menu-gap-inline, 1rem);
+    min-height: var(--menu-height, 4.6rem);
+    background-color: var(--menu-background-color, transparent);
+    padding-inline: var(--menu-sm-padding, 1rem);
+}
+
+.nav.menu .header {
+    display: flex;
+    align-items: center;
+    flex-basis: 100%;
+    min-height: var(--menu-height, 4.6rem);
+    background-color: var(--menu-header-background-color, transparent);
+}
+
+.nav.menu .header figure {
+    display: flex;
+    flex-basis: 100%;
+}
+
+.nav.menu .header .image {
+    flex-basis: 100%;
+    height: var(--menu-height, 4.6rem);
+    object-fit: contain;
+    object-position: top center;
+}
+
+.nav.menu .header .title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-basis: 100%;
+    color: var(--menu-title-color, #000000);
+    text-align: center;
+}
+
+.nav.menu .header .sidebar-button + .title {
+    flex-basis: 70%;
+}
+
+.nav.menu .footer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-basis: 100%;
+    background-color: var(--menu-footer-background-color, transparent);
+}
+
+.nav.menu .list {
+    display: none;
+}
+
+.nav.menu .list .item :where(.button, .link) {
+    padding: .25rem;
+    border-radius: .25rem;
+}
+
+/* ? MD */
+@media (min-width: 768px) {
+    .nav.menu {
+        padding-inline: var(--menu-md-padding, 1rem);
+    }
+}
+
+/* ? LG */
+@media (min-width: 1024px) {
+    .nav.menu {
+        justify-content: space-between;
+        padding-inline: var(--menu-lg-padding, 2.5rem);
+    }
+
+    .nav.menu .header {
+        flex-basis: revert;
+        justify-content: flex-start;
+    }
+
+    .nav.menu .header .title {
+        text-align: left;
+    }
+
+    .nav.menu .list {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--menu-list-gap, 1rem);
+        justify-content: flex-end;
+        flex-basis: revert;
+        background-color: var(--menu-list-background-color, transparent);
+    }
+
+    .nav.menu .list .item :where(.button, .link) {
+        width: max-content;
+    }
+}
+
+/* ? XL */
+@media (min-width: 1200px) {
+    .nav.menu {
+        padding-inline: var(--menu-xl-padding, 5rem);
+    }
+}
+
+/* ? 2XL */
+@media (min-width: 1536px) {
+    .nav.menu {
+        padding-inline: var(--menu-2xl-padding, 10rem);
+    }
+}
+
+/* ? 3XL */
+@media (min-width: 1920px) {
+    .nav.menu {
+        padding-inline: var(--menu-3xl-padding, 15rem);
+    }
+}

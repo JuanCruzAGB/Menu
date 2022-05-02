@@ -1,0 +1,123 @@
+.tab.menu {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--menu-gap-block, .5rem) var(--menu-gap-inline, 1rem);
+    min-height: var(--menu-height, 4.6rem);
+    background-color: var(--menu-background-color, transparent);
+    padding-inline: 0;
+}
+
+.tab.menu .header {
+    display: flex;
+    align-items: center;
+    flex-basis: 100%;
+    min-height: var(--menu-height, 4.6rem);
+    background-color: var(--menu-header-background-color, transparent);
+}
+
+.tab.menu .header figure {
+    display: flex;
+    flex-basis: 100%;
+}
+
+.tab.menu .header .image {
+    flex-basis: 100%;
+    height: var(--menu-height, 4.6rem);
+    object-fit: contain;
+    object-position: top center;
+}
+
+.tab.menu .header .title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-basis: 100%;
+    color: var(--menu-title-color, #000000);
+    text-align: center;
+}
+
+.tab.menu .header .sidebar-button + .title {
+    flex-basis: 70%;
+}
+
+.tab.menu .footer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-basis: 100%;
+    background-color: var(--menu-footer-background-color, transparent);
+}
+
+.tab.menu .list {
+    display: flex;
+    align-items: center;
+    gap: var(--menu-list-gap, 1rem);
+    flex-basis: 100%;
+    padding-bottom: .5rem;
+    padding-inline: var(--menu-sm-padding, 1rem);
+    background-color: var(--menu-list-background-color, transparent);
+}
+
+.tab.menu.vertical .list {
+    flex-wrap: wrap;
+}
+
+.tab.menu:not(.vertical) .list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.tab.menu.vertical .list .item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-basis: 100%;
+}
+
+.tab.menu.vertical .list .item :where(.button, .link) {
+    flex-basis: 100%;
+}
+
+.tab.menu .list .item :where(.button, .link) {
+    padding: .25rem;
+    border-radius: .25rem;
+}
+
+/* ? MD */
+@media (min-width: 768px) {
+    .tab.menu .list {
+        padding-inline: var(--menu-md-padding, 1rem);
+    }
+}
+
+/* ? LG */
+@media (min-width: 1024px) {
+    .tab.menu .list {
+        padding-inline: var(--menu-lg-padding, 2.5rem);
+    }
+}
+
+/* ? XL */
+@media (min-width: 1200px) {
+    .tab.menu .list {
+        padding-inline: var(--menu-xl-padding, 5rem);
+    }
+}
+
+/* ? 2XL */
+@media (min-width: 1536px) {
+    .tab.menu .list {
+        padding-inline: var(--menu-2xl-padding, 10rem);
+    }
+}
+
+/* ? 3XL */
+@media (min-width: 1920px) {
+    .tab.menu .list {
+        padding-inline: var(--menu-3xl-padding, 15rem);
+    }
+}

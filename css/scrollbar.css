@@ -1,0 +1,35 @@
+.menu .list::-webkit-scrollbar {
+    width: var(--menu-scrollbar-width, 5px);
+    height: var(--menu-scrollbar-width, 5px);
+    margin: 500px;
+}
+
+.menu .list::-webkit-scrollbar-button {
+    width: var(--menu-scrollbar-padding, 250px);
+    height: var(--menu-scrollbar-padding, 250px);
+}
+
+.menu .list::-webkit-scrollbar-thumb {
+    background: var(--menu-scrollbar-thumb-background-color, #000000);
+    border-radius: 100vh;
+}
+
+.menu .list::-webkit-scrollbar-thumb:hover,
+.menu .list::-webkit-scrollbar-thumb:active {
+    background: var(--menu-scrollbar-thumb-background-color-alt, #000000);
+}
+
+.menu .list::-webkit-scrollbar-track {
+    background: var(--menu-scrollbar-track-background-color, #000000);
+    border: 2px solid white;
+    border-radius: 100vh;
+}
+
+.menu .list::-webkit-scrollbar-track:hover,
+.menu .list::-webkit-scrollbar-track:active {
+    background: var(--menu-scrollbar-track-background-color-alt, #000000);
+}
+
+.menu .list::-webkit-scrollbar-corner {
+    background: transparent;
+}

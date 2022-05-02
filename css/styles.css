@@ -1,11 +1,13 @@
-@import "floatingmenu.css";
-@import "sidebar.css";
+@import url(./float.css);
+@import url(./nav.css);
+@import url(./scrollbar.css);
+@import url(./tab.css);
 
 :root {
-    --nav-menu-height: 4.6rem;
+    --menu-height: 4.6rem;
 }
 
-.nav-menu, .nav-menu *, .nav-menu *::before, .nav-menu *::after {
+.menu, .menu *, .menu *::before, .menu *::after {
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -13,156 +15,36 @@
     list-style: none;
 }
 
-.nav-menu {
+.menu {
+    background-color: var(--menu-background-color, transparent);
+}
+
+.menu .list .item :where(.button, .link) {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    position: relative;
-    background-color: var(--nav-menu-background-color, #fff);
-    min-height: var(--nav-menu-height, 4.6rem);
-    padding: 0 var(--nav-menu-sm-row-padding, 1rem);
-    font-family: verdana;
-    transition: 500ms;
-}
-
-.nav-menu .nav-row {
-    display: flex;
-    flex-basis: 100%;
-    align-items: center;
-    height: 100%;
-    overflow: hidden;
-}
-
-.nav-menu .nav-row:not(:first-child) {
-    display: none;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-}
-
-.nav-menu .nav-title {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-basis: 100%;
-    color: var(--nav-menu-title-color, #222);
-    font-size: 1.2rem;
-    text-align: center;
-}
-
-.nav-menu .nav-row .sidebar-button + .nav-title {
-    flex-basis: 70%;
-}
-
-.nav-menu .nav-title picture {
-    flex-basis: 100%;
-}
-
-.nav-menu .nav-title img {
-    width: 100%;
-    height: var(--nav-menu-image-height, 4.6rem);
-    object-fit: contain;
-    object-position: top center;
-}
-
-.nav-menu .nav-menu-list {
-    display: none;
+    justify-content: space-between;
     width: fit-content;
-    height: 100%;
-    gap: var(--nav-menu-menu-gap, 1rem);
+    background-color: var(--menu-link-background-color, transparent);
+    color: var(--menu-link-color, #000000);
 }
 
-.nav-menu .nav-menu-list > li {
-    align-items: center;
-    display: flex;
-    height: 100%;
-}
-
-.nav-menu .nav-menu-list :where(.nav-button, .nav-link, .nav-text) {
-    display: inline-flex;
-    align-items: center;
-    outline: none;
-    color: var(--nav-menu-button-color, #222);
-    transition: 500ms;
-}
-
-.nav-menu .nav-menu-list :where(.nab-button, .nav-link):where(:hover, .active) {
-    color: var(--nav-menu-button-color-alt, #000);
+.menu .list .item.active .button,
+.menu .list .item .button:hover,
+.menu .list .item.active .link,
+.menu .list .item .link:hover {
+    background-color: var(--menu-link-background-color-alternative, #000000);
+    color: var(--menu-link-color-alternative, #FFFFFF);
 }
 
 /* ? MD */
 @media (min-width: 768px) {
-    /* */
+    /*  */
 }
 
 /* ? LG */
 @media (min-width: 1024px) {
-    .nav-menu {
-        height: fit-content;
-        justify-content: space-between;
-        padding: 0 var(--nav-menu-lg-row-padding, 5rem);
-    }
-
-    .nav-menu .nav-row {
-        min-height: var(--nav-menu-height, 4.6rem);
-        overflow: visible;
-    }
-
-    .nav-menu .nav-row:first-child {
-        flex-basis: auto;
-        justify-content: flex-start;
-    }
-
-    .nav-menu .nav-row:not(:first-child) {
-        display: flex;
-        flex-basis: 50%;
-    }
-
-    .nav-menu .nav-title {
-        flex-basis: 100%;
-        height: 100%;
-        text-align: left;
-    }
-
-    .nav-menu .nav-title picture {
-        flex-basis: auto;
-    }
-
-    .nav-menu .nav-menu-list {
-        display: flex;
-    }
-
-    .nav-menu :where(.nav-link, .nav-text) {
-        width: max-content;
-    }
-    
-    /* .nav-menu .nav-search-bar {
-        display: flex;
-        flex-wrap: wrap;
-        width: 25%;
-        height: 100%;
-        background-color: #fff;
-        border-radius: .25rem;
-        overflow: hidden;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
-    }
-
-    .nav-menu .nav-search-bar .nav-search-label {
-        flex-basis: 50px;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-    }
-
-    .nav-menu .nav-search-bar .nav-search-input {
-        flex-basis: calc(100% - (50px + 1rem));
-        border: none;
-        padding: .5rem;
-        outline: none;
-    } */
+    /*  */
 }
 
 /* ? XL */

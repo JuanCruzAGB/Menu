@@ -1,0 +1,94 @@
+.float.menu {
+    position: fixed;
+    left: var(--menu-position-left, var(--menu-inset, 1rem));
+    top: var(--menu-position-top, var(--menu-inset, 1rem));
+    display: grid;
+    gap: var(--menu-gap-block, .5rem) var(--menu-gap-inline, 1rem);
+    background-color: var(--menu-background-color, transparent);
+    border-radius: .25rem;
+}
+
+.float.menu.bottom {
+    bottom: var(--menu-position-bottom, var(--menu-inset, 1rem));
+    top: revert;
+}
+
+.float.menu.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.float.menu.left {
+    left: var(--menu-position-left, var(--menu-inset, 1rem));
+}
+
+.float.menu.right {
+    left: revert;
+    right: var(--menu-position-right, var(--menu-inset, 1rem));
+}
+
+.float.menu.top {
+    top: var(--menu-position-top, var(--menu-inset, 1rem));
+}
+
+.float.menu.center :where(footer, header) {
+    text-align: center;
+}
+
+.float.menu.right :where(footer, header) {
+    text-align: right;
+}
+
+.float.menu .list {
+    display: flex;
+    gap: var(--menu-list-gap-block, .5rem) var(--menu-list-gap-inline, .5rem);
+}
+
+.float.menu.center .list {
+    justify-content: center;
+}
+
+.float.menu.right .list {
+    justify-content: flex-end;
+}
+
+.float.menu .list .item :where(.button, .link) {
+    background-color: var(--menu-link-background-color-alternative, #000000);
+    padding: .25rem;
+    color: var(--menu-link-color-alternative, #FFFFFF);
+    border-radius: .25rem;
+}
+
+.float.menu .list .item.active .button,
+.float.menu .list .item .button:hover,
+.float.menu .list .item.active .link,
+.float.menu .list .item .link:hover {
+    background-color: var(--menu-link-background-color-alternative, #222222);
+    color: var(--menu-link-color-alternative, #FFFFFF);
+}
+
+/* ? MD */
+@media (min-width: 768px) {
+    /*  */
+}
+
+/* ? LG */
+@media (min-width: 1024px) {
+    /*  */
+}
+
+/* ? XL */
+@media (min-width: 1200px) {
+    /*  */
+}
+
+/* ? 2XL */
+@media (min-width: 1536px) {
+    /*  */
+}
+
+/* ? 3XL */
+@media (min-width: 1920px) {
+    /*  */
+}
