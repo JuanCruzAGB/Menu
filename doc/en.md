@@ -6,8 +6,8 @@ This package contains all the logic to create/find and make a `<nav>` functional
  - [Installation](#installation)
  - [What contains?](#what-contains)
  - [How to use?](#html-step-by-step)
-	- [Create](#how-to-create-a-nav)
-	- [Find](#add-functionality-to-a-nav)
+    - [Create](#how-to-create-a-nav)
+    - [Find](#add-functionality-to-a-nav)
  - [Coming soon](#working-on)
 
 ## Installation
@@ -38,11 +38,11 @@ Default **JavaScript** object, extended from [@juancruzagb/htmlcreator/Html](htt
 #### Properties
  - {string[]} classList: Add to the `<nav>` the classList attribute.
  - {object|false} footer: Add a `<footer>` to the `<nav>`.
-	- {array} children: All the HTML children from the `<footer>`.
+    - {array} children: All the HTML children from the `<footer>`.
  - {object|false} header: Add a `<header>` to the `<nav>`.
-	- {string|false} image: Add a `<img>` to the `<header>`.
-	- {string|false} path: Make the `<header>` children inside an `<a>`.
-	- {string|false} title: Add a `<h1>` to the `<header>`.
+    - {string|false} image: Add a `<img>` to the `<header>`.
+    - {string|false} path: Make the `<header>` children inside an `<a>`.
+    - {string|false} title: Add a `<h1>` to the `<header>`.
  - {string} id: The `<nav>` id attribute.
  - {string} type: The `<nav>` type.
 ## HTML step by step
@@ -51,164 +51,164 @@ Default **JavaScript** object, extended from [@juancruzagb/htmlcreator/Html](htt
 To start, make a new Menu with the properties you want. For example:
 ```
 let menu = new Menu({
-	props: {
-		classList: ['p-4'],
-		id: 'global',
-	},
+    props: {
+        classList: ['p-4'],
+        id: 'global',
+    },
 })
 ```
 Creates:
 ```
 <nav id="global" class="nav menu p-4">
-	<ul class="list">
-		<li class="item">
-			<a href="#us" class="link">
-				<span>About us</span>
-			</a>
-		</li>
+    <ul class="list">
+        <li class="item">
+            <a href="#us" class="link">
+                <span>About us</span>
+            </a>
+        </li>
 
-		<li class="item">
-			<a href="/contact" class="link">
-				<span>Contact</span>
-			</a>
-		</li>
+        <li class="item">
+            <a href="/contact" class="link">
+                <span>Contact</span>
+            </a>
+        </li>
 
-		<li class="item">
-			<a href="#_" class="button">
-				<span>Click me!</span>
-			</a>
-		</li>
-	</ul>
+        <li class="item">
+            <a href="#_" class="button">
+                <span>Click me!</span>
+            </a>
+        </li>
+    </ul>
 </nav>
 ```
 
 You can customize the `<a>` by adding:
 ```
 let menu = new Menu({
-	props: {
-		classList: ['p-4'],
-		id: 'global',
-	}, items: [{
+    props: {
+        classList: ['p-4'],
+        id: 'global',
+    }, items: [{
             path: '/home',
             text: 'Home',
         }, {
             text: 'Say hi!',
             type: 'button',
-	}],
+    }],
 })
 ```
 Creates:
 ```
 <nav id="global" class="nav menu p-4">
-	<ul class="list">
-		<li class="item">
-			<a href="/home" class="link">
-				<span>Home</span>
-			</a>
-		</li>
+    <ul class="list">
+        <li class="item">
+            <a href="/home" class="link">
+                <span>Home</span>
+            </a>
+        </li>
 
-		<li class="item">
-			<a href="#_" class="button">
-				<span>Say hi!</span>
-			</a>
-		</li>
-	</ul>
+        <li class="item">
+            <a href="#_" class="button">
+                <span>Say hi!</span>
+            </a>
+        </li>
+    </ul>
 </nav>
 ```
 
 If you want to add a `<header>` inside the `<nav>` you can do it like this:
 ```
 let menu = new Menu({
-	props: {
-		classList: ['p-4'],
-		header: {
-			path: '/',
-			title: 'Hello world',
-		}, id: 'global',
-	}, items: [{
+    props: {
+        classList: ['p-4'],
+        header: {
+            path: '/',
+            title: 'Hello world',
+        }, id: 'global',
+    }, items: [{
             path: '/home',
             text: 'Home',
         }, {
             text: 'Say hi!',
             type: 'button',
-	}],
+    }],
 })
 ```
 Creates:
 ```
 <nav id="global" class="nav menu p-4">
-	<header class="header">
-		<a href="/" class="title">
-			<h1 class="name">Hello world</h1>
-		</a>
-	</header>
+    <header class="header">
+        <a href="/" class="title">
+            <h1 class="name">Hello world</h1>
+        </a>
+    </header>
 
-	<ul class="list">
-		<li class="item">
-			<a href="/home" class="link">
-				<span>Home</span>
-			</a>
-		</li>
+    <ul class="list">
+        <li class="item">
+            <a href="/home" class="link">
+                <span>Home</span>
+            </a>
+        </li>
 
-		<li class="item">
-			<a href="#_" class="button">
-				<span>Say hi!</span>
-			</a>
-		</li>
-	</ul>
+        <li class="item">
+            <a href="#_" class="button">
+                <span>Say hi!</span>
+            </a>
+        </li>
+    </ul>
 </nav>
 ```
 
 If you want to add a `<footer>` inside the `<nav>` you can do it like this:
 ```
 let menu = new Menu({
-	props: {
-		classList: ['p-4'],
-		footer: {
-			children: [
-				['span', {
-					children: 'Is not this awesome?',
-				}],
-			],
-		}, header: {
-			path: '/',
-			title: 'Hello world',
-		}, id: 'global',
-	}, items: [{
+    props: {
+        classList: ['p-4'],
+        footer: {
+            children: [
+                ['span', {
+                    children: 'Is not this awesome?',
+                }],
+            ],
+        }, header: {
+            path: '/',
+            title: 'Hello world',
+        }, id: 'global',
+    }, items: [{
             path: '/home',
             text: 'Home',
         }, {
             text: 'Say hi!',
             type: 'button',
-	}],
+    }],
 })
 ```
 Creates:
 ```
 <nav id="global" class="nav menu p-4">
-	<header class="header">
-		<a href="/" class="title">
-			<h1 class="name">Hello world</h1>
-		</a>
-	</header>
+    <header class="header">
+        <a href="/" class="title">
+            <h1 class="name">Hello world</h1>
+        </a>
+    </header>
 
-	<ul class="list">
-		<li class="item">
-			<a href="/home" class="link">
-				<span>Home</span>
-			</a>
-		</li>
+    <ul class="list">
+        <li class="item">
+            <a href="/home" class="link">
+                <span>Home</span>
+            </a>
+        </li>
 
-		<li class="item">
-			<a href="#_" class="button">
-				<span>Say hi!</span>
-			</a>
-		</li>
-	</ul>
+        <li class="item">
+            <a href="#_" class="button">
+                <span>Say hi!</span>
+            </a>
+        </li>
+    </ul>
 
-	<footer class="footer">
-		<span>Is not this awesome?</span>
-	</footer>
+    <footer class="footer">
+        <span>Is not this awesome?</span>
+    </footer>
 </nav>
 ```
 
@@ -217,11 +217,11 @@ Coming soon.
 
 ## Working on
  - [X] Default Menu object
- 	- [X] Create
- 	- [ ] Find
-	- [X] Add type 'nav'
-		- [ ] Import Sidebar to mobile
-	- [X] Add type 'tab'
-		- [ ] Open content
-	- [X] Add type 'float'
-		- [ ] Add collapsable button
+     - [X] Create
+     - [ ] Find
+    - [X] Add type 'nav'
+        - [ ] Import Sidebar to mobile
+    - [X] Add type 'tab'
+        - [ ] Open content
+    - [X] Add type 'float'
+        - [ ] Add collapsable button

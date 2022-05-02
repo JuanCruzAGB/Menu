@@ -6,8 +6,8 @@ Este paquete contiene toda la logica para crear/encontrar y hacer funcional un `
  - [Instalación](#instalación)
  - [Qué contine?](#qué-contiene)
  - [Cómo se usa?](#html-paso-a-paso)
-	- [Crear](#como-crear-un-nav)
-	- [Encontrar](#agregar-funcionalidad-al-nav)
+    - [Crear](#como-crear-un-nav)
+    - [Encontrar](#agregar-funcionalidad-al-nav)
  - [Próximamente](#working-on)
 
 ## Instalación
@@ -38,11 +38,11 @@ Objecto de **JavaScript** por defecto, se extiende de [@juancruzagb/htmlcreator/
 #### Propiedades
  - {string[]} classList: Agrega al `<nav>` las clases.
  - {object|false} footer: Agrega un `<footer>` al `<nav>`.
-	- {array} children: Todos los HTML hijos del `<footer>`.
+    - {array} children: Todos los HTML hijos del `<footer>`.
  - {object|false} header: Agrega un `<header>` al `<nav>`.
-	- {string|false} image: Agrega un `<img>` al `<header>`.
-	- {string|false} path: Hace que los hijos del `<header>` estén dentro de un `<a>`.
-	- {string|false} title: Agrega un `<h1>` al `<header>`.
+    - {string|false} image: Agrega un `<img>` al `<header>`.
+    - {string|false} path: Hace que los hijos del `<header>` estén dentro de un `<a>`.
+    - {string|false} title: Agrega un `<h1>` al `<header>`.
  - {string} id: El atributo id del `<nav>`.
  - {string} type: El tipo de `<nav>`.
 ## HTML paso a paso
@@ -51,164 +51,164 @@ Objecto de **JavaScript** por defecto, se extiende de [@juancruzagb/htmlcreator/
 Para empezar, haz un nuevo  Menu con las propiedades que quieras. Por ejemplo:
 ```
 let menu = new Menu({
-	props: {
-		classList: ['p-4'],
-		id: 'global',
-	},
+    props: {
+        classList: ['p-4'],
+        id: 'global',
+    },
 })
 ```
 Crea un:
 ```
 <nav id="global" class="nav menu p-4">
-	<ul class="list">
-		<li class="item">
-			<a href="#us" class="link">
-				<span>About us</span>
-			</a>
-		</li>
+    <ul class="list">
+        <li class="item">
+            <a href="#us" class="link">
+                <span>About us</span>
+            </a>
+        </li>
 
-		<li class="item">
-			<a href="/contact" class="link">
-				<span>Contact</span>
-			</a>
-		</li>
+        <li class="item">
+            <a href="/contact" class="link">
+                <span>Contact</span>
+            </a>
+        </li>
 
-		<li class="item">
-			<a href="#_" class="button">
-				<span>Click me!</span>
-			</a>
-		</li>
-	</ul>
+        <li class="item">
+            <a href="#_" class="button">
+                <span>Click me!</span>
+            </a>
+        </li>
+    </ul>
 </nav>
 ```
 
 Se puede customizar los `<a>` agregandolos en:
 ```
 let menu = new Menu({
-	props: {
-		classList: ['p-4'],
-		id: 'global',
-	}, items: [{
+    props: {
+        classList: ['p-4'],
+        id: 'global',
+    }, items: [{
             path: '/home',
             text: 'Home',
         }, {
             text: 'Say hi!',
             type: 'button',
-	}],
+    }],
 })
 ```
 Crea un:
 ```
 <nav id="global" class="nav menu p-4">
-	<ul class="list">
-		<li class="item">
-			<a href="/home" class="link">
-				<span>Home</span>
-			</a>
-		</li>
+    <ul class="list">
+        <li class="item">
+            <a href="/home" class="link">
+                <span>Home</span>
+            </a>
+        </li>
 
-		<li class="item">
-			<a href="#_" class="button">
-				<span>Say hi!</span>
-			</a>
-		</li>
-	</ul>
+        <li class="item">
+            <a href="#_" class="button">
+                <span>Say hi!</span>
+            </a>
+        </li>
+    </ul>
 </nav>
 ```
 
 Si querés agregar un `<header>` dentro del `<nav>` podés hacerlo de esta forma:
 ```
 let menu = new Menu({
-	props: {
-		classList: ['p-4'],
-		header: {
-			path: '/',
-			title: 'Hello world',
-		}, id: 'global',
-	}, items: [{
+    props: {
+        classList: ['p-4'],
+        header: {
+            path: '/',
+            title: 'Hello world',
+        }, id: 'global',
+    }, items: [{
             path: '/home',
             text: 'Home',
         }, {
             text: 'Say hi!',
             type: 'button',
-	}],
+    }],
 })
 ```
 Crea un:
 ```
 <nav id="global" class="nav menu p-4">
-	<header class="header">
-		<a href="/" class="title">
-			<h1 class="name">Hello world</h1>
-		</a>
-	</header>
+    <header class="header">
+        <a href="/" class="title">
+            <h1 class="name">Hello world</h1>
+        </a>
+    </header>
 
-	<ul class="list">
-		<li class="item">
-			<a href="/home" class="link">
-				<span>Home</span>
-			</a>
-		</li>
+    <ul class="list">
+        <li class="item">
+            <a href="/home" class="link">
+                <span>Home</span>
+            </a>
+        </li>
 
-		<li class="item">
-			<a href="#_" class="button">
-				<span>Say hi!</span>
-			</a>
-		</li>
-	</ul>
+        <li class="item">
+            <a href="#_" class="button">
+                <span>Say hi!</span>
+            </a>
+        </li>
+    </ul>
 </nav>
 ```
 
 Si querés agregar un `<footer>` dentro del `<nav>` podés hacerlo de esta forma:
 ```
 let menu = new Menu({
-	props: {
-		classList: ['p-4'],
-		footer: {
-			children: [
-				['span', {
-					children: 'Is not this awesome?',
-				}],
-			],
-		}, header: {
-			path: '/',
-			title: 'Hello world',
-		}, id: 'global',
-	}, items: [{
+    props: {
+        classList: ['p-4'],
+        footer: {
+            children: [
+                ['span', {
+                    children: 'Is not this awesome?',
+                }],
+            ],
+        }, header: {
+            path: '/',
+            title: 'Hello world',
+        }, id: 'global',
+    }, items: [{
             path: '/home',
             text: 'Home',
         }, {
             text: 'Say hi!',
             type: 'button',
-	}],
+    }],
 })
 ```
 Crea un:
 ```
 <nav id="global" class="nav menu p-4">
-	<header class="header">
-		<a href="/" class="title">
-			<h1 class="name">Hello world</h1>
-		</a>
-	</header>
+    <header class="header">
+        <a href="/" class="title">
+            <h1 class="name">Hello world</h1>
+        </a>
+    </header>
 
-	<ul class="list">
-		<li class="item">
-			<a href="/home" class="link">
-				<span>Home</span>
-			</a>
-		</li>
+    <ul class="list">
+        <li class="item">
+            <a href="/home" class="link">
+                <span>Home</span>
+            </a>
+        </li>
 
-		<li class="item">
-			<a href="#_" class="button">
-				<span>Say hi!</span>
-			</a>
-		</li>
-	</ul>
+        <li class="item">
+            <a href="#_" class="button">
+                <span>Say hi!</span>
+            </a>
+        </li>
+    </ul>
 
-	<footer class="footer">
-		<span>Is not this awesome?</span>
-	</footer>
+    <footer class="footer">
+        <span>Is not this awesome?</span>
+    </footer>
 </nav>
 ```
 
@@ -217,11 +217,11 @@ Próximamente.
 
 ## Working on
  - [X] Default Menu object
- 	- [X] Create
- 	- [ ] Find
-	- [X] Add type 'nav'
-		- [ ] Import Sidebar to mobile
-	- [X] Add type 'tab'
-		- [ ] Open content
-	- [X] Add type 'float'
-		- [ ] Add collapsable button
+     - [X] Create
+     - [ ] Find
+    - [X] Add type 'nav'
+        - [ ] Import Sidebar to mobile
+    - [X] Add type 'tab'
+        - [ ] Open content
+    - [X] Add type 'float'
+        - [ ] Add collapsable button
