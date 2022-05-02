@@ -1,9 +1,13 @@
-// ? JuanCruzAGB repository
-import Class from "@juancruzagb/src/js/Class.js";
+// ? HTMLCreator core
+import Html from "@juancruzagb/htmlcreator/js/Core/Html.js";
 
-// ? External repository.
-import Button from "@juancruzagb/htmlcreator/js/Buttons/Button.js";
+// ? HTMLCreator repository
+import Header from "@juancruzagb/htmlcreator/js/Boxes/Header.js";
+import Item from "@juancruzagb/htmlcreator/js/Boxes/Item.js";
 import Link from "@juancruzagb/htmlcreator/js/Buttons/Link.js";
+import List from "@juancruzagb/htmlcreator/js/Boxes/List.js";
+import Title from "@juancruzagb/htmlcreator/js/Texts/Title.js";
+import Image from "@juancruzagb/htmlcreator/js/Visuals/Image.js";
 
 /**
  * * Menu makes an excellent navigation menu.
@@ -12,96 +16,245 @@ import Link from "@juancruzagb/htmlcreator/js/Buttons/Link.js";
  * @author Juan Cruz Armentia <juan.cruz.armentia@gmail.com>
  * @extends Class
  */
-export default class Menu extends Class {
+export default class Menu extends Html {
     /**
      * * Creates an instance of Menu.
      * @param {object} [data]
-     * @param {object} [data.props]
-     * @param {string} [data.props.id="nav-1"] Menu primary key.
-     * @param {object} [data.props.sidebar] Menu Sidebar data.
-     * @param {object} [data.state]
-     * @param {string} [data.state.current=false] Menu current Link state.
-     * @param {object} [data.callbacks]
-     * @param {object} [data.callbacks.active]
-     * @param {function} [data.callbacks.active.function]
-     * @param {object} [data.callbacks.active.params]
+     * @param {object|false} [data.callbacks]
+     * @param {object|false} [data.props]
+     * @param {string[]} [data.props.classList]
+     * @param {object|false} [data.props.footer=false]
+     * @param {array} [data.props.footer.children]
+     * @param {object|false} [data.props.header]
+     * @param {string|false} [data.props.header.image=false]
+     * @param {string|false} [data.props.header.path='/']
+     * @param {string} [data.props.header.title='Menu']
+     * @param {string} [data.props.id='menu-1'] Menu primary key.
+     * @param {string} [data.props.type='nav'] Nav || Tab || Float
+     * @param {object|false} [data.state]
+     * @param {boolean} [data.state.collapse=false] If the Float Menu should collapse with a button.
+     * @param {string|false} [data.state.current=false] Menu current Link active.
+     * @param {boolean} [data.state.sidebar=false] If the Nav Menu should implement the Sidebar Button Open.
+     * @param {boolean} [data.state.visible=false] If the Float Menu should be visible.
+     * @param {object[]} [data.items]
      * @memberof Menu
      */
     constructor (data = {
-        props: {
-            id: "nav-1",
-            sidebar: {
-                // TODO
+        callbacks: {
+            // ?
+        }, items: [{
+            hash: 'us',
+            text: 'About us',
+        }, {
+            path: '/contact',
+            text: 'Contact',
+        }, {
+            callback: {
+                function: (params = {}) => { /* console.log(params); */ },
+                params: {
+                    // ?
+                },
             },
+            text: 'Click me!',
+            type: 'button',
+        }], props: {
+            classList: [],
+            header: {
+                path: '/',
+                title: 'Menu',
+            }, id: 'menu-1',
+            nodeName: 'NAV',
+            type: 'nav',
         }, state: {
             current: false,
-        }, callbacks: {
-            active: {
-                function: params => { /* console.log(params); */ },
-                params: {},
-            },
+            sidebar: false,
         },
     }) {
+        switch (typeof data) {
+            case 'string':
+                console.log(document.querySelector(data));
+                throw new Error('Locate a new <Menu /> not supported yet');
+        }
+
         super({
             props: {
                 ...Menu.props,
-                ...(data && data.hasOwnProperty("props")) ? data.props : {},
+                ...(data && typeof data != 'string' && data.hasOwnProperty('props') && data.props) ? data.props : {},
             }, state: {
                 ...Menu.state,
-                ...(data && data.hasOwnProperty("state")) ? data.state : {},
+                ...(data && typeof data != 'string' && data.hasOwnProperty('state') && data.state) ? data.state : {},
+            }, callbacks: {
+                ...Menu.callbacks,
+                ...(data && typeof data != 'string' && data.hasOwnProperty('callbacks') && data.callbacks) ? data.callbacks : {},
             },
         });
-        this.setCallbacks({
-            ...Menu.callbacks,
-            ...(data && data.hasOwnProperty("callbacks")) ? data.callbacks: {},
-        });
-        if (this.props.hasOwnProperty("sidebar")) {
-            this.setSidebars();
+
+        switch (this.props.type.toUpperCase()) {
+            case 'nav':
+                console.log(this.state.sidebar);
+                // this.setSidebars();
+                break;
         }
-        this.setHTML(`#${ this.props.id }.nav-menu`);
-        this.setLinks();
+
+        if (this.props.hasOwnProperty('header')) {
+            this.setHeader();
+        }
+
+        this.setList();
+
+        this.setItems((data && typeof data != 'string' && data.hasOwnProperty('items') && data.items) ? data.items : []);
+
+        if (this.props.hasOwnProperty('footer')) {
+            this.setFooter();
+        }
+
         this.checkState();
     }
 
     /**
-     * * Set the Menu Links.
+     * * Set the Header children.
      * @memberof Menu
      */
-    setLinks () {
+    setHeader () {
+        if (!this.header) {
+            if (this.props.header.hasOwnProperty('image')) {
+                this.setImage();
+            }
+
+            this.setTitle();
+
+            this.header = new Header({
+                props: {
+                    classList: ['header'],
+                    id: `${ this.props.id }-header`,
+                },
+            });
+
+            if (this.props.header.hasOwnProperty('image') && !this.props.header.hasOwnProperty('path')) {
+                this.header.appendChild(this.image);
+            }
+
+            this.header.appendChild(this.title);
+
+            this.appendChild(this.header);
+        }
+    }
+
+    /**
+     * * Set the Image.
+     * @memberof Menu
+     */
+    setImage () {
+        this.image = new Image({
+            props: {
+                alt: `${ this.props.header.title } | Image`,
+                classList: ['image'],
+                id: `${ this.props.id }-image`,
+                src: this.props.header.image,
+            },
+        });
+    }
+
+    /**
+     * * Set the Items.
+     * @param {object[]} [items]
+     * @memberof Menu
+     */
+    setItems (items = []) {
+        if (!this.items) {
+            this.items = [];
+        }
+
         if (!this.links) {
             this.links = [];
         }
-        let htmls = document.querySelectorAll(`#${ id }.nav-menu :where(.nav-link, .nav-button)`);
-        for (const key in htmls) {
-            if (Object.hasOwnProperty.call(htmls, key)) {
-                let link;
-                if (htmls[key].nodeName == "A") {
-                    link = new Link({
-                        props: {
-                            id: `${ this.props.id }-link-${ key }`,
-                            url: htmls[key].hasAttribute("href") ? htmls[key].href : "#",
-                        }, state: {
-                            active: htmls[key].classList.contains("active"),
-                        }, html: htmls[key],
-                    });
-                } else if (htmls[key].nodeName == "BUTTON") {
-                    link = new Button({
-                        props: {
-                            id: `${ this.props.id }-link-${ key }`,
-                        }, state: {
-                            active: htmls[key].classList.contains("active"),
-                        }, html: htmls[key],
-                    });
-                    link.setProps('url', htmls[key].hasAttribute("href") ? htmls[key].href : "#");
-                }
-                link.addEventListener("click", (e) => {
-                    if (link.props.nodeName == "BUTTON") {
-                        e.preventDefault();
-                    }
-                    this.active(link.props.url);
+
+        for (const key in items) {
+            if (Object.hasOwnProperty.call(items, key)) {
+                let item = items[key];
+
+                let link = new Link({
+                    callbacks: item.callbacks || {},
+                    children: [
+                        ['span', {
+                            props: {
+                                id: `${ this.props.id }-item-${ key }-link-text`,
+                            }, children: item.text,
+                        }],
+                    ], props: {
+                        classList: [(item.hasOwnProperty('type') ? item.type : 'link')],
+                        id: `${ this.props.id }-item-${ key }-link`,
+                        target: item.target,
+                        url: item.path || item.hash,
+                    },
                 });
+
                 this.links.push(link);
+
+                this.items.push(new Item({
+                    props: {
+                        classList: ['item'],
+                        id: `${ this.props.id }-item-${ key }`,
+                    }, children: link,
+                }));
             }
+        }
+    }
+
+    /**
+     * * Set the List.
+     * @memberof Menu
+     */
+    setList () {
+        if (!this.list) {
+            this.list = new List({
+                props: {
+                    classList: ['list'],
+                    id: `${ this.props.id }-list`,
+                },
+            });
+
+            this.appendChild(this.list);
+        }
+    }
+
+    /**
+     * * Set the Title.
+     * @memberof Menu
+     */
+    setTitle () {
+        if (this.props.header.hasOwnProperty('path')) {
+            this.title = new Link({
+                props: {
+                    classList: ['title'],
+                    id: `${ this.props.id }-title`,
+                    url: this.props.header.path,
+                },
+            });
+            
+            this.name = new Title({
+                children: this.props.header.title,
+                props: {
+                    classList: ['name'],
+                    id: `${ this.props.id }-title`,
+                    level: 1,
+                },
+            });
+
+            if (this.props.header.hasOwnProperty('image')) {
+                this.title.appendChild(this.image);
+            }
+
+            this.title.appendChild(this.name);
+        } else {
+            this.title = new Title({
+                children: this.props.header.title,
+                props: {
+                    classList: ['title'],
+                    id: `${ this.props.id }-title`,
+                    level: 1,
+                },
+            });
         }
     }
 
@@ -129,91 +282,154 @@ export default class Menu extends Class {
     }
 
     /**
-     * * Check the Menu state values.
+     * * Check the state values.
      * @memberof Menu
      */
     checkState () {
-        this.checkCurrentState();
+        // ?
     }
 
     /**
-     * * Check the Menu current state value.
-     * @memberof Menu
-     */
-    checkCurrentState () {
-        if (this.state.current) {
-            this.active(this.state.current);
-        }
-    }
-
-    /**
-     * * Change the Menu Link active.
-     * @param {string} current
-     * @param {object} params Active callback function params.
-     * @returns {boolean}
-     * @memberof Menu
-     */
-    active (current = false, params = {}) {
-        if (current) {
-            this.setState("current", current);
-            let found = false;
-            for (const link of this.links) {
-                if (link.props.target == this.state.current) {
-                    link.active();
-                    found = link;
-                }
-                if (link.props.target != this.state.current) {
-                    link.inactive();
-                }
-            }
-            this.execute("active", {
-                ...this.callbacks.active.params,
-                ...params,
-                current: current,
-                link: found,
-                Menu: this,
-            });
-            return found;
-        }
-        if (!current) {
-            throw new Error("Current param is required to active a Link");
-            return false;
-        }
-    }
-
-    /**
+     * * Default properties.
      * @static
-     * @var {object} props Default properties.
+     * @var {object} props
      */
     static props = {
-        id: "nav-1",
-        sidebar: {
-            // TODO
-        },
+        classList: [],
+        header: {
+            path: '/',
+            title: 'Menu',
+        }, id: 'menu-1',
+        nodeName: 'NAV',
+        type: 'nav',
     }
     
     /**
+     * * Default state.
      * @static
-     * @var {object} state Default state.
+     * @var {object} state
      */
     static state = {
-        current: false,
+        current: '/',
+        sidebar: false,
     }
     
     /**
+     * * Default callbacks.
      * @static
-     * @var {object} callbacks Default callbacks.
+     * @var {object} callbacks
      */
-    static callbacks= {
-        active: {
-            function: params => { /* console.log(params); */ },
-            params: {},
-        },
+    static callbacks = {
+        // ?
     }
-
-    /** 
-     * @static
-     * @var {Link} Link
-     */
-    static Link = Link
 }
+
+/* <nav id="id" class="nav menu">
+    // <header class="header">
+    //     // <Sidebar.Buttons.Open />
+    
+    //     // <a href="/" class="title">
+    //     //    // <img class="image" src="Logo de la empresa" alt="Logo de la empresa" />
+    
+    //     //     <h1 class="name">Nombre de la empresa</h1>
+    //     // </a>
+    
+    //     // <h1 class="title">Nombre de la empresa</h1>
+    // </header>
+
+    <ul class="list">
+        <li class="item">
+            <a href="ruta" class="link">
+                <span>Text</span>
+            </a>
+        </li>
+
+        <li class="item">
+            <a href="#hash" class="link">
+                <span>Text</span>
+            </a>
+        </li>
+
+        <li class="item">
+            <a href="#_" class="button">
+                <span>Text</span>
+            </a>
+        </li>
+    </ul>
+
+    // <footer class="footer">
+
+    // </footer>
+</nav> */
+
+/* <nav id="id" class="tab menu">
+    // <header class="header">
+    //     // <a href="/" class="title">
+    //     //    // <img class="image" src="Logo de la empresa" alt="Logo de la empresa" />
+    
+    //     //     <h1 class="name">Nombre de la empresa</h1>
+    //     // </a>
+    
+    //     // <h1 class="title">Nombre de la empresa</h1>
+    // </header>
+
+    <ul class="list">
+        <li class="item">
+            <a href="ruta" class="link">
+                <span>Text</span>
+            </a>
+        </li>
+
+        <li class="item">
+            <a href="#hash" class="link">
+                <span>Text</span>
+            </a>
+        </li>
+
+        <li class="item">
+            <a href="#_" class="button">
+                <span>Text</span>
+            </a>
+        </li>
+    </ul>
+
+    // <footer class="footer">
+
+    // </footer>
+</nav> */
+
+/* <nav id="id" class="float menu">
+    // <header class="header">
+    //     // <a href="/" class="title">
+    //     //    // <img class="image" src="Logo de la empresa" alt="Logo de la empresa" />
+    
+    //     //     <h1 class="name">Nombre de la empresa</h1>
+    //     // </a>
+    
+    //     // <h1 class="title">Nombre de la empresa</h1>
+    // </header>
+
+    <ul class="list">
+        <li class="item">
+            <a href="ruta" class="link">
+                <span>Text</span>
+            </a>
+        </li>
+
+        <li class="item">
+            <a href="#hash" class="link">
+                <span>Text</span>
+            </a>
+        </li>
+
+        <li class="item">
+            <a href="#_" class="button">
+                <span>Text</span>
+            </a>
+        </li>
+    </ul>
+
+    // <footer class="footer">
+
+    // </footer>
+</nav> */
