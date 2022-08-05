@@ -1,6 +1,6 @@
 {
   "name": "@juancruzagb/menu",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "HTMLCreator Menu extension",
   "main": "index.js",
   "type": "module",
