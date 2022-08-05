@@ -3,40 +3,6 @@
 @import url(./scrollbar.css);
 @import url(./tab.css);
 
-:root {
-    --menu-height: 4.6rem;
-}
-
-.menu, .menu *, .menu *::before, .menu *::after {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    box-sizing: border-box;
-    list-style: none;
-}
-
-.menu {
-    background-color: var(--menu-background-color, transparent);
-}
-
-.menu .list .item :where(.button, .link) {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: fit-content;
-    background-color: var(--menu-link-background-color, transparent);
-    color: var(--menu-link-color, #000000);
-}
-
-.menu .list .item.active .button,
-.menu .list .item .button:hover,
-.menu .list .item.active .link,
-.menu .list .item .link:hover {
-    background-color: var(--menu-link-background-color-alternative, #000000);
-    color: var(--menu-link-color-alternative, #FFFFFF);
-}
-
 /* ? MD */
 @media (min-width: 768px) {
     /*  */

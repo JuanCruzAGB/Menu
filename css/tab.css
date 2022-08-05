@@ -1,123 +1,138 @@
-.tab.menu {
+.menu.tab {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
-    gap: var(--menu-gap-block, .5rem) var(--menu-gap-inline, 1rem);
-    min-height: var(--menu-height, 4.6rem);
-    background-color: var(--menu-background-color, transparent);
-    padding-inline: 0;
 }
 
-.tab.menu .header {
-    display: flex;
-    align-items: center;
-    flex-basis: 100%;
-    min-height: var(--menu-height, 4.6rem);
-    background-color: var(--menu-header-background-color, transparent);
-}
-
-.tab.menu .header figure {
+/* Header */
+.menu.tab .header {
     display: flex;
     flex-basis: 100%;
+    min-height: var(--tab-menu-height, 4.6rem);
+    background-color: var(--tab-menu-header-background-color, transparent);
+    color: var(--tab-menu-header-color, #222);
 }
 
-.tab.menu .header .image {
-    flex-basis: 100%;
-    height: var(--menu-height, 4.6rem);
+.menu.tab .header picture {
+    width: 100vw;
+}
+
+.menu.tab .header img {
+    width: 100vw;
+    height: var(--tab-menu-height, 4.6rem);
     object-fit: contain;
     object-position: top center;
 }
 
-.tab.menu .header .title {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-basis: 100%;
-    color: var(--menu-title-color, #000000);
-    text-align: center;
+/* Tabs */
+.menu.tab .tabs {
+    width: 100%;
+    height: fit-content;
+    background-color: var(--tab-menu-tabs-background-color, transparent);
 }
 
-.tab.menu .header .sidebar-button + .title {
-    flex-basis: 70%;
+.menu.tab .tabs :where(.body, .content, .footer, .menu-list) {
+    width: 100%;
 }
-
-.tab.menu .footer {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-basis: 100%;
-    background-color: var(--menu-footer-background-color, transparent);
-}
-
-.tab.menu .list {
-    display: flex;
-    align-items: center;
-    gap: var(--menu-list-gap, 1rem);
-    flex-basis: 100%;
-    padding-bottom: .5rem;
-    padding-inline: var(--menu-sm-padding, 1rem);
-    background-color: var(--menu-list-background-color, transparent);
-}
-
-.tab.menu.vertical .list {
-    flex-wrap: wrap;
-}
-
-.tab.menu:not(.vertical) .list {
-    flex-wrap: nowrap;
+    
+.menu.tab:not(.vertical) .tabs .content {
     overflow-x: auto;
 }
+    
+.menu.tab:not(.vertical) .tabs .menu-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: fit-content;
+}
 
-.tab.menu.vertical .list .item {
+.menu.tab .tabs .menu-list .tab :where(.button, .link) {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
-    flex-basis: 100%;
+    justify-content: center;
+    width: 100%;
+    height: var(--tab-menu-height, 2.3rem);
+    padding: var(--tab-menu-button-padding, 1rem);
+    background-color: var(--tab-menu-button-background-color, transparent);
+    color: var(--tab-menu-button-color, #222);
+    text-decoration: none;
+    transition: 500ms;
 }
 
-.tab.menu.vertical .list .item :where(.button, .link) {
-    flex-basis: 100%;
+.menu.tab .tabs .menu-list .tab.opened :where(.button, .link),
+.menu.tab .tabs .menu-list .tab :where(.button, .link):hover {
+    background-color: var(--tab-menu-button-background-color-alt);
+    color: var(--tab-menu-button-color-alt, #000);
 }
 
-.tab.menu .list .item :where(.button, .link) {
-    padding: .25rem;
-    border-radius: .25rem;
+.menu.tab > .content {
+    width: 100%;
+}
+
+.menu.tab.vertical > .content {
+    display: block;
+}
+
+.menu.tab > .content:not(.opened) {
+    display: none;
 }
 
 /* ? MD */
 @media (min-width: 768px) {
-    .tab.menu .list {
-        padding-inline: var(--menu-md-padding, 1rem);
+    .menu.tab.vertical > :where(.tabs, .content) {
+        width: var(--tab-menu-tabs-md-width, 25%);
+        min-height: calc(100vh - var(--tab-menu-height, 4.6rem));
+    }
+    
+    .menu.tab.vertical > .content {
+        width: var(--tab-menu-content-md-width, 75%);
     }
 }
 
 /* ? LG */
 @media (min-width: 1024px) {
-    .tab.menu .list {
-        padding-inline: var(--menu-lg-padding, 2.5rem);
+    .menu.tab .header img {
+        width: auto;
+    }
+
+    .menu.tab.vertical .tabs {
+        width: var(--tab-menu-tabs-lg-width, 25%);
+    }
+    
+    .menu.tab.vertical > .content {
+        width: var(--tab-menu-content-lg-width, 75%);
     }
 }
 
 /* ? XL */
 @media (min-width: 1200px) {
-    .tab.menu .list {
-        padding-inline: var(--menu-xl-padding, 5rem);
+    .menu.tab.vertical .tabs {
+        width: var(--tab-menu-tabs-xl-width, 25%);
+    }
+    
+    .menu.tab.vertical > .content {
+        width: var(--tab-menu-content-xl-width, 75%);
     }
 }
 
 /* ? 2XL */
 @media (min-width: 1536px) {
-    .tab.menu .list {
-        padding-inline: var(--menu-2xl-padding, 10rem);
+    .menu.tab.vertical .tabs {
+        width: var(--tab-menu-tabs-2xl-width, 25%);
+    }
+    
+    .menu.tab.vertical > .content {
+        width: var(--tab-menu-content-2xl-width, 75%);
     }
 }
 
 /* ? 3XL */
 @media (min-width: 1920px) {
-    .tab.menu .list {
-        padding-inline: var(--menu-3xl-padding, 15rem);
+    .menu.tab.vertical .tabs {
+        width: var(--tab-menu-tabs-3xl-width, 25%);
+    }
+    
+    .menu.tab.vertical > .content {
+        width: var(--tab-menu-content-3xl-width, 75%);
     }
 }
